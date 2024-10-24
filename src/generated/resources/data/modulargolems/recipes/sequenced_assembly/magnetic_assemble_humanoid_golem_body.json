@@ -1,0 +1,85 @@
+{
+  "type": "create:sequenced_assembly",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "alexscaves"
+    }
+  ],
+  "ingredient": {
+    "item": "modulargolems:humanoid_golem_body"
+  },
+  "loops": 6,
+  "results": [
+    {
+      "item": "modulargolems:humanoid_golem_body",
+      "nbt": {
+        "golem_material": "alexscaves:magnetic"
+      }
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "modulargolems:incomplete_humanoid_golem_body"
+        },
+        {
+          "item": "alexscaves:telecore"
+        }
+      ],
+      "results": [
+        {
+          "item": "modulargolems:incomplete_humanoid_golem_body"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "modulargolems:incomplete_humanoid_golem_body"
+        }
+      ],
+      "results": [
+        {
+          "item": "modulargolems:incomplete_humanoid_golem_body"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "modulargolems:incomplete_humanoid_golem_body"
+        }
+      ],
+      "results": [
+        {
+          "item": "modulargolems:incomplete_humanoid_golem_body"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "modulargolems:incomplete_humanoid_golem_body"
+        }
+      ],
+      "results": [
+        {
+          "item": "modulargolems:incomplete_humanoid_golem_body"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "item": "modulargolems:incomplete_humanoid_golem_body"
+  }
+}

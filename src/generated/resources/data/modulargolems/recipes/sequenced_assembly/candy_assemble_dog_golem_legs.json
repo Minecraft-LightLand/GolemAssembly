@@ -1,0 +1,85 @@
+{
+  "type": "create:sequenced_assembly",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "alexscaves"
+    }
+  ],
+  "ingredient": {
+    "item": "modulargolems:dog_golem_legs"
+  },
+  "loops": 3,
+  "results": [
+    {
+      "item": "modulargolems:dog_golem_legs",
+      "nbt": {
+        "golem_material": "alexscaves:candy"
+      }
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "modulargolems:incomplete_dog_golem_legs"
+        },
+        {
+          "item": "alexscaves:candy_cane_hook"
+        }
+      ],
+      "results": [
+        {
+          "item": "modulargolems:incomplete_dog_golem_legs"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "modulargolems:incomplete_dog_golem_legs"
+        }
+      ],
+      "results": [
+        {
+          "item": "modulargolems:incomplete_dog_golem_legs"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "modulargolems:incomplete_dog_golem_legs"
+        }
+      ],
+      "results": [
+        {
+          "item": "modulargolems:incomplete_dog_golem_legs"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "modulargolems:incomplete_dog_golem_legs"
+        }
+      ],
+      "results": [
+        {
+          "item": "modulargolems:incomplete_dog_golem_legs"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "item": "modulargolems:incomplete_dog_golem_legs"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "type": "create:sequenced_assembly",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "alexscaves"
+    }
+  ],
+  "ingredient": {
+    "item": "modulargolems:metal_golem_legs"
+  },
+  "loops": 9,
+  "results": [
+    {
+      "item": "modulargolems:metal_golem_legs",
+      "nbt": {
+        "golem_material": "alexscaves:nuclear"
+      }
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "modulargolems:incomplete_metal_golem_legs"
+        },
+        {
+          "item": "alexscaves:uranium"
+        }
+      ],
+      "results": [
+        {
+          "item": "modulargolems:incomplete_metal_golem_legs"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "modulargolems:incomplete_metal_golem_legs"
+        }
+      ],
+      "results": [
+        {
+          "item": "modulargolems:incomplete_metal_golem_legs"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "modulargolems:incomplete_metal_golem_legs"
+        }
+      ],
+      "results": [
+        {
+          "item": "modulargolems:incomplete_metal_golem_legs"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "modulargolems:incomplete_metal_golem_legs"
+        }
+      ],
+      "results": [
+        {
+          "item": "modulargolems:incomplete_metal_golem_legs"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "item": "modulargolems:incomplete_metal_golem_legs"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "type": "create:sequenced_assembly",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "alexscaves"
+    }
+  ],
+  "ingredient": {
+    "item": "modulargolems:metal_golem_body"
+  },
+  "loops": 9,
+  "results": [
+    {
+      "item": "modulargolems:metal_golem_body",
+      "nbt": {
+        "golem_material": "alexscaves:candy"
+      }
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "modulargolems:incomplete_metal_golem_body"
+        },
+        {
+          "item": "alexscaves:candy_cane_hook"
+        }
+      ],
+      "results": [
+        {
+          "item": "modulargolems:incomplete_metal_golem_body"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "modulargolems:incomplete_metal_golem_body"
+        }
+      ],
+      "results": [
+        {
+          "item": "modulargolems:incomplete_metal_golem_body"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "modulargolems:incomplete_metal_golem_body"
+        }
+      ],
+      "results": [
+        {
+          "item": "modulargolems:incomplete_metal_golem_body"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "modulargolems:incomplete_metal_golem_body"
+        }
+      ],
+      "results": [
+        {
+          "item": "modulargolems:incomplete_metal_golem_body"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "item": "modulargolems:incomplete_metal_golem_body"
+  }
+}

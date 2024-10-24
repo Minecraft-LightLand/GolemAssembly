@@ -2,6 +2,7 @@ package dev.xkmc.modulargolems.compat.materials.common;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
+import dev.xkmc.modulargolems.compat.materials.alexscaves.ACDispatch;
 import dev.xkmc.modulargolems.compat.materials.blazegear.BGDispatch;
 import dev.xkmc.modulargolems.compat.materials.botania.BotDispatch;
 import dev.xkmc.modulargolems.compat.materials.cataclysm.CataDispatch;
@@ -33,6 +34,7 @@ public abstract class CompatManager {
 		if (ModList.get().isLoaded(BGDispatch.MODID)) LIST.add(new BGDispatch());
 		if (ModList.get().isLoaded(LHDispatch.MODID)) LIST.add(new LHDispatch());
 		if (ModList.get().isLoaded(CataDispatch.MODID)) LIST.add(new CataDispatch());
+		if (ModList.get().isLoaded(ACDispatch.MODID)) LIST.add(new ACDispatch());
 		if (ModList.get().isLoaded(EnchantmentIndustry.ID)) CEICompat.register();
 		if (ModList.get().isLoaded(MusketMod.MODID)) GolemMusketCompat.init();
 	}

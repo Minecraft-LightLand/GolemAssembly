@@ -1,0 +1,85 @@
+{
+  "type": "create:sequenced_assembly",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "alexscaves"
+    }
+  ],
+  "ingredient": {
+    "item": "modulargolems:humanoid_golem_arms"
+  },
+  "loops": 6,
+  "results": [
+    {
+      "item": "modulargolems:humanoid_golem_arms",
+      "nbt": {
+        "golem_material": "alexscaves:candy"
+      }
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "modulargolems:incomplete_humanoid_golem_arms"
+        },
+        {
+          "item": "alexscaves:candy_cane_hook"
+        }
+      ],
+      "results": [
+        {
+          "item": "modulargolems:incomplete_humanoid_golem_arms"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "modulargolems:incomplete_humanoid_golem_arms"
+        }
+      ],
+      "results": [
+        {
+          "item": "modulargolems:incomplete_humanoid_golem_arms"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "modulargolems:incomplete_humanoid_golem_arms"
+        }
+      ],
+      "results": [
+        {
+          "item": "modulargolems:incomplete_humanoid_golem_arms"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "modulargolems:incomplete_humanoid_golem_arms"
+        }
+      ],
+      "results": [
+        {
+          "item": "modulargolems:incomplete_humanoid_golem_arms"
+        }
+      ]
+    }
+  ],
+  "transitionalItem": {
+    "item": "modulargolems:incomplete_humanoid_golem_arms"
+  }
+}
