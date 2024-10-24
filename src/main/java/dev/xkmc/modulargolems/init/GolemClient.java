@@ -10,11 +10,13 @@ import dev.xkmc.modulargolems.content.entity.humanoid.skin.PlayerSkinRenderer;
 import dev.xkmc.modulargolems.content.item.golem.GolemBEWLR;
 import dev.xkmc.modulargolems.content.item.upgrade.UpgradeItem;
 import dev.xkmc.modulargolems.content.menu.registry.GolemTabRegistry;
+import dev.xkmc.modulargolems.init.data.MGConfig;
 import dev.xkmc.modulargolems.init.data.MGTagGen;
 import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.ShieldItem;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
@@ -25,6 +27,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.registries.ForgeRegistries;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = ModularGolems.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class GolemClient {
@@ -39,7 +42,15 @@ public class GolemClient {
 		event.enqueueWork(() -> {
 			ClampedItemPropertyFunction func = (stack, level, entity, layer) ->
 					entity != null && entity.isBlocking() && entity.getUseItem() == stack ? 1.0F : 0.0F;
-			ItemProperties.register(Items.SHIELD, new ResourceLocation("blocking"), func);
+			if (MGConfig.CLIENT.shieldUsePoseFixForModdedShields.get()) {
+				for (var e : ForgeRegistries.ITEMS) {
+					if (e instanceof ShieldItem) {
+						ItemProperties.register(e, new ResourceLocation("blocking"), func);
+					}
+				}
+			} else {
+				ItemProperties.register(Items.SHIELD, new ResourceLocation("blocking"), func);
+			}
 			ClampedItemPropertyFunction arrow = (stack, level, entity, layer) ->
 					stack.is(MGTagGen.BLUE_UPGRADES) ? 1 : stack.is(MGTagGen.POTION_UPGRADES) ? 0.5f : 0;
 			for (var item : UpgradeItem.LIST)

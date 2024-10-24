@@ -10,7 +10,13 @@ public class MGConfig {
 
 	public static class Client {
 
+		public final ForgeConfigSpec.BooleanValue shieldUsePoseFixForModdedShields;
+
 		Client(ForgeConfigSpec.Builder builder) {
+			shieldUsePoseFixForModdedShields = builder
+					.comment("Replace isUsingItem with isBlocking for modded shield model predicate")
+					.comment("Fix shield rendering on humanoid golem but may break stuff")
+					.define("shieldUsePoseFixForModdedShields", false);
 		}
 
 	}
