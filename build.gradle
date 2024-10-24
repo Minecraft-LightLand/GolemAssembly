@@ -189,7 +189,7 @@ dependencies {
     runtimeOnly fg.deobf("dev.xkmc.l2modularblock:l2modularblock:1.1.0")
     implementation fg.deobf("dev.xkmc.l2screentracker:l2screentracker:0.1.4")
 
-    implementation fg.deobf("dev.xkmc.l2tabs:l2tabs:0.3.2")
+    implementation fg.deobf("dev.xkmc.l2tabs:l2tabs:0.3.3")
 
     implementation fg.deobf(jarJar("dev.xkmc.l2itemselector:l2itemselector:0.1.8")) {
         transitive = false
