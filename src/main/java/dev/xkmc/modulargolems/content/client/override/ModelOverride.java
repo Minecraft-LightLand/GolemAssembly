@@ -5,23 +5,22 @@ import dev.xkmc.modulargolems.content.core.IGolemPart;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemRenderer;
 import dev.xkmc.modulargolems.content.entity.common.IGolemModel;
+import it.unimi.dsi.fastutil.objects.Object2BooleanArrayMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Function;
 
 public class ModelOverride {
 
-	public static final ModelOverride DEFAULT = new ModelOverride(false);
-	public static final ModelOverride EMISSIVE = new ModelOverride(true);
-
 	public static ModelOverride texturePredicate(Function<AbstractGolemEntity<?, ?>, String> modifier) {
-		return new ModelOverride(false) {
+		return new ModelOverride() {
 
 			@Override
 			public ResourceLocation getTexture(AbstractGolemEntity<?, ?> golem, ResourceLocation id) {
@@ -32,10 +31,13 @@ public class ModelOverride {
 
 	}
 
-	private final boolean emissive;
+	private final Object2BooleanArrayMap<EntityType<?>> emissive = new Object2BooleanArrayMap<>();
 
-	public ModelOverride(boolean emissive) {
-		this.emissive = emissive;
+	public ModelOverride() {
+	}
+
+	public void clear() {
+		emissive.clear();
 	}
 
 	public ResourceLocation getTexture(AbstractGolemEntity<?, ?> golem, ResourceLocation id) {
@@ -46,13 +48,19 @@ public class ModelOverride {
 			AbstractGolemRenderer<T, P, M> renderer, T entity, P part, PoseStack pose, MultiBufferSource buffer, ResourceLocation mat,
 			int light, float pTick, boolean visible, boolean ghost, boolean glowing
 	) {
+		var model = renderer.getModel();
 		ResourceLocation tex = getTexture(entity, mat);
-		RenderType rt = getRenderType(renderer.getModel(), tex, visible, ghost, glowing);
+		RenderType rt = getRenderType(model, model.getTextureLocationInternal(tex), visible, ghost, glowing);
 		if (rt != null) {
 			renderer.renderPartModel(entity, part, pose, buffer.getBuffer(rt), light, pTick, ghost);
 		}
-		if (emissive) {
-			rt = getRenderType(renderer.getModel(), tex.withSuffix("_emissive"), visible, ghost, glowing);
+		var etex = model.getTextureLocationInternal(tex.withSuffix("_emissive"));
+		if (!emissive.containsKey(entity.getType())) {
+			boolean present = Minecraft.getInstance().getResourceManager().getResource(etex).isPresent();
+			emissive.put(entity.getType(), present);
+		}
+		if (emissive.getBoolean(entity.getType())) {
+			rt = getRenderType(renderer.getModel(), etex, visible, ghost, glowing);
 			if (rt != null) {
 				renderer.renderPartModel(entity, part, pose, buffer.getBuffer(rt), LightTexture.FULL_BRIGHT, pTick, ghost);
 			}
@@ -61,9 +69,8 @@ public class ModelOverride {
 
 	@Nullable
 	protected <M extends EntityModel<?> & IGolemModel<?, ?, M>> RenderType getRenderType(
-			M model, ResourceLocation id, boolean visible, boolean ghost, boolean glowing
+			M model, ResourceLocation tex, boolean visible, boolean ghost, boolean glowing
 	) {
-		var tex = model.getTextureLocationInternal(id);
 		if (ghost) return RenderType.itemEntityTranslucentCull(tex);
 		if (visible) return model.renderType(tex);
 		return glowing ? RenderType.outline(tex) : null;

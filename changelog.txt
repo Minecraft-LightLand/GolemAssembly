@@ -1,5 +1,7 @@
 2.4.42
+- Refactor golem rendering code
 - Reset golem attack target after placed down
+- Add Alex's Caves compat materials
 - (Default off) Add client option to fix all shield blocking pose so that they render correctly on humanoid golems
 
 2.4.41

@@ -12,8 +12,19 @@ public class ModelOverrides {
 		OVERRIDES.put(id, override);
 	}
 
-	public static ModelOverride getOverride(ResourceLocation id) {
-		return OVERRIDES.getOrDefault(id, ModelOverride.DEFAULT);
+	public static synchronized void reload() {
+		for (var e : OVERRIDES.values()) {
+			e.clear();
+		}
+	}
+
+	public static synchronized ModelOverride getOverride(ResourceLocation id) {
+		var ans = OVERRIDES.get(id);
+		if (ans == null) {
+			ans = new ModelOverride();
+			registerOverride(id, ans);
+		}
+		return ans;
 	}
 
 }

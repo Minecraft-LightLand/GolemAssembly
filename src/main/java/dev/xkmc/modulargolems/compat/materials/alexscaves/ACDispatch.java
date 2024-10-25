@@ -23,7 +23,7 @@ public class ACDispatch extends ModDispatch {
 	public static final String MODID = "alexscaves";
 
 	public ACDispatch() {
-		TFCompatRegistry.register();
+		ACCompatRegistry.register();
 	}
 
 	public void genLang(RegistrateLangProvider pvd) {
@@ -43,8 +43,6 @@ public class ACDispatch extends ModDispatch {
 
 	@Override
 	public void dispatchClientSetup() {
-		ModelOverrides.registerOverride(new ResourceLocation(MODID, "magnetic"), ModelOverride.EMISSIVE);
-		ModelOverrides.registerOverride(new ResourceLocation(MODID, "nuclear"), ModelOverride.EMISSIVE);
 	}
 
 }
