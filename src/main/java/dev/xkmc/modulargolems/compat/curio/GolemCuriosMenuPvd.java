@@ -1,7 +1,6 @@
 package dev.xkmc.modulargolems.compat.curio;
 
 import dev.xkmc.l2tabs.compat.CuriosWrapper;
-import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.menu.registry.IMenuPvd;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;

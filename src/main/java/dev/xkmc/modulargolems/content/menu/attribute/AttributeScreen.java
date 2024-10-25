@@ -29,17 +29,17 @@ import java.util.List;
 public class AttributeScreen extends BaseTextScreen implements ITabScreen {
 
 	public static final Lazy<List<AttributeEntry>> ATTRIBUTES = Lazy.of(() -> List.of(
-			new AttributeEntry(Attributes.MAX_HEALTH, false, 0,0),
-			new AttributeEntry(Attributes.ATTACK_DAMAGE, false, 1,0),
-			new AttributeEntry(Attributes.ARMOR, false, 2,0),
-			new AttributeEntry(Attributes.ARMOR_TOUGHNESS, false, 3,0),
-			new AttributeEntry(Attributes.KNOCKBACK_RESISTANCE, false, 4,0),
-			new AttributeEntry(Attributes.MOVEMENT_SPEED, false, 5,0),
-			new AttributeEntry(ForgeMod.ENTITY_REACH.get(), false, 6,0),
-			new AttributeEntry(GolemTypes.GOLEM_REGEN.get(), false, 7,0),
-			new AttributeEntry(GolemTypes.GOLEM_SWEEP.get(), false, 8,0),
-			new AttributeEntry(GolemTypes.GOLEM_SIZE.get(), false, 9,0),
-			new AttributeEntry(GolemTypes.GOLEM_JUMP.get(), false, 10,0)
+			new AttributeEntry(Attributes.MAX_HEALTH, false, 0, 0),
+			new AttributeEntry(Attributes.ATTACK_DAMAGE, false, 1, 0),
+			new AttributeEntry(Attributes.ARMOR, false, 2, 0),
+			new AttributeEntry(Attributes.ARMOR_TOUGHNESS, false, 3, 0),
+			new AttributeEntry(Attributes.KNOCKBACK_RESISTANCE, false, 4, 0),
+			new AttributeEntry(Attributes.MOVEMENT_SPEED, false, 5, 0),
+			new AttributeEntry(ForgeMod.ENTITY_REACH.get(), false, 6, 0),
+			new AttributeEntry(GolemTypes.GOLEM_REGEN.get(), false, 7, 0),
+			new AttributeEntry(GolemTypes.GOLEM_SWEEP.get(), false, 8, 0),
+			new AttributeEntry(GolemTypes.GOLEM_SIZE.get(), false, 9, 0),
+			new AttributeEntry(GolemTypes.GOLEM_JUMP.get(), false, 10, 0)
 	));
 
 	private final AbstractGolemEntity<?, ?> golem;

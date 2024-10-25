@@ -2,7 +2,6 @@ package dev.xkmc.modulargolems.content.menu.path;
 
 import dev.xkmc.modulargolems.content.capability.GolemConfigEditor;
 import dev.xkmc.modulargolems.content.capability.GolemConfigEntry;
-import dev.xkmc.modulargolems.content.menu.filter.ItemConfigMenu;
 import dev.xkmc.modulargolems.content.menu.registry.IMenuPvd;
 import dev.xkmc.modulargolems.init.registrate.GolemMiscs;
 import net.minecraft.network.FriendlyByteBuf;

@@ -105,7 +105,7 @@ public class ModularGolems {
 		event.getGenerator().addProvider(event.includeServer(), new MGConfigGen(event.getGenerator()));
 		CompatManager.gatherData(event);
 		event.getGenerator().addProvider(event.includeServer(), new SlotGen(event.getGenerator()));
-		if (ModList.get().isLoaded(L2Complements.MODID)){
+		if (ModList.get().isLoaded(L2Complements.MODID)) {
 			REGISTRATE.addDataGenerator(TagGen.EFF_TAGS, MGTagGen::onEffTagGen);
 		}
 	}

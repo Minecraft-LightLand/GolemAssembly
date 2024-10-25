@@ -2,16 +2,12 @@ package dev.xkmc.modulargolems.compat.materials.alexscaves;
 
 import com.github.alexmodguy.alexscaves.server.item.ACItemRegistry;
 import dev.xkmc.l2library.serial.config.ConfigDataProvider;
-import dev.xkmc.modulargolems.compat.materials.twilightforest.TFCompatRegistry;
-import dev.xkmc.modulargolems.compat.materials.twilightforest.TFDispatch;
 import dev.xkmc.modulargolems.content.config.GolemMaterialConfig;
 import dev.xkmc.modulargolems.init.ModularGolems;
-import dev.xkmc.modulargolems.init.registrate.GolemModifiers;
 import dev.xkmc.modulargolems.init.registrate.GolemTypes;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
-import twilightforest.data.tags.ItemTagGenerator;
 
 public class ACConfigGen extends ConfigDataProvider {
 

@@ -2,8 +2,6 @@ package dev.xkmc.modulargolems.content.entity.humanoid.skin;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
-import dev.xkmc.modulargolems.compat.curio.CurioCompatRegistry;
-import dev.xkmc.modulargolems.content.entity.humanoid.HumanoidGolemEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.SkullBlockEntity;

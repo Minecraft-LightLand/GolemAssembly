@@ -127,7 +127,7 @@ public class GolemTypes {
 				.defaultLang().register();
 
 		TYPE_HUMANOID = REGISTRATE.generic(TYPES, "humanoid_golem",
-				() -> new GolemType<>(ENTITY_HUMANOID, HumaniodGolemPartType::values, HumaniodGolemPartType.BODY, () -> HumanoidGolemModel::new))
+						() -> new GolemType<>(ENTITY_HUMANOID, HumaniodGolemPartType::values, HumaniodGolemPartType.BODY, () -> HumanoidGolemModel::new))
 				.defaultLang().register();
 
 		TYPE_DOG = REGISTRATE.generic(TYPES, "dog_golem",

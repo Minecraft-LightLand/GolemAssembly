@@ -11,19 +11,19 @@ import java.util.List;
 
 public class ManaProductionModifier extends ManaModifier {
 
-    public ManaProductionModifier() {
-        super(StatFilterType.HEALTH, MAX_LEVEL);
-    }
+	public ManaProductionModifier() {
+		super(StatFilterType.HEALTH, MAX_LEVEL);
+	}
 
-    @Override
-    public double onHealTick(double heal, AbstractGolemEntity<?, ?> entity, int level) {
-        int prod = MGConfig.COMMON.manaProductionVal.get() * level;
-        new BotUtils(entity).generateMana(prod);
-        return heal;
-    }
+	@Override
+	public double onHealTick(double heal, AbstractGolemEntity<?, ?> entity, int level) {
+		int prod = MGConfig.COMMON.manaProductionVal.get() * level;
+		new BotUtils(entity).generateMana(prod);
+		return heal;
+	}
 
-    public List<MutableComponent> getDetail(int v) {
-        var prod = MGConfig.COMMON.manaProductionVal.get() * v;
-        return List.of(Component.translatable(getDescriptionId() + ".desc", prod).withStyle(ChatFormatting.GREEN));
-    }
+	public List<MutableComponent> getDetail(int v) {
+		var prod = MGConfig.COMMON.manaProductionVal.get() * v;
+		return List.of(Component.translatable(getDescriptionId() + ".desc", prod).withStyle(ChatFormatting.GREEN));
+	}
 }

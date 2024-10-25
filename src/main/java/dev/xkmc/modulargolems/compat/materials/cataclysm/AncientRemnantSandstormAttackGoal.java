@@ -3,7 +3,6 @@ package dev.xkmc.modulargolems.compat.materials.cataclysm;
 import com.github.L_Ender.cataclysm.entity.effect.Sandstorm_Entity;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.special.BaseRangedAttackGoal;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
 

@@ -13,19 +13,19 @@ import java.util.function.BiConsumer;
 
 public class ManaBurstModifier extends ManaModifier {
 
-    public ManaBurstModifier() {
-        super(StatFilterType.ATTACK, MAX_LEVEL);
-    }
+	public ManaBurstModifier() {
+		super(StatFilterType.ATTACK, MAX_LEVEL);
+	}
 
-    @Override
-    public void onRegisterGoals(AbstractGolemEntity<?, ?> entity, int lv, BiConsumer<Integer, Goal> addGoal) {
-        addGoal.accept(5, new ManaBurstAttackGoal(entity, lv));
-    }
+	@Override
+	public void onRegisterGoals(AbstractGolemEntity<?, ?> entity, int lv, BiConsumer<Integer, Goal> addGoal) {
+		addGoal.accept(5, new ManaBurstAttackGoal(entity, lv));
+	}
 
-    public List<MutableComponent> getDetail(int v) {
-        int prob = (int) Math.round((MGConfig.COMMON.manaBurstDamage.get() * v) * 100);
-        int manaCost = MGConfig.COMMON.manaBurstCost.get() * v;
-        return List.of(Component.translatable(getDescriptionId() + ".desc", prob, manaCost).withStyle(ChatFormatting.GREEN));
-    }
+	public List<MutableComponent> getDetail(int v) {
+		int prob = (int) Math.round((MGConfig.COMMON.manaBurstDamage.get() * v) * 100);
+		int manaCost = MGConfig.COMMON.manaBurstCost.get() * v;
+		return List.of(Component.translatable(getDescriptionId() + ".desc", prob, manaCost).withStyle(ChatFormatting.GREEN));
+	}
 
 }

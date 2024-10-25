@@ -24,7 +24,6 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
-import org.joml.Quaternionf;
 
 import java.util.HashMap;
 import java.util.List;
@@ -99,27 +98,29 @@ public class GolemEquipmentRenderer extends RenderLayer<MetalGolemEntity, MetalG
 	}
 
 	final ResourceLocation BEACON_LOCATION = new ResourceLocation(ModularGolems.MODID, "textures/equipments/beacon.png");
+
 	protected void renderBeacon(PoseStack pose, MultiBufferSource source, float pTick, long gameTick, float height) {
 		float width = 3F;
 
 		pose.pushPose();
 		pose.scale(1, -1, 1);
-		pose.translate(0D, - height / 2, 0D);
-		float accurateTick = (float)Math.floorMod(gameTick, 90) + pTick;
+		pose.translate(0D, -height / 2, 0D);
+		float accurateTick = (float) Math.floorMod(gameTick, 90) + pTick;
 		pose.mulPose(Axis.YP.rotationDegrees(accurateTick - 45.0F));
 
 		var buffer = source.getBuffer(RenderType.armorCutoutNoCull(BEACON_LOCATION));
 		PoseStack.Pose posestack$pose = pose.last();
 		Matrix4f matrix4f = posestack$pose.pose();
 		Matrix3f matrix3f = posestack$pose.normal();
-		addVertex(matrix4f, matrix3f, buffer, 1.0F, 1.0F, 1.0F, 1.0F, 0, 0, width,  0, 0);
-		addVertex(matrix4f, matrix3f, buffer, 1.0F, 1.0F, 1.0F, 1.0F, 0, width, 0,  0, 1);
+		addVertex(matrix4f, matrix3f, buffer, 1.0F, 1.0F, 1.0F, 1.0F, 0, 0, width, 0, 0);
+		addVertex(matrix4f, matrix3f, buffer, 1.0F, 1.0F, 1.0F, 1.0F, 0, width, 0, 0, 1);
 		addVertex(matrix4f, matrix3f, buffer, 1.0F, 1.0F, 1.0F, 1.0F, 0, 0, -width, 1, 1);
 		addVertex(matrix4f, matrix3f, buffer, 1.0F, 1.0F, 1.0F, 1.0F, 0, -width, 0, 1, 0);
 		pose.popPose();
 	}
 
 	final ResourceLocation BEAM_LOCATION = new ResourceLocation("textures/entity/beacon_beam.png");
+
 	protected void renderBeam(PoseStack pose, MultiBufferSource source, float pTick, float scale, long gameTick, float height, float[] color) {
 		float width1 = 0.2F;
 		float width2 = 0.25F;
@@ -128,22 +129,22 @@ public class GolemEquipmentRenderer extends RenderLayer<MetalGolemEntity, MetalG
 		pose.pushPose();
 		pose.scale(1, -1, 1);
 		pose.translate(0D, height / 2, 0D);
-		float accurateTick = (float)Math.floorMod(gameTick, 40) + pTick;
-		float f2 = Mth.frac(accurateTick * 0.2F - (float)Mth.floor(accurateTick * 0.1F));
+		float accurateTick = (float) Math.floorMod(gameTick, 40) + pTick;
+		float f2 = Mth.frac(accurateTick * 0.2F - (float) Mth.floor(accurateTick * 0.1F));
 		float colorR = color[0];
 		float colorG = color[1];
 		float colorB = color[2];
 		pose.pushPose();
 		pose.mulPose(Axis.YP.rotationDegrees(accurateTick * 2.25F - 45.0F));
 		float v1 = -1.0F + f2;
-		float v2 = (float)length * scale * (0.5F / width1) + v1;
+		float v2 = (float) length * scale * (0.5F / width1) + v1;
 		renderPart(pose, source.getBuffer(RenderType.beaconBeam(BEAM_LOCATION, false)),
 				colorR, colorG, colorB, 1.0F,
 				0, length, 0.0F, width1, width1, 0.0F, -width1, 0.0F, 0.0F, -width1,
 				0.0F, 1.0F, v2, v1);
 		pose.popPose();
 		v1 = -1.0F + f2;
-		v2 = (float)length * scale + v1;
+		v2 = (float) length * scale + v1;
 		renderPart(pose, source.getBuffer(RenderType.beaconBeam(BEAM_LOCATION, true)),
 				colorR, colorG, colorB, 0.125F,
 				0, length, -width2, -width2, width2, -width2, -width2, width2, width2, width2,
@@ -169,7 +170,7 @@ public class GolemEquipmentRenderer extends RenderLayer<MetalGolemEntity, MetalG
 	}
 
 	private static void addVertex(Matrix4f pose, Matrix3f normal, VertexConsumer buffer, float r, float g, float b, float a, int y, float x, float z, float u, float v) {
-		buffer.vertex(pose, x, (float)y, z).color(r, g, b, a).uv(u, v).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(15728880).normal(normal, 0.0F, 1.0F, 0.0F).endVertex();
+		buffer.vertex(pose, x, (float) y, z).color(r, g, b, a).uv(u, v).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(15728880).normal(normal, 0.0F, 1.0F, 0.0F).endVertex();
 	}
 
 
