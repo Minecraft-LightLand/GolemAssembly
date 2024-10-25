@@ -828,4 +828,8 @@ public class AbstractGolemEntity<T extends AbstractGolemEntity<T, P>, P extends 
 		return super.changeDimension(level, teleporter);
 	}
 
+	public boolean isInRangedMode() {
+		return getMode() == GolemModes.STAND;
+	}
+
 }

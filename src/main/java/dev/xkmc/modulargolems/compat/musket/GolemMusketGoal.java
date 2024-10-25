@@ -24,13 +24,15 @@ public class GolemMusketGoal extends RangedGunAttackGoal<HumanoidGolemEntity> {
 
 	public void start() {
 		super.start();
-		this.mob.setAggressive(true);
+		mob.setAggressive(true);
+		mob.setInRangeAttack(true);
 	}
 
 	public void stop() {
 		super.stop();
 		this.seeTime = 0;
 		this.attackDelay = 0;
+		mob.setInRangeAttack(false);
 	}
 
 	public void tick() {

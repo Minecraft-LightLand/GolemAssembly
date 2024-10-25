@@ -59,7 +59,8 @@ public class GolemBowAttackGoal extends Goal {
 	 */
 	public void start() {
 		super.start();
-		this.mob.setAggressive(true);
+		mob.setAggressive(true);
+		mob.setInRangeAttack(true);
 	}
 
 	/**
@@ -68,6 +69,7 @@ public class GolemBowAttackGoal extends Goal {
 	public void stop() {
 		super.stop();
 		this.mob.setAggressive(false);
+		mob.setInRangeAttack(false);
 		this.seeTime = 0;
 		this.attackTime = -1;
 		this.mob.stopUsingItem();

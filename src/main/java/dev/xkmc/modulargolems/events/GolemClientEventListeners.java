@@ -1,6 +1,5 @@
 package dev.xkmc.modulargolems.events;
 
-import dev.xkmc.modulargolems.content.client.override.ModelOverrides;
 import dev.xkmc.modulargolems.content.entity.humanoid.skin.ClientProfileManager;
 import dev.xkmc.modulargolems.content.entity.humanoid.skin.SpecialRenderProfile;
 import dev.xkmc.modulargolems.events.event.HumanoidSkinEvent;
@@ -9,7 +8,6 @@ import dev.xkmc.modulargolems.init.data.MGTagGen;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -32,11 +30,6 @@ public class GolemClientEventListeners {
 		if (event.getStack().is(MGTagGen.PLAYER_SKIN)) {
 			event.setSkin(ClientProfileManager.get(event.getStack().getHoverName().getString()));
 		}
-	}
-
-	@SubscribeEvent
-	public static void onClientReload(TextureStitchEvent.Post event) {
-		ModelOverrides.reload();
 	}
 
 }

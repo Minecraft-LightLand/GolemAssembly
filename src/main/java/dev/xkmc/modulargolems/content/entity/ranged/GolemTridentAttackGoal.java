@@ -34,8 +34,9 @@ public class GolemTridentAttackGoal extends RangedAttackGoal {
 	 */
 	public void start() {
 		super.start();
-		this.golem.setAggressive(true);
-		this.golem.startUsingItem(golem.getWeaponHand());
+		golem.setAggressive(true);
+		golem.setInRangeAttack(true);
+		golem.startUsingItem(golem.getWeaponHand());
 	}
 
 	/**
@@ -43,7 +44,8 @@ public class GolemTridentAttackGoal extends RangedAttackGoal {
 	 */
 	public void stop() {
 		super.stop();
-		this.golem.stopUsingItem();
-		this.golem.setAggressive(false);
+		golem.stopUsingItem();
+		golem.setAggressive(false);
+		golem.setInRangeAttack(false);
 	}
 }

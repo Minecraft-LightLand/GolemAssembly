@@ -263,5 +263,10 @@ public class DogGolemEntity extends AbstractGolemEntity<DogGolemEntity, DogGolem
 		}
 		super.setTarget(target);
 	}
+
+	@Override
+	public boolean isInRangedMode() {
+		return super.isInRangedMode() || isInSittingPose();
+	}
 }
 

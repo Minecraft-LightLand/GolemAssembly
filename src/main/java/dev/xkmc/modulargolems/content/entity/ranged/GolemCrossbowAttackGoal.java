@@ -51,12 +51,20 @@ public class GolemCrossbowAttackGoal extends Goal {
 		return this.mob.getTarget() != null && this.mob.getTarget().isAlive();
 	}
 
+	@Override
+	public void start() {
+		super.start();
+		mob.setAggressive(true);
+		mob.setInRangeAttack(true);
+	}
+
 	/**
 	 * Reset the task's internal state. Called when this task is interrupted by another one
 	 */
 	public void stop() {
 		super.stop();
-		this.mob.setAggressive(false);
+		mob.setAggressive(false);
+		mob.setInRangeAttack(false);
 		this.mob.setTarget(null);
 		this.seeTime = 0;
 		if (this.mob.isUsingItem()) {
