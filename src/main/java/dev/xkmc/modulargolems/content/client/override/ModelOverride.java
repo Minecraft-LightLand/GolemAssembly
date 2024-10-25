@@ -31,20 +31,14 @@ public class ModelOverride {
 
 	}
 
-	private final Object2BooleanArrayMap<EntityType<?>> emissive = new Object2BooleanArrayMap<>();
-
 	public ModelOverride() {
-	}
-
-	public void clear() {
-		emissive.clear();
 	}
 
 	public ResourceLocation getTexture(AbstractGolemEntity<?, ?> golem, ResourceLocation id) {
 		return id;
 	}
 
-	public <M extends EntityModel<T> & IGolemModel<T, P, M>, T extends AbstractGolemEntity<T, P>, P extends IGolemPart<P>> void renderAll(
+	public synchronized <M extends EntityModel<T> & IGolemModel<T, P, M>, T extends AbstractGolemEntity<T, P>, P extends IGolemPart<P>> void renderAll(
 			AbstractGolemRenderer<T, P, M> renderer, T entity, P part, PoseStack pose, MultiBufferSource buffer, ResourceLocation mat,
 			int light, float pTick, boolean visible, boolean ghost, boolean glowing
 	) {
@@ -55,11 +49,7 @@ public class ModelOverride {
 			renderer.renderPartModel(entity, part, pose, buffer.getBuffer(rt), light, pTick, ghost);
 		}
 		var etex = model.getTextureLocationInternal(tex.withSuffix("_emissive"));
-		if (!emissive.containsKey(entity.getType())) {
-			boolean present = Minecraft.getInstance().getResourceManager().getResource(etex).isPresent();
-			emissive.put(entity.getType(), present);
-		}
-		if (emissive.getBoolean(entity.getType())) {
+		if (ModelOverrides.isValid(etex)) {
 			rt = getRenderType(renderer.getModel(), etex, visible, ghost, glowing);
 			if (rt != null) {
 				renderer.renderPartModel(entity, part, pose, buffer.getBuffer(rt), LightTexture.FULL_BRIGHT, pTick, ghost);
