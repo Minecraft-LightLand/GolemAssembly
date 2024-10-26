@@ -46,6 +46,8 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.DefaultAttributes;
@@ -66,6 +68,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.scores.Team;
@@ -115,6 +118,8 @@ public class AbstractGolemEntity<T extends AbstractGolemEntity<T, P>, P extends 
 
 	protected final PathNavigation waterNavigation;
 	protected final GroundPathNavigation groundNavigation;
+
+	public final Set<MobEffect> effectImmunity = new HashSet<>();
 
 	public void onCreate(ArrayList<GolemMaterial> materials, ArrayList<UpgradeItem> upgrades, @Nullable UUID owner) {
 		updateAttributes(materials, upgrades, owner);
@@ -836,4 +841,16 @@ public class AbstractGolemEntity<T extends AbstractGolemEntity<T, P>, P extends 
 		return false;
 	}
 
+	@Override
+	public boolean canBeAffected(MobEffectInstance ins) {
+		if (effectImmunity.contains(ins.getEffect()))
+			return false;
+		return super.canBeAffected(ins);
+	}
+
+	@Override
+	public void makeStuckInBlock(BlockState state, Vec3 vec) {
+		if (hasFlag(GolemFlags.FREE_MOVE)) return;
+		super.makeStuckInBlock(state, vec);
+	}
 }

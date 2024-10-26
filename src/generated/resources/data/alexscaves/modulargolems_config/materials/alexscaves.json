@@ -11,9 +11,19 @@
     }
   },
   "modifiers": {
-    "alexscaves:candy": {},
-    "alexscaves:magnetic": {},
-    "alexscaves:nuclear": {}
+    "alexscaves:candy": {
+      "modulargolems:free_movement": 1,
+      "modulargolems:gum_shooter": 1,
+      "modulargolems:sticky_caramel": 1
+    },
+    "alexscaves:magnetic": {
+      "modulargolems:polarize": 1,
+      "modulargolems:reformation": 1
+    },
+    "alexscaves:nuclear": {
+      "modulargolems:atomic_fueling": 1,
+      "modulargolems:radiation": 1
+    }
   },
   "stats": {
     "alexscaves:candy": {

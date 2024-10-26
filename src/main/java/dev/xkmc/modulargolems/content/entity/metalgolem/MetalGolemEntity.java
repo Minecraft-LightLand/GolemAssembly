@@ -51,6 +51,10 @@ public class MetalGolemEntity extends SweepGolemEntity<MetalGolemEntity, MetalGo
 			double dokb = getAttributeValue(Attributes.ATTACK_KNOCKBACK) * 0.4;
 			target.setDeltaMovement(target.getDeltaMovement().add(0.0D, dokb * d1, 0.0D));
 			this.doEnchantDamageEffects(this, target);
+			int i = EnchantmentHelper.getFireAspect(this);
+			if (i > 0) {
+				target.setSecondsOnFire(i * 4);
+			}
 		}
 		return succeed;
 	}

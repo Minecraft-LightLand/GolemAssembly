@@ -1,8 +1,10 @@
 2.4.42
+- Fix fire aspect not working on metal golem weapons
 - Refactor golem rendering code
 - Reset golem attack target after placed down
 - Add Alex's Caves compat materials
-- Fix create deploy recipe
+- Fix create deploy recipe not consuming armor
+- Allow config card to be applied with create deploy recipe
 - (Default off) Add client option to fix all shield blocking pose so that they render correctly on humanoid golems
 
 2.4.41

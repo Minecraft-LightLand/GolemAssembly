@@ -22,7 +22,8 @@ public class ACConfigGen extends ConfigDataProvider {
 				.addStat(GolemTypes.STAT_ATTACK.get(), 6)
 				.addStat(GolemTypes.STAT_SPEED.get(), 0.3)
 				.addModifier(ACCompatRegistry.STICKY.get(), 1)
-				.addModifier(ACCompatRegistry.TRAP.get(), 1)
+				.addModifier(ACCompatRegistry.SHOOT.get(), 1)
+				.addModifier(ACCompatRegistry.FREE.get(), 1)
 				.end()
 
 				.addMaterial(new ResourceLocation(ACDispatch.MODID, "magnetic"), Ingredient.of(ACItemRegistry.TELECORE.get()))
@@ -30,6 +31,7 @@ public class ACConfigGen extends ConfigDataProvider {
 				.addStat(GolemTypes.STAT_ATTACK.get(), 15)
 				.addStat(GolemTypes.STAT_WEIGHT.get(), -0.2)
 				.addModifier(ACCompatRegistry.POLARIZE.get(), 1)
+				.addModifier(ACCompatRegistry.REFORMATION.get(), 1)
 				.end()
 
 				.addMaterial(new ResourceLocation(ACDispatch.MODID, "nuclear"), Ingredient.of(ACItemRegistry.URANIUM.get()))
@@ -37,6 +39,7 @@ public class ACConfigGen extends ConfigDataProvider {
 				.addStat(GolemTypes.STAT_ATTACK.get(), 10)
 				.addStat(GolemTypes.STAT_WEIGHT.get(), -0.4)
 				.addModifier(ACCompatRegistry.RADIATION.get(), 1)
+				.addModifier(ACCompatRegistry.ATOMIC.get(), 1)
 				.end()
 
 		);
