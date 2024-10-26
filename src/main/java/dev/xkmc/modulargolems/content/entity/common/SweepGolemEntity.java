@@ -40,4 +40,9 @@ public abstract class SweepGolemEntity<T extends SweepGolemEntity<T, P>, P exten
 	 */
 	protected abstract boolean performDamageTarget(Entity target, float damage, double kb);
 
+	@Override
+	public boolean canSweep() {
+		return getAttributeValue(GolemTypes.GOLEM_SWEEP.get()) > 0;
+	}
+
 }

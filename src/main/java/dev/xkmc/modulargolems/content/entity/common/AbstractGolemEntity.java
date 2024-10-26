@@ -832,4 +832,8 @@ public class AbstractGolemEntity<T extends AbstractGolemEntity<T, P>, P extends 
 		return getMode() == GolemModes.STAND;
 	}
 
+	public boolean canSweep() {
+		return false;
+	}
+
 }

@@ -21,18 +21,22 @@ public class ACConfigGen extends ConfigDataProvider {
 				.addStat(GolemTypes.STAT_HEALTH.get(), 80)
 				.addStat(GolemTypes.STAT_ATTACK.get(), 6)
 				.addStat(GolemTypes.STAT_SPEED.get(), 0.3)
+				.addModifier(ACCompatRegistry.STICKY.get(), 1)
+				.addModifier(ACCompatRegistry.TRAP.get(), 1)
 				.end()
 
 				.addMaterial(new ResourceLocation(ACDispatch.MODID, "magnetic"), Ingredient.of(ACItemRegistry.TELECORE.get()))
 				.addStat(GolemTypes.STAT_HEALTH.get(), 200)
 				.addStat(GolemTypes.STAT_ATTACK.get(), 15)
 				.addStat(GolemTypes.STAT_WEIGHT.get(), -0.2)
+				.addModifier(ACCompatRegistry.POLARIZE.get(), 1)
 				.end()
 
 				.addMaterial(new ResourceLocation(ACDispatch.MODID, "nuclear"), Ingredient.of(ACItemRegistry.URANIUM.get()))
 				.addStat(GolemTypes.STAT_HEALTH.get(), 200)
 				.addStat(GolemTypes.STAT_ATTACK.get(), 10)
 				.addStat(GolemTypes.STAT_WEIGHT.get(), -0.4)
+				.addModifier(ACCompatRegistry.RADIATION.get(), 1)
 				.end()
 
 		);

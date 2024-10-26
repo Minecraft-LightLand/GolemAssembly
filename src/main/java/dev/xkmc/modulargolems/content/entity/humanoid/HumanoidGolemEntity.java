@@ -475,4 +475,9 @@ public class HumanoidGolemEntity extends SweepGolemEntity<HumanoidGolemEntity, H
 		getEntityData().set(IS_IN_RANGE_ATTACK, flag);
 	}
 
+	@Override
+	public boolean canSweep() {
+		return getMainHandItem().canPerformAction(ToolActions.SWORD_SWEEP);
+	}
+
 }

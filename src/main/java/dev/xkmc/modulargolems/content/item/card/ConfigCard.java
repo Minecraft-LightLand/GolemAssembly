@@ -67,6 +67,10 @@ public class ConfigCard extends Item implements GolemInteractItem {
 		this.color = color;
 	}
 
+	public int getColor() {
+		return color.getId();
+	}
+
 	@Override
 	public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand hand) {
 		if (target instanceof AbstractGolemEntity<?, ?> golem) {

@@ -3,6 +3,7 @@ package dev.xkmc.modulargolems.content.entity.dog;
 import dev.xkmc.l2serial.serialization.SerialClass;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.goals.GolemMeleeGoal;
+import dev.xkmc.modulargolems.content.entity.humanoid.HumanoidGolemEntity;
 import dev.xkmc.modulargolems.init.data.MGConfig;
 import dev.xkmc.modulargolems.init.registrate.GolemModifiers;
 import dev.xkmc.modulargolems.init.registrate.GolemTypes;
@@ -266,6 +267,11 @@ public class DogGolemEntity extends AbstractGolemEntity<DogGolemEntity, DogGolem
 
 	@Override
 	public boolean isInRangedMode() {
+		for (var e : getPassengers()) {
+			if (e instanceof HumanoidGolemEntity h) {
+				return h.isInRangedMode();
+			}
+		}
 		return super.isInRangedMode() || isInSittingPose();
 	}
 }

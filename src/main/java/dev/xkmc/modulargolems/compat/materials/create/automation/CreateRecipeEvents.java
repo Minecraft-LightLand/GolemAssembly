@@ -3,6 +3,7 @@ package dev.xkmc.modulargolems.compat.materials.create.automation;
 import com.simibubi.create.content.kinetics.deployer.DeployerRecipeSearchEvent;
 import dev.xkmc.modulargolems.content.core.IGolemPart;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
+import dev.xkmc.modulargolems.content.item.card.ConfigCard;
 import dev.xkmc.modulargolems.content.item.equipments.GolemEquipmentItem;
 import dev.xkmc.modulargolems.content.item.golem.GolemHolder;
 import dev.xkmc.modulargolems.content.item.upgrade.UpgradeItem;
@@ -31,7 +32,12 @@ public class CreateRecipeEvents {
 		ItemStack result;
 		Level level = event.getBlockEntity().getLevel();
 		if (!(level instanceof ServerLevel sl)) return;
-		if (second.getItem() instanceof UpgradeItem upgrade) {
+		if (second.getItem() instanceof ConfigCard card) {
+			var id = ConfigCard.getUUID(second);
+			if (id == null) return;
+			result = first.copy();
+			GolemHolder.setGolemConfig(result, id, card.getColor());
+		} else if (second.getItem() instanceof UpgradeItem upgrade) {
 			result = CraftEventListeners.appendUpgrade(first, holder, upgrade);
 		} else if (isGolemCurio(holder, second)) {
 			result = equipCurio(holder, first, second, sl);
