@@ -7,6 +7,10 @@
     {
       "id": "modulargolems:mechanical_force",
       "required": false
+    },
+    {
+      "id": "modulargolems:atomic_boost",
+      "required": false
     }
   ]
 }

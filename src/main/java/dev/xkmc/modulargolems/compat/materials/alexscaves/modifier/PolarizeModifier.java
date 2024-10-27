@@ -11,17 +11,17 @@ import net.minecraftforge.common.ForgeMod;
 
 import java.util.List;
 
-public class MagneticModifier extends GolemModifier {
+public class PolarizeModifier extends GolemModifier {
 
 	public static double range() {
 		return 5;//TODO
 	}
 
 	public static double force() {
-		return 0.04;//TODO
+		return 0.1;//TODO
 	}
 
-	public MagneticModifier() {
+	public PolarizeModifier() {
 		super(StatFilterType.MASS, 4);
 	}
 
@@ -38,7 +38,7 @@ public class MagneticModifier extends GolemModifier {
 					(golem.getRandom().nextFloat() - 0.5) * 0.3,
 					(r * 0.5F + r * 0.5F * golem.getRandom().nextFloat())
 			).yRot((float) ((particles / particleMax) * Math.PI * 2.0)).add(src);
-			if (ranged) {
+			if (!ranged) {
 				golem.level().addParticle(ACParticleRegistry.SCARLET_SHIELD_LIGHTNING.get(),
 						dst.x, dst.y, dst.z, src.x, src.y, src.z);
 			} else {

@@ -37,6 +37,7 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializer;
+import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -616,6 +617,7 @@ public class AbstractGolemEntity<T extends AbstractGolemEntity<T, P>, P extends 
 	protected void defineSynchedData() {
 		super.defineSynchedData();
 		GOLEM_DATA.register(this.entityData);
+		entityData.define(IS_IN_RANGE_ATTACK, false);
 	}
 
 	public void startPersistentAngerTimer() {
@@ -833,8 +835,14 @@ public class AbstractGolemEntity<T extends AbstractGolemEntity<T, P>, P extends 
 		return super.changeDimension(level, teleporter);
 	}
 
+	private static final EntityDataAccessor<Boolean> IS_IN_RANGE_ATTACK = SynchedEntityData.defineId(AbstractGolemEntity.class, EntityDataSerializers.BOOLEAN);
+
 	public boolean isInRangedMode() {
-		return getMode() == GolemModes.STAND;
+		return getMode() == GolemModes.STAND || getEntityData().get(IS_IN_RANGE_ATTACK);
+	}
+
+	public void setInRangeAttack(boolean flag) {
+		getEntityData().set(IS_IN_RANGE_ATTACK, flag);
 	}
 
 	public boolean canSweep() {
@@ -853,4 +861,6 @@ public class AbstractGolemEntity<T extends AbstractGolemEntity<T, P>, P extends 
 		if (hasFlag(GolemFlags.FREE_MOVE)) return;
 		super.makeStuckInBlock(state, vec);
 	}
+
+
 }

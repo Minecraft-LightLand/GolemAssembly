@@ -45,7 +45,6 @@ import java.util.function.Predicate;
 public class HumanoidGolemEntity extends SweepGolemEntity<HumanoidGolemEntity, HumaniodGolemPartType> implements CrossbowAttackMob {
 
 	private static final EntityDataAccessor<Boolean> IS_CHARGING_CROSSBOW = SynchedEntityData.defineId(HumanoidGolemEntity.class, EntityDataSerializers.BOOLEAN);
-	private static final EntityDataAccessor<Boolean> IS_IN_RANGE_ATTACK = SynchedEntityData.defineId(HumanoidGolemEntity.class, EntityDataSerializers.BOOLEAN);
 
 	private final GolemBowAttackGoal bowGoal = new GolemBowAttackGoal(this, 1.0D, 20);
 	private final GolemCrossbowAttackGoal crossbowGoal = new GolemCrossbowAttackGoal(this, 1.0D, 15.0F);
@@ -464,15 +463,6 @@ public class HumanoidGolemEntity extends SweepGolemEntity<HumanoidGolemEntity, H
 		if (target instanceof DogGolemEntity || target instanceof AbstractHorse) {
 			startRiding(target);
 		}
-	}
-
-	@Override
-	public boolean isInRangedMode() {
-		return super.isInRangedMode() || getEntityData().get(IS_IN_RANGE_ATTACK);
-	}
-
-	public void setInRangeAttack(boolean flag) {
-		getEntityData().set(IS_IN_RANGE_ATTACK, flag);
 	}
 
 	@Override
