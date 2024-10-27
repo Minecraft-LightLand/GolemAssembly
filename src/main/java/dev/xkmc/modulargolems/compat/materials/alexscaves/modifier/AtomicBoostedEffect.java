@@ -14,8 +14,9 @@ public class AtomicBoostedEffect extends InherentEffect {
 		super(category, color);
 		String name = "atomic_boost";
 		UUID id = MathHelper.getUUIDFromString(name);
-		addAttributeModifier(Attributes.ATTACK_DAMAGE, id.toString(), 0.2, AttributeModifier.Operation.MULTIPLY_TOTAL);
-		addAttributeModifier(Attributes.MOVEMENT_SPEED, id.toString(), 0.2, AttributeModifier.Operation.MULTIPLY_BASE);
+		double boost = 0.2;
+		addAttributeModifier(Attributes.ATTACK_DAMAGE, id.toString(), boost, AttributeModifier.Operation.MULTIPLY_TOTAL);
+		addAttributeModifier(Attributes.MOVEMENT_SPEED, id.toString(), boost, AttributeModifier.Operation.MULTIPLY_BASE);
 	}
 
 }

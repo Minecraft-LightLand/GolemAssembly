@@ -16,7 +16,7 @@ public class DummyConsumer extends ProjectileWeaponItem {
 		this.ammo = ammo;
 	}
 
-	private boolean isValid(ItemStack stack) {
+	public boolean isValid(ItemStack stack) {
 		return stack.is(ammo);
 	}
 

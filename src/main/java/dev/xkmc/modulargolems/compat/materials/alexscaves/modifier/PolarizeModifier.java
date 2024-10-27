@@ -4,6 +4,10 @@ import com.github.alexmodguy.alexscaves.client.particle.ACParticleRegistry;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
+import dev.xkmc.modulargolems.init.data.MGConfig;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.entity.EntityTypeTest;
 import net.minecraft.world.phys.Vec3;
@@ -13,12 +17,16 @@ import java.util.List;
 
 public class PolarizeModifier extends GolemModifier {
 
-	public static double range() {
-		return 5;//TODO
+	public static double range(int lv) {
+		return (4 + lv) * 0.2 * MGConfig.COMMON.polarizeRange.get();
+	}
+
+	public static double damage(int lv) {
+		return (1 + lv) / 2f * MGConfig.COMMON.polarizeDamage.get();
 	}
 
 	public static double force() {
-		return 0.1;//TODO
+		return MGConfig.COMMON.polarizeForce.get();
 	}
 
 	public PolarizeModifier() {
@@ -28,7 +36,8 @@ public class PolarizeModifier extends GolemModifier {
 	@Override
 	public void onClientTick(AbstractGolemEntity<?, ?> golem, int level) {
 		if (golem.tickCount % 5 != 0) return;
-		double r = (4 + level) * 0.2 * range();
+		if (!golem.isAggressive()) return;
+		double r = range(level);
 		boolean ranged = golem.isInRangedMode();
 		Vec3 src = golem.position().add(0.0, 0.2, 0.0);
 		float particleMax = (float) (5 + golem.getRandom().nextInt(5));
@@ -53,8 +62,8 @@ public class PolarizeModifier extends GolemModifier {
 		var target = golem.getTarget();
 		if (target == null) return;
 		boolean dmg = golem.tickCount % 10 == 0;
-		float damage = (1 + level) / 2f;
-		double r = (4 + level) * 0.2 * range();
+		float damage = (float) damage(level);
+		double r = range(level);
 		boolean ranged = golem.isInRangedMode();
 		var aabb = golem.getBoundingBox().inflate(r);
 		List<LivingEntity> list = golem.level().getEntities(EntityTypeTest.forClass(LivingEntity.class), aabb,
@@ -81,5 +90,13 @@ public class PolarizeModifier extends GolemModifier {
 			if (dmg) e.hurt(golem.damageSources().mobAttack(golem), damage);
 		}
 	}
+
+	@Override
+	public List<MutableComponent> getDetail(int v) {
+		int num = (int) Math.round(damage(v));
+		var val = Component.literal("" + num).withStyle(ChatFormatting.AQUA);
+		return List.of(Component.translatable(getDescriptionId() + ".desc", val).withStyle(ChatFormatting.GREEN));
+	}
+
 
 }

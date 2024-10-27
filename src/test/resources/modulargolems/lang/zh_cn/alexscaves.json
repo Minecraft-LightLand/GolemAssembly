@@ -1,0 +1,21 @@
+{
+	"effect.modulargolems.atomic_boost": "核能强化",
+	"effect.modulargolems.atomic_boost.description": "提升攻击伤害和移动速度",
+	"golem_material.alexscaves.candy": "糖果",
+	"golem_material.alexscaves.magnetic": "磁力",
+	"golem_material.alexscaves.nuclear": "核能",
+	"modifier.modulargolems.atomic_fueling": "反应充能",
+	"modifier.modulargolems.atomic_fueling.desc": "消耗[%s]恢复%s血量，并提高%s攻击和速度持续%s秒。傀儡免疫辐射",
+	"modifier.modulargolems.free_movement": "穿行",
+	"modifier.modulargolems.free_movement.desc": "傀儡不会被方块和焦糖减速",
+	"modifier.modulargolems.gum_shooter": "糖果机",
+	"modifier.modulargolems.gum_shooter.desc": "发射糖果子弹造成%s点伤害",
+	"modifier.modulargolems.polarize": "磁力极化",
+	"modifier.modulargolems.polarize.desc": "近战模式牵引范围内的敌人，远程模式排斥范围内的敌人。同时持续造成%s点伤害",
+	"modifier.modulargolems.radiation": "辐射",
+	"modifier.modulargolems.radiation.desc": "攻击施加%s。对被辐射的敌人每级辐射等级上升%s攻击伤害",
+	"modifier.modulargolems.reformation": "磁力重组",
+	"modifier.modulargolems.reformation.desc": "消耗铁锭获得%s点伤害吸收，并回复%s点血量。最多叠加%s点伤害吸收",
+	"modifier.modulargolems.sticky_caramel": "粘性焦糖",
+	"modifier.modulargolems.sticky_caramel.desc": "在攻击目标脚下生成焦糖"
+}

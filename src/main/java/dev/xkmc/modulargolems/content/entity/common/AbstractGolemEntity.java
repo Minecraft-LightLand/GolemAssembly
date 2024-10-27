@@ -172,7 +172,7 @@ public class AbstractGolemEntity<T extends AbstractGolemEntity<T, P>, P extends 
 	protected final InteractionResult mobInteract(Player player, InteractionHand hand) {
 		if (player.getItemInHand(hand).is(MGTagGen.GOLEM_INTERACT)) return InteractionResult.PASS;
 		for (var ent : modifiers.entrySet()) {
-			var result = ent.getKey().interact(player, this, hand);
+			var result = ent.getKey().interact(player, this, hand, ent.getValue());
 			if (result != InteractionResult.PASS) {
 				return result;
 			}

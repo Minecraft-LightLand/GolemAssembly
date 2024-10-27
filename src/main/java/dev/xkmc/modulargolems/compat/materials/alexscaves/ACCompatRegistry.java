@@ -35,20 +35,20 @@ public class ACCompatRegistry {
 		STICKY = reg("sticky_caramel", CandyStickModifier::new,
 				"Put molten caramel on attack targets");
 		SHOOT = reg("gum_shooter", CandyShootModifier::new,
-				"Shoot gumballs at targets");
+				"Shoot gumballs at targets dealing %s damage");
 		FREE = reg("free_movement", FreeMoveModifier::new,
 				"Golem will not be stuck by blocks or caramel");
 		POLARIZE = reg("polarize", PolarizeModifier::new,
-				"Pull enemies in melee mode and push enemies away in ranged/standing mode. Deal electrical damage in the process.");
+				"Pull enemies in melee mode and push enemies away in ranged/standing mode, deal %s electrical damage constantly.");
 		REFORMATION = reg("reformation", ReformationModifier::new,
-				"Consume iron ingot to gain absorption.");
+				"Consume iron ingot to gain %s absorption and heal %s. Golem may hold at most %s absorption");
 		RADIATION = reg("radiation", RadiationModifier::new,
 				"Inflict %s to attack targets. Damage to radiated target increase by %s per radiation level.");
 		ATOMIC = reg("atomic_fueling", AtomicFuelingModifier::new,
-				"Consume uranium nuggets to heal, and boost attack and speed");
+				"Consume [%s] to heal %s HP, and boost attack and speed by %s for %s seconds. Makes golem immune to irradiated effect.");
 
 		EFF_ATOMIC = genEffect("atomic_boost", () -> new AtomicBoostedEffect(MobEffectCategory.BENEFICIAL, 0xffffffff),
-				"Increase golem attack damage");
+				"Increase golem attack damage and movement speed");
 
 		DUMMY_IRON = ModularGolems.REGISTRATE.item("dummy_iron_consumer", p -> new DummyConsumer(Tags.Items.INGOTS_IRON))
 				.model((ctx, pvd) -> pvd.withExistingParent("item/" + ctx.getName(), "block/air"))

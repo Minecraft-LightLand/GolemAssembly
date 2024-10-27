@@ -151,7 +151,7 @@ public class GolemModifier extends NamedEntry<GolemModifier> {
 	public void handleEvent(AbstractGolemEntity<?, ?> golem, int value, byte event) {
 	}
 
-	public InteractionResult interact(Player player, AbstractGolemEntity<?, ?> golem, InteractionHand hand) {
+	public InteractionResult interact(Player player, AbstractGolemEntity<?, ?> golem, InteractionHand hand, int value) {
 		return InteractionResult.PASS;
 	}
 

@@ -79,45 +79,60 @@ public class MGConfig {
 		public final ForgeConfigSpec.BooleanValue doEnemyAggro;
 		public final ForgeConfigSpec.BooleanValue allowDimensionChange;
 
-		Common(ForgeConfigSpec.Builder builder) {
-			barehandRetrieve = builder.comment("Allow players to retrieve the golems by bare hand")
-					.define("barehandRetrieve", true);
-			doEnemyAggro = builder.comment("Make mobs aggro to iron golem automatically aggro to modular golems")
-					.define("doEnemyAggro", true);
-			allowDimensionChange = builder.comment("Allow golems to enter portal")
-					.define("allowDimensionChange", false);
-			summonDistance = builder.comment("Max distance to summon single golem")
-					.defineInRange("summonDistance", 64, 1, 1000);
-			retrieveDistance = builder.comment("Max distance to retrieve single golem")
-					.defineInRange("retrieveDistance", 64, 1, 1000);
-			retrieveRange = builder.comment("Max distance to retrieve all golems")
-					.defineInRange("retrieveRange", 20, 1, 1000);
-			ownerPickupOnly = builder.comment("Only owner can pickup")
-					.define("ownerPickupOnly", true);
-			strictInteract = builder.comment("When enabled, the following features will be disabled when player holds item in hand:")
-					.comment("- give item to golem or take items from golem by right click").comment("- order dog golem to seat")
-					.define("strictInteract", false);
-			allowEditCuriosForOthers = builder.comment("Allow command wand to edit curios of other mobs you own")
-					.define("allowEditCuriosForOthers", true);
-			startFollowRadius = builder.comment("Max golem activity radius before following player in follow mode")
-					.defineInRange("startFollowRadius", 10d, 1, 100);
-			stopWanderRadius = builder.comment("Max golem activity radius before willing to go back to origin in wander mode")
-					.defineInRange("stopWanderRadius", 20d, 1, 100);
-			maxWanderRadius = builder.comment("Max golem activity radius before being teleported back")
-					.defineInRange("maxWanderRadius", 30d, 1, 100);
-			riddenSpeedFactor = builder.comment("Speed factor for dog golem when ridden by entities")
-					.defineInRange("riddenSpeedFactor", 0.8, 0, 2);
-			targetResetTime = builder.comment("Target reset time after no movement, in ticks")
-					.defineInRange("targetResetTime", 600, 1, 10000);
-			targetResetNoMovementRange = builder.comment("Distance considered as no movement")
-					.defineInRange("targetResetNoMovementRange", 0.5, 0, 10);
+		public final ForgeConfigSpec.DoubleValue candyDamage;
+		public final ForgeConfigSpec.IntValue caramelDuration;
+		public final ForgeConfigSpec.DoubleValue polarizeRange;
+		public final ForgeConfigSpec.DoubleValue polarizeDamage;
+		public final ForgeConfigSpec.DoubleValue polarizeForce;
+		public final ForgeConfigSpec.DoubleValue reformationAbsorption;
+		public final ForgeConfigSpec.DoubleValue reformationHealing;
+		public final ForgeConfigSpec.IntValue reformationMax;
+		public final ForgeConfigSpec.IntValue radiationDuration;
+		public final ForgeConfigSpec.DoubleValue radiationDamage;
+		public final ForgeConfigSpec.DoubleValue atomicHeal;
+		public final ForgeConfigSpec.IntValue atomicDuration;
 
-			largeGolemSlot = builder.comment("Default slots for large golem")
-					.defineInRange("largeGolemSlot", 4, 0, 100);
-			humanoidGolemSlot = builder.comment("Default slots for humanoid golem")
-					.defineInRange("humanoidGolemSlot", 3, 0, 100);
-			dogGolemSlot = builder.comment("Default slots for dog golem")
-					.defineInRange("dogGolemSlot", 2, 0, 100);
+		Common(ForgeConfigSpec.Builder builder) {
+			{
+				barehandRetrieve = builder.comment("Allow players to retrieve the golems by bare hand")
+						.define("barehandRetrieve", true);
+				doEnemyAggro = builder.comment("Make mobs aggro to iron golem automatically aggro to modular golems")
+						.define("doEnemyAggro", true);
+				allowDimensionChange = builder.comment("Allow golems to enter portal")
+						.define("allowDimensionChange", false);
+				summonDistance = builder.comment("Max distance to summon single golem")
+						.defineInRange("summonDistance", 64, 1, 1000);
+				retrieveDistance = builder.comment("Max distance to retrieve single golem")
+						.defineInRange("retrieveDistance", 64, 1, 1000);
+				retrieveRange = builder.comment("Max distance to retrieve all golems")
+						.defineInRange("retrieveRange", 20, 1, 1000);
+				ownerPickupOnly = builder.comment("Only owner can pickup")
+						.define("ownerPickupOnly", true);
+				strictInteract = builder.comment("When enabled, the following features will be disabled when player holds item in hand:")
+						.comment("- give item to golem or take items from golem by right click").comment("- order dog golem to seat")
+						.define("strictInteract", false);
+				allowEditCuriosForOthers = builder.comment("Allow command wand to edit curios of other mobs you own")
+						.define("allowEditCuriosForOthers", true);
+				startFollowRadius = builder.comment("Max golem activity radius before following player in follow mode")
+						.defineInRange("startFollowRadius", 10d, 1, 100);
+				stopWanderRadius = builder.comment("Max golem activity radius before willing to go back to origin in wander mode")
+						.defineInRange("stopWanderRadius", 20d, 1, 100);
+				maxWanderRadius = builder.comment("Max golem activity radius before being teleported back")
+						.defineInRange("maxWanderRadius", 30d, 1, 100);
+				riddenSpeedFactor = builder.comment("Speed factor for dog golem when ridden by entities")
+						.defineInRange("riddenSpeedFactor", 0.8, 0, 2);
+				targetResetTime = builder.comment("Target reset time after no movement, in ticks")
+						.defineInRange("targetResetTime", 600, 1, 10000);
+				targetResetNoMovementRange = builder.comment("Distance considered as no movement")
+						.defineInRange("targetResetNoMovementRange", 0.5, 0, 10);
+
+				largeGolemSlot = builder.comment("Default slots for large golem")
+						.defineInRange("largeGolemSlot", 4, 0, 100);
+				humanoidGolemSlot = builder.comment("Default slots for humanoid golem")
+						.defineInRange("humanoidGolemSlot", 3, 0, 100);
+				dogGolemSlot = builder.comment("Default slots for dog golem")
+						.defineInRange("dogGolemSlot", 2, 0, 100);
+			}
 
 			// modifiers
 			{
@@ -173,14 +188,16 @@ public class MGConfig {
 				builder.pop();
 
 				builder.push("create compat");
-				coating = builder.comment("Damage absorbed per level of coating")
-						.defineInRange("coating", 1d, 0, 10000);
-				mechSpeed = builder.comment("Speed boost per level of Mechanical Mobility")
-						.defineInRange("mechSpeed", 0.2, 0, 1);
-				mechAttack = builder.comment("Attack boost per level of Mechanical Force")
-						.defineInRange("mechAttack", 0.2, 0, 1);
-				mechMaxFuel = builder.comment("Maximum number of fuel item that can be added at the same time")
-						.defineInRange("mechMaxFuel", 3, 1, 364);
+				{
+					coating = builder.comment("Damage absorbed per level of coating")
+							.defineInRange("coating", 1d, 0, 10000);
+					mechSpeed = builder.comment("Speed boost per level of Mechanical Mobility")
+							.defineInRange("mechSpeed", 0.2, 0, 1);
+					mechAttack = builder.comment("Attack boost per level of Mechanical Force")
+							.defineInRange("mechAttack", 0.2, 0, 1);
+					mechMaxFuel = builder.comment("Maximum number of fuel item that can be added at the same time")
+							.defineInRange("mechMaxFuel", 3, 1, 364);
+				}
 				builder.pop();
 
 				builder.push("l2complements compat");
@@ -209,6 +226,36 @@ public class MGConfig {
 							.defineInRange("basePickupRange", 6, 1, 16);
 					mendingXpCost = builder.comment("Mending Xp Cost per health point")
 							.defineInRange("mendingXpCost", 2, 1, 10000);
+				}
+				builder.pop();
+
+				builder.push("alexscaves compat");
+				{
+					candyDamage = builder.comment("Gum ball damage")
+							.defineInRange("candyDamage", 4d, 1, 100);
+					caramelDuration = builder.comment("Molten caramel duration in ticks")
+							.defineInRange("caramelDuration", 200, 1, 10000);
+					polarizeRange = builder.comment("Polarize modifier pull/push base radius")
+							.defineInRange("polarizeRange", 5d, 1, 40);
+					polarizeDamage = builder.comment("Polarize modifier base damage")
+							.defineInRange("polarizeDamage", 2d, 0, 100);
+					polarizeForce = builder.comment("Polarize modifier pull/push force")
+							.defineInRange("polarizeForce", 0.1d, 0, 1);
+					reformationAbsorption = builder.comment("Reformation modifier absorption per iron ingot")
+							.defineInRange("reformationAbsorption", 10d, 1, 100);
+					reformationHealing = builder.comment("Reformation modifier healing per iron ingot")
+							.defineInRange("reformationHealing", 2d, 0, 100);
+					reformationMax = builder.comment("Reformation modifier max stacking per level")
+							.defineInRange("reformationMax", 2, 1, 10);
+					radiationDuration = builder.comment("Radiation modifier: duration of irradiated effect")
+							.defineInRange("radiationDuration", 200, 20, 20000);
+					radiationDamage = builder.comment("Radiation modifier: damage boost per irradiated level")
+							.defineInRange("radiationDamage", 0.2, 0, 1);
+					atomicHeal = builder.comment("Atomic Fueling modifier: percent healing per uranium nugget per level")
+							.defineInRange("atomicHeal", 0.1, 0, 1);
+					atomicDuration = builder.comment("Atomic Fueling modifier: boost duration per uranium nugget used")
+							.defineInRange("atomicDuration", 200, 20, 20000);
+
 				}
 				builder.pop();
 			}
