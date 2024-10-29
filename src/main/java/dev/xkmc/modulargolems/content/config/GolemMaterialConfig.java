@@ -37,12 +37,28 @@ public class GolemMaterialConfig extends BaseConfig {
 	@SerialClass.SerialField
 	public HashMap<ResourceLocation, Ingredient> ingredients = new HashMap<>();
 
+	@ConfigCollect(CollectType.MAP_OVERWRITE)
+	@SerialClass.SerialField
+	public HashMap<ResourceLocation, Ingredient> repairIngredients = new HashMap<>();
+
 	public Set<ResourceLocation> getAllMaterials() {
 		TreeSet<ResourceLocation> set = new TreeSet<>(stats.keySet());
 		set.retainAll(modifiers.keySet());
 		set.retainAll(ingredients.keySet());
 		set.removeIf(e -> isEmpty(ingredients.get(e)));
 		return set;
+	}
+
+	public Ingredient getCraftIngredient(ResourceLocation id) {
+		var ans = ingredients.get(id);
+		return ans == null ? Ingredient.EMPTY : ans;
+	}
+
+	public Ingredient getRepairIngredient(ResourceLocation id) {
+		var rep = repairIngredients.get(id);
+		if (rep != null) return rep;
+		var ans = ingredients.get(id);
+		return ans == null ? Ingredient.EMPTY : ans;
 	}
 
 	private static boolean isEmpty(Ingredient ing) {
@@ -56,11 +72,17 @@ public class GolemMaterialConfig extends BaseConfig {
 	}
 
 	@DataGenOnly
+	public Builder addMaterial(ResourceLocation id, Ingredient ingredient, Ingredient repair) {
+		return new Builder(this, id, ingredient, repair);
+	}
+
+	@DataGenOnly
 	public static class Builder {
 
 		private final GolemMaterialConfig parent;
 		private final ResourceLocation id;
 		private final Ingredient ingredient;
+		private final Ingredient repairIngredient;
 
 		private final HashMap<GolemStatType, Double> stats = new HashMap<>();
 		private final HashMap<GolemModifier, Integer> modifiers = new HashMap<>();
@@ -69,6 +91,14 @@ public class GolemMaterialConfig extends BaseConfig {
 			this.parent = parent;
 			this.id = id;
 			this.ingredient = ingredient;
+			this.repairIngredient = ingredient;
+		}
+
+		private Builder(GolemMaterialConfig parent, ResourceLocation id, Ingredient ingredient, Ingredient repair) {
+			this.parent = parent;
+			this.id = id;
+			this.ingredient = ingredient;
+			this.repairIngredient = repair;
 		}
 
 		public Builder addStat(GolemStatType type, double val) {
@@ -86,6 +116,7 @@ public class GolemMaterialConfig extends BaseConfig {
 			parent.stats.put(id, stats);
 			parent.modifiers.put(id, modifiers);
 			parent.ingredients.put(id, ingredient);
+			parent.repairIngredients.put(id, repairIngredient);
 			return parent;
 		}
 

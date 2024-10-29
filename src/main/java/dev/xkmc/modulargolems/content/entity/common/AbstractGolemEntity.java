@@ -239,7 +239,7 @@ public class AbstractGolemEntity<T extends AbstractGolemEntity<T, P>, P extends 
 	protected void dropCustomDeathLoot(DamageSource source, int i, boolean b) {
 		Map<Item, Integer> drop = new HashMap<>();
 		for (GolemMaterial mat : getMaterials()) {
-			Item item = GolemMaterialConfig.get().ingredients.get(mat.id()).getItems()[0].getItem();
+			Item item = GolemMaterialConfig.get().getCraftIngredient(mat.id()).getItems()[0].getItem();
 			drop.compute(item, (e, old) -> (old == null ? 0 : old) + 1);
 		}
 		drop.forEach((k, v) -> spawnAtLocation(new ItemStack(k, v)));

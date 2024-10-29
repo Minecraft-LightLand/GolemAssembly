@@ -1,13 +1,13 @@
 {
   "ingredients": {
     "alexscaves:candy": {
-      "item": "alexscaves:candy_cane_hook"
+      "item": "modulargolems:candy_construct"
     },
     "alexscaves:magnetic": {
-      "item": "alexscaves:telecore"
+      "item": "modulargolems:magnetic_construct"
     },
     "alexscaves:nuclear": {
-      "item": "alexscaves:uranium"
+      "item": "modulargolems:nuclear_construct"
     }
   },
   "modifiers": {
@@ -25,6 +25,17 @@
       "modulargolems:radiation": 1
     }
   },
+  "repairIngredients": {
+    "alexscaves:candy": {
+      "item": "modulargolems:candy_mixture"
+    },
+    "alexscaves:magnetic": {
+      "item": "modulargolems:magnetic_alloy"
+    },
+    "alexscaves:nuclear": {
+      "item": "modulargolems:nuclear_construct"
+    }
+  },
   "stats": {
     "alexscaves:candy": {
       "modulargolems:attack": 6.0,
@@ -38,7 +49,7 @@
     },
     "alexscaves:nuclear": {
       "modulargolems:attack": 10.0,
-      "modulargolems:max_health": 200.0,
+      "modulargolems:max_health": 120.0,
       "modulargolems:weight": -0.4
     }
   }

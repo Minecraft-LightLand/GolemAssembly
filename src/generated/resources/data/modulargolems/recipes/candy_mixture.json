@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "alexscaves:frosted_gingerbread_block"
+    },
+    "B": {
+      "item": "alexscaves:candy_cane_block"
+    },
+    "C": {
+      "item": "alexscaves:caramel"
+    },
+    "D": {
+      "item": "alexscaves:licoroot"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "CDC",
+    "AAA"
+  ],
+  "result": {
+    "item": "modulargolems:candy_mixture"
+  },
+  "show_notification": true
+}

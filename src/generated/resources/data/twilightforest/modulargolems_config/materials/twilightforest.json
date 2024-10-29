@@ -35,6 +35,20 @@
       "modulargolems:tf_healing": 1
     }
   },
+  "repairIngredients": {
+    "twilightforest:fiery": {
+      "tag": "forge:ingots/fiery"
+    },
+    "twilightforest:ironwood": {
+      "tag": "forge:ingots/ironwood"
+    },
+    "twilightforest:knightmetal": {
+      "tag": "forge:ingots/knightmetal"
+    },
+    "twilightforest:steeleaf": {
+      "tag": "forge:ingots/steeleaf"
+    }
+  },
   "stats": {
     "twilightforest:fiery": {
       "modulargolems:attack": 20.0,

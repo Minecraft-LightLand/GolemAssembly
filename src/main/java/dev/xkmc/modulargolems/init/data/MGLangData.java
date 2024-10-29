@@ -22,6 +22,8 @@ public enum MGLangData {
 	POTION_DEFENSE("tooltip.potion_defense", "Golem gain %s.", 1, ChatFormatting.GREEN),
 	GOLEM_EQUIPMENT("tooltip.golem_equipment", "Only effective on %s", 1, ChatFormatting.LIGHT_PURPLE),
 	UPGRADE_COUNT("tooltip.modifier", "Total %s modifiers from %s upgrades", 2, ChatFormatting.LIGHT_PURPLE),
+	CRAFT_MAT("tooltip.craft_material", "Golem crafting material", 0, ChatFormatting.GRAY),
+	REPAIR_MAT("tooltip.repair_material", "Golem repair material", 0, ChatFormatting.GRAY),
 
 	TARGET_UUID_ADD("tooltip.target.uuid_add", "Right click entity to add entity UUID to the list", 0, ChatFormatting.GRAY),
 	TARGET_UUID_REMOVE("tooltip.target.uuid_remove", "Sneak right click entity to remove entity UUID from the list", 0, ChatFormatting.GRAY),

@@ -37,7 +37,7 @@ public class ReformationModifier extends GolemModifier {
 
 	@Override
 	public void onAiStep(AbstractGolemEntity<?, ?> golem, int level) {
-		if (golem.tickCount % 5 != 0) return;
+		if (golem.tickCount % 20 != 0) return;
 		float hp = golem.getAbsorptionAmount();
 		float max = max(level) * health();
 		if (max <= hp) return;

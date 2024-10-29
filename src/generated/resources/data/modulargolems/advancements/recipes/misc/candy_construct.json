@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_radiant_essence": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "alexscaves:radiant_essence"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "modulargolems:candy_construct"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_radiant_essence",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "modulargolems:candy_construct"
+    ]
+  },
+  "sends_telemetry_event": false
+}

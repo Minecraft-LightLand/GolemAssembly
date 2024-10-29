@@ -10,6 +10,11 @@
       "modulargolems:fire_immune": 1
     }
   },
+  "repairIngredients": {
+    "blazegear:brimsteel": {
+      "item": "blazegear:brimsteel_ingot"
+    }
+  },
   "stats": {
     "blazegear:brimsteel": {
       "modulargolems:attack": 15.0,

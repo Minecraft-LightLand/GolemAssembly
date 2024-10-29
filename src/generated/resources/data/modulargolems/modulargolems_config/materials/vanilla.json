@@ -30,6 +30,23 @@
       "modulargolems:sonic_boom": 1
     }
   },
+  "repairIngredients": {
+    "modulargolems:copper": {
+      "item": "minecraft:copper_ingot"
+    },
+    "modulargolems:gold": {
+      "item": "minecraft:gold_ingot"
+    },
+    "modulargolems:iron": {
+      "item": "minecraft:iron_ingot"
+    },
+    "modulargolems:netherite": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "modulargolems:sculk": {
+      "tag": "modulargolems:sculk_materials"
+    }
+  },
   "stats": {
     "modulargolems:copper": {
       "modulargolems:attack": 10.0,

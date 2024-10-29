@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "alexscaves:azure_neodymium_ingot"
+    },
+    "B": {
+      "item": "alexscaves:ferrouslime_ball"
+    },
+    "C": {
+      "item": "alexscaves:packed_galena"
+    },
+    "S": {
+      "item": "alexscaves:scarlet_neodymium_ingot"
+    }
+  },
+  "pattern": [
+    "SBC",
+    "BCB",
+    "CBA"
+  ],
+  "result": {
+    "item": "modulargolems:magnetic_alloy"
+  },
+  "show_notification": true
+}

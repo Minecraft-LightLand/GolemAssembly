@@ -31,6 +31,20 @@
       "modulargolems:totemic_gold": 1
     }
   },
+  "repairIngredients": {
+    "l2complements:eternium": {
+      "item": "l2complements:eternium_ingot"
+    },
+    "l2complements:poseidite": {
+      "item": "l2complements:poseidite_ingot"
+    },
+    "l2complements:shulkerate": {
+      "item": "l2complements:shulkerate_ingot"
+    },
+    "l2complements:totemic_gold": {
+      "item": "l2complements:totemic_gold_ingot"
+    }
+  },
   "stats": {
     "l2complements:eternium": {
       "modulargolems:attack": 10.0,

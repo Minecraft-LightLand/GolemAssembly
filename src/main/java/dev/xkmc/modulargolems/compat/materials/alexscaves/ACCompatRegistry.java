@@ -6,6 +6,8 @@ import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import dev.xkmc.l2complements.init.L2Complements;
 import dev.xkmc.l2complements.init.data.TagGen;
 import dev.xkmc.modulargolems.compat.materials.alexscaves.modifier.*;
+import dev.xkmc.modulargolems.content.item.upgrade.CraftMaterialItem;
+import dev.xkmc.modulargolems.content.item.upgrade.RepairMaterialItem;
 import dev.xkmc.modulargolems.init.ModularGolems;
 import dev.xkmc.modulargolems.init.data.MGTagGen;
 import dev.xkmc.modulargolems.init.registrate.GolemItems;
@@ -13,6 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.fml.ModList;
 
@@ -27,6 +30,10 @@ public class ACCompatRegistry {
 	public static final RegistryEntry<ReformationModifier> REFORMATION;
 	public static final RegistryEntry<RadiationModifier> RADIATION;
 	public static final RegistryEntry<AtomicFuelingModifier> ATOMIC;
+
+	public static final ItemEntry<RepairMaterialItem> REPAIR_CANDY, REPAIR_MAGNETIC;
+	public static final ItemEntry<CraftMaterialItem> CRAFT_CANDY, CRAFT_MAGNETIC;
+	public static final ItemEntry<Item> CRAFT_NUCLEAR;
 
 	public static final RegistryEntry<AtomicBoostedEffect> EFF_ATOMIC;
 	public static final ItemEntry<DummyConsumer> DUMMY_IRON, DUMMY_URANIUM;
@@ -46,6 +53,12 @@ public class ACCompatRegistry {
 				"Inflict %s to attack targets. Damage to radiated target increase by %s per radiation level.");
 		ATOMIC = reg("atomic_fueling", AtomicFuelingModifier::new,
 				"Consume [%s] to heal %s HP, and boost attack and speed by %s for %s seconds. Makes golem immune to irradiated effect.");
+
+		REPAIR_CANDY = GolemItems.item(ACDispatch.MODID, "candy_mixture", RepairMaterialItem::new);
+		CRAFT_CANDY = GolemItems.item(ACDispatch.MODID, "candy_construct", CraftMaterialItem::new);
+		REPAIR_MAGNETIC = GolemItems.item(ACDispatch.MODID, "magnetic_alloy", RepairMaterialItem::new);
+		CRAFT_MAGNETIC = GolemItems.item(ACDispatch.MODID, "magnetic_construct", CraftMaterialItem::new);
+		CRAFT_NUCLEAR = GolemItems.item(ACDispatch.MODID, "nuclear_construct", Item::new);
 
 		EFF_ATOMIC = genEffect("atomic_boost", () -> new AtomicBoostedEffect(MobEffectCategory.BENEFICIAL, 0xffffffff),
 				"Increase golem attack damage and movement speed");

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "alexscaves:polymer_plate"
+    },
+    "B": {
+      "item": "alexscaves:charred_remnant"
+    },
+    "C": {
+      "item": "alexscaves:uranium_rod"
+    },
+    "D": {
+      "item": "alexscaves:fissile_core"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "CDC",
+    "BBB"
+  ],
+  "result": {
+    "count": 3,
+    "item": "modulargolems:nuclear_construct"
+  },
+  "show_notification": true
+}

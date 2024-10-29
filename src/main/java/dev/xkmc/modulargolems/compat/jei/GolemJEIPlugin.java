@@ -109,7 +109,7 @@ public class GolemJEIPlugin implements IModPlugin {
 
 	private static void addPartCraftRecipes(List<IJeiAnvilRecipe> recipes, GolemMaterialConfig config, IVanillaRecipeFactory factory) {
 		for (var mat : config.getAllMaterials()) {
-			var arr = config.ingredients.get(mat).getItems();
+			var arr = config.getCraftIngredient(mat).getItems();
 			boolean special = false;
 			for (ItemStack stack : arr) {
 				if (stack.is(MGTagGen.SPECIAL_CRAFT)) {
@@ -142,7 +142,7 @@ public class GolemJEIPlugin implements IModPlugin {
 				ItemStack damaged = golem.copy();
 				damaged.getOrCreateTag().putFloat(GolemHolder.KEY_DISPLAY, 0.75f);
 				input.add(damaged);
-				var arr = config.ingredients.get(mat).getItems();
+				var arr = config.getRepairIngredient(mat).getItems();
 				material.add(new ItemStack(arr.length > 0 ? arr[0].getItem() : Items.BARRIER));
 				golem.getOrCreateTag().putFloat(GolemHolder.KEY_DISPLAY, 1f);
 				result.add(golem);

@@ -4,6 +4,7 @@ import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import com.tterrag.registrate.util.nullness.NonNullFunction;
 import dev.xkmc.l2itemselector.init.data.L2ISTagGen;
 import dev.xkmc.l2library.base.L2Registrate;
 import dev.xkmc.modulargolems.compat.materials.common.CompatManager;
@@ -366,6 +367,12 @@ public class GolemItems {
 								.texture("layer0", new ResourceLocation(modid, "item/upgrades/" + id))
 								.texture("layer1", new ResourceLocation(ModularGolems.MODID, "item/blue_arrow")))
 						.end());
+	}
+
+	public static <T extends Item> ItemEntry<T> item(String modid, String id, NonNullFunction<Item.Properties, T> func) {
+		return REGISTRATE.item(id, func)
+				.model((ctx, pvd) -> pvd.generated(ctx, new ResourceLocation(modid, "item/" + id)))
+				.register();
 	}
 
 	public static void register() {

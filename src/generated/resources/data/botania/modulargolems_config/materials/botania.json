@@ -28,6 +28,17 @@
       "modulargolems:mana_production": 1
     }
   },
+  "repairIngredients": {
+    "botania:elementium": {
+      "item": "botania:elementium_ingot"
+    },
+    "botania:manasteel": {
+      "item": "botania:manasteel_ingot"
+    },
+    "botania:terrasteel": {
+      "item": "botania:terrasteel_ingot"
+    }
+  },
   "stats": {
     "botania:elementium": {
       "modulargolems:attack": 15.0,

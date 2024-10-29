@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "modulargolems:candy_mixture"
+    },
+    "B": {
+      "item": "alexscaves:gumball_pile"
+    },
+    "C": {
+      "item": "alexscaves:radiant_essence"
+    },
+    "G": {
+      "item": "alexscaves:sugar_glass"
+    },
+    "Z": {
+      "item": "alexscaves:hot_chocolate_bottle"
+    }
+  },
+  "pattern": [
+    "GBG",
+    "ZCZ",
+    "AAA"
+  ],
+  "result": {
+    "count": 3,
+    "item": "modulargolems:candy_construct"
+  },
+  "show_notification": true
+}

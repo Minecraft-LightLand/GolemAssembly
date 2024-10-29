@@ -69,8 +69,8 @@ public class CraftEventListeners {
 				IGolemPart<?> part = type.getBodyPart();
 				if (mats.size() <= part.ordinal()) return;
 				var mat = mats.get(part.ordinal());
-				var ing = GolemMaterialConfig.get().ingredients.get(mat.id());
-				if (ing == null || !ing.test(block)) return;
+				var ing = GolemMaterialConfig.get().getRepairIngredient(mat.id());
+				if (!ing.test(block)) return;
 				GolemTriggers.ANVIL_FIX.trigger((ServerPlayer) event.getEntity(), mat.id());
 			}
 		}
@@ -99,9 +99,9 @@ public class CraftEventListeners {
 		P part = type.getBodyPart();
 		if (mats.size() <= part.ordinal()) return;
 		var mat = mats.get(part.ordinal());
-		var ing = GolemMaterialConfig.get().ingredients.get(mat.id());
+		var ing = GolemMaterialConfig.get().getRepairIngredient(mat.id());
 		ItemStack repairStack = event.getRight();
-		if (ing == null || !ing.test(repairStack)) return;
+		if (!ing.test(repairStack)) return;
 		int maxFix = Math.min(repairStack.getCount(), (int) Math.ceil((max - health) / max * 4));
 		event.setMaterialCost(maxFix);
 		event.setCost(maxFix);

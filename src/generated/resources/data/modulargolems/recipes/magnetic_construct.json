@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "modulargolems:magnetic_alloy"
+    },
+    "C": {
+      "item": "alexscaves:heart_of_iron"
+    },
+    "N": {
+      "item": "alexscaves:notor_gizmo"
+    },
+    "T": {
+      "item": "alexscaves:telecore"
+    }
+  },
+  "pattern": [
+    "ANA",
+    "TCT",
+    "ANA"
+  ],
+  "result": {
+    "count": 3,
+    "item": "modulargolems:magnetic_construct"
+  },
+  "show_notification": true
+}

@@ -22,6 +22,14 @@
       "modulargolems:projectile_reject": 1
     }
   },
+  "repairIngredients": {
+    "cataclysm:ignitium": {
+      "item": "cataclysm:ignitium_ingot"
+    },
+    "cataclysm:witherite": {
+      "item": "cataclysm:witherite_ingot"
+    }
+  },
   "stats": {
     "cataclysm:ignitium": {
       "modulargolems:attack": 20.0,

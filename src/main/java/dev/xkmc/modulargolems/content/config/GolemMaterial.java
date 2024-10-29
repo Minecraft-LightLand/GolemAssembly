@@ -49,7 +49,7 @@ public record GolemMaterial(HashMap<GolemStatType, Double> stats, HashMap<GolemM
 			for (var entry : ent.getValue().entrySet()) {
 				sorted.compute(entry.getKey().kind, (k, old) -> Pair.of(entry.getKey(), (old == null ? 0 : old.getSecond()) + entry.getValue()));
 			}
-			if (sorted.size() == 0) {
+			if (sorted.isEmpty()) {
 				continue;
 			}
 			if (sorted.size() == 1) {
