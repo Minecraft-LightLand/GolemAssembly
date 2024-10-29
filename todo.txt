@@ -1,8 +1,2 @@
-Compats not yet added:
-- BlazeGear
-- Cataclysm
-- Botania
-- Twilight
-- Create
-- CEI
-- Maid
+shield use predicate fix
+armor render toggle

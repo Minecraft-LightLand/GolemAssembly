@@ -535,6 +535,8 @@ public class AbstractGolemEntity<T extends AbstractGolemEntity<T, P>, P extends 
 		}
 		setMode(mode, mode == 0 ? BlockPos.ZERO : guard);
 		moveTo(pos);
+		setTarget(null);
+		setPersistentAngerTarget(null);
 		return true;
 	}
 

@@ -1,3 +1,7 @@
+3.0.1+5
+- target reset
+- render overhaul
+
 3.0.1+4
 - dimension change config
 - fix crash when other mods try to steal golem weapon
