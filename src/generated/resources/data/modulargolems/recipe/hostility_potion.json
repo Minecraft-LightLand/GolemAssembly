@@ -1,0 +1,39 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "l2hostility"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": {
+      "item": "l2hostility:cursed"
+    },
+    "2": {
+      "item": "l2hostility:soul_burner"
+    },
+    "3": {
+      "item": "l2hostility:slowness"
+    },
+    "4": {
+      "item": "l2hostility:weakness"
+    },
+    "A": {
+      "item": "modulargolems:cauldron"
+    },
+    "B": {
+      "item": "l2complements:storm_core"
+    }
+  },
+  "pattern": [
+    "1B2",
+    "BAB",
+    "3B4"
+  ],
+  "result": {
+    "count": 1,
+    "id": "modulargolems:hostility_potion"
+  }
+}
