@@ -267,6 +267,7 @@ tasks.register('publishCurseForge', TaskPublishCurseForge) {
             "lendercataclysm",
             "patchouli",
             "the-twilight-forest",
+            "alexs-caves",
             "touhou-little-maid")
     mainFile.releaseType = "release"
     disableVersionDetection()
@@ -295,5 +296,6 @@ modrinth {
         optional.project "l_enders-cataclysm"
         optional.project "patchouli"
         optional.project "touhou-little-maid"
+        optional.project "alexs-caves"
     }
 }

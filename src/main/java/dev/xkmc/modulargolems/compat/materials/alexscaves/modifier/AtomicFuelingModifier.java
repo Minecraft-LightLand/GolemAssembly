@@ -40,6 +40,11 @@ public class AtomicFuelingModifier extends GolemModifier {
 
 	private void perform(AbstractGolemEntity<?, ?> golem, int level) {
 		float max = golem.getMaxHealth();
+		if (ModList.get().isLoaded(L2Complements.MODID)) {
+			if (golem.hasEffect(LCEffects.CURSE.get())) {
+				golem.removeEffect(LCEffects.CURSE.get());
+			}
+		}
 		golem.heal(max * health() * level);
 		var ins = golem.getEffect(ACCompatRegistry.EFF_ATOMIC.get());
 		int t = ins == null ? 0 : ins.getDuration();
