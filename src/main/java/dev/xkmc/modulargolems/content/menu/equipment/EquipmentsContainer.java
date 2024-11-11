@@ -14,7 +14,7 @@ public class EquipmentsContainer extends BaseContainerMenu.BaseContainer<Equipme
 	private ItemWrapper getWrapper(int index) {
 		if (parent.golem == null || index < 0) return ItemWrapper.EMPTY;
 		if (index < 6) {
-			return parent.golem.getWrapperOfHand(EquipmentsMenu.SLOTS[index]);
+			return parent.golem.getWrapperOfHand(EquipmentsMenu.LARGE_SLOTS[index]);
 		}
 		if (!(parent.golem instanceof HumanoidGolemEntity humanoid))
 			return ItemWrapper.EMPTY;

@@ -27,6 +27,30 @@
     "modulargolems:mount_upgrade",
     "modulargolems:size_upgrade",
     {
+      "id": "modulargolems:carminite",
+      "required": false
+    },
+    {
+      "id": "modulargolems:steeleaf",
+      "required": false
+    },
+    {
+      "id": "modulargolems:fiery",
+      "required": false
+    },
+    {
+      "id": "modulargolems:ironwood",
+      "required": false
+    },
+    {
+      "id": "modulargolems:knightmetal",
+      "required": false
+    },
+    {
+      "id": "modulargolems:naga",
+      "required": false
+    },
+    {
       "id": "modulargolems:force_field",
       "required": false
     },
@@ -60,6 +84,34 @@
     },
     {
       "id": "modulargolems:cleanse",
+      "required": false
+    },
+    {
+      "id": "modulargolems:hostility_core",
+      "required": false
+    },
+    {
+      "id": "modulargolems:hostility_potion",
+      "required": false
+    },
+    {
+      "id": "modulargolems:hostility_tank",
+      "required": false
+    },
+    {
+      "id": "modulargolems:hostility_speed",
+      "required": false
+    },
+    {
+      "id": "modulargolems:hostility_protection",
+      "required": false
+    },
+    {
+      "id": "modulargolems:hostility_regen",
+      "required": false
+    },
+    {
+      "id": "modulargolems:hostility_reflect",
       "required": false
     }
   ]

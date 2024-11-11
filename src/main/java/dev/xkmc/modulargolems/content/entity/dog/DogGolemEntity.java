@@ -7,24 +7,27 @@ import dev.xkmc.modulargolems.init.data.MGConfig;
 import dev.xkmc.modulargolems.init.registrate.GolemModifiers;
 import dev.xkmc.modulargolems.init.registrate.GolemTypes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ItemParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec2;
@@ -119,10 +122,6 @@ public class DogGolemEntity extends AbstractGolemEntity<DogGolemEntity, DogGolem
 			float z0 = Mth.cos(this.getYRot() * ((float) Math.PI / 180F));
 			this.setDeltaMovement(this.getDeltaMovement().add(-0.4F * x0 * jump, 0.0D, 0.4F * z0 * jump));
 		}
-	}
-
-	public double getPassengersRidingOffset() {
-		return this.getBbHeight() * 1.4 - 0.35;
 	}
 
 	protected void positionRider(Entity rider, Entity.MoveFunction setPos) {
@@ -263,5 +262,44 @@ public class DogGolemEntity extends AbstractGolemEntity<DogGolemEntity, DogGolem
 		}
 		super.setTarget(target);
 	}
+
+	// armor
+
+	protected void actuallyHurt(DamageSource source, float amount) {
+		if (!this.canArmorAbsorb(source)) {
+			super.actuallyHurt(source, amount);
+		} else {
+			ItemStack stack = getBodyArmorItem();
+			int i = stack.getDamageValue();
+			int j = stack.getMaxDamage();
+			stack.hurtAndBreak(Mth.ceil(amount), this, EquipmentSlot.BODY);
+			if (Crackiness.WOLF_ARMOR.byDamage(i, j) != Crackiness.WOLF_ARMOR.byDamage(this.getBodyArmorItem())) {
+				this.playSound(SoundEvents.WOLF_ARMOR_CRACK);
+				if (level() instanceof ServerLevel serverlevel) {
+					serverlevel.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, Items.ARMADILLO_SCUTE.getDefaultInstance()), this.getX(), this.getY() + 1.0, this.getZ(), 20, 0.2, 0.1, 0.2, 0.1);
+				}
+			}
+		}
+	}
+
+	private boolean canArmorAbsorb(DamageSource source) {
+		if (source.is(DamageTypeTags.BYPASSES_WOLF_ARMOR) || source.is(DamageTypeTags.BYPASSES_ARMOR)) {
+			return false;
+		}
+		return this.hasArmor();
+	}
+
+	public boolean canUseSlot(EquipmentSlot slot) {
+		return true;
+	}
+
+	protected void hurtArmor(DamageSource source, float amount) {
+		this.doHurtEquipment(source, amount, EquipmentSlot.BODY);
+	}
+
+	public boolean hasArmor() {
+		return this.getBodyArmorItem().is(Items.WOLF_ARMOR);//TODO
+	}
+
 }
 

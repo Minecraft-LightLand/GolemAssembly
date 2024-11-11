@@ -3,29 +3,21 @@ package dev.xkmc.modulargolems.events.event;
 import dev.xkmc.modulargolems.content.entity.humanoid.HumanoidGolemEntity;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 
 public class GolemBowAttackEvent extends GolemItemUseEvent {
 
-	private AbstractArrow entity;
-	private boolean noPickup, noConsume;
+	private Projectile entity;
 	private double speed = 3, gravity = 0.05;
 
-	public GolemBowAttackEvent(HumanoidGolemEntity golem, ItemStack stack, InteractionHand hand, AbstractArrow entity, boolean infinite) {
+	public GolemBowAttackEvent(HumanoidGolemEntity golem, ItemStack stack, InteractionHand hand, Projectile entity) {
 		super(golem, stack, hand);
 		this.entity = entity;
-		this.noPickup = infinite;
-		this.noConsume = infinite;
 	}
 
-	public void setArrow(AbstractArrow entity) {
+	public void setArrow(Projectile entity) {
 		this.entity = entity;
-	}
-
-	public void setArrow(AbstractArrow entity, boolean noPickup, boolean noConsume) {
-		this.entity = entity;
-		this.noPickup = noPickup;
-		this.noConsume = noConsume;
 	}
 
 	public void setParams(double speed, double gravity) {
@@ -33,16 +25,8 @@ public class GolemBowAttackEvent extends GolemItemUseEvent {
 		this.gravity = gravity;
 	}
 
-	public AbstractArrow getArrow() {
+	public Projectile getArrow() {
 		return entity;
-	}
-
-	public boolean isNoPickup() {
-		return noPickup;
-	}
-
-	public boolean isNoConsume() {
-		return noConsume;
 	}
 
 	public double speed() {

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "twilightforest:item/upgrades/carminite",
+    "layer1": "modulargolems:item/purple_arrow"
+  }
+}

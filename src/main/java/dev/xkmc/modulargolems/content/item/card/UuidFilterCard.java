@@ -40,7 +40,7 @@ public class UuidFilterCard extends ClickEntityFilterCard<UUID> {
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext level, List<Component> list, TooltipFlag flag) {
 		var ids = getList(stack);
-		if (!ids.isEmpty() && !Screen.hasShiftDown()) {
+		if (!ids.isEmpty() && !flag.hasShiftDown()) {
 			for (var e : ids) {
 				list.add(getName(e));
 			}

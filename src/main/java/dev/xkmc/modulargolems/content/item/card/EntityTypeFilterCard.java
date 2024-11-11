@@ -2,7 +2,6 @@ package dev.xkmc.modulargolems.content.item.card;
 
 import dev.xkmc.modulargolems.init.data.MGLangData;
 import dev.xkmc.modulargolems.init.registrate.GolemItems;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -39,7 +38,7 @@ public class EntityTypeFilterCard extends ClickEntityFilterCard<EntityType<?>> {
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext level, List<Component> list, TooltipFlag flag) {
 		var types = getList(stack);
-		if (!types.isEmpty() && !Screen.hasShiftDown()) {
+		if (!types.isEmpty() && !flag.hasShiftDown()) {
 			for (var e : types) {
 				list.add(getName(e));
 			}

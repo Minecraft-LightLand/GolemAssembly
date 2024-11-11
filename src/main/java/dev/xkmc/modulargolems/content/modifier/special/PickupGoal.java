@@ -213,7 +213,7 @@ public class PickupGoal extends Goal {
 						continue;
 					}
 					BlockEntity be = golem.level().getBlockEntity(pos);
-					var handler = golem.level().getCapability(Capabilities.ItemHandler.BLOCK, target.getBlockPos(), null);
+					var handler = golem.level().getCapability(Capabilities.ItemHandler.BLOCK, pos, null);
 					if (be != null && handler != null) {
 						double d = pos.distToCenterSqr(golem.position());
 						if (d < dist) {

@@ -13,7 +13,7 @@ public interface IGolemModel<T extends AbstractGolemEntity<T, P>, P extends IGol
 		return Wrappers.cast(this);
 	}
 
-	void renderToBufferInternal(P type, PoseStack stack, VertexConsumer consumer, int light, int overlay);
+	void renderToBufferInternal(P type, PoseStack stack, VertexConsumer consumer, int light, int overlay, int alpha);
 
 	ResourceLocation getTextureLocationInternal(ResourceLocation rl);
 

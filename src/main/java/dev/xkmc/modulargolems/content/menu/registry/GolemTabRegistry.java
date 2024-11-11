@@ -14,8 +14,11 @@ import dev.xkmc.modulargolems.content.menu.path.ConfigPathTab;
 import dev.xkmc.modulargolems.content.menu.target.ConfigTargetTab;
 import dev.xkmc.modulargolems.init.ModularGolems;
 import dev.xkmc.modulargolems.init.data.MGLangData;
+import net.minecraft.resources.ResourceLocation;
 
 public class GolemTabRegistry {
+
+	public static final ResourceLocation DUMMY = L2Tabs.loc(ModularGolems.MODID);
 
 	public static final TabGroup<ConfigGroup> CONFIG = new TabGroup<>(TabType.RIGHT, 8, false);
 	public static final TabGroup<EquipmentGroup> EQUIPMENTS = new TabGroup<>(TabType.RIGHT, 8, false);

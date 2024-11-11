@@ -1,189 +1,28 @@
-TODO
-- BlazeGear
-- Cataclysm
-- Botania
-- Twilight
-- Create
-- CEI
-- Maid
+3.0.2
+- L2Hostility integration: upgrades
+- Add highlight texture to sculk and fiery golems
 
-2.4.38
-- Fix golem patrol when riding something
-- Increase golem shooting range
-- Add config for editing curios for other ownable mobs
+3.0.1+5
+- target reset
+- render overhaul
 
-2.4.37
-- Fix healing desync when golem healing is prevented
-- Fix config card crash when Curios is not installed
+3.0.1+4
+- dimension change config
+- fix crash when other mods try to steal golem weapon
+- Make UUID filter higher priority than other filters
 
-2.4.36
-- Allow Patrol Path in curios slot
+3.0.1+3
+- Fix tab crash in sinytra environment
 
-2.4.35
-- Add botania golems
-- Nerf steeleaf attack
+3.0.1+2
+- Fix infinity on golems
+- Fix hot bar golem holder rendering
 
-2.4.34
-- Allow humanoid golem to use TouhouLittleMaid skins
-- when range mode humanoid golem has empty/bow/arrow/shield in offhand, golem will not switch to melee mode
+3.0.1+1
+- Add Twilight compat
 
-2.4.33
-- entity interact bypass tag
-- strict interact config
-- allow attribute page to be opened for dog golem
-- Fix equipment page description for non-humanoid
-- Fix Twilight Forest damage modifier
-- Allow humanoid golem to use custom texture skins using player head or piglin head
-- Fix compat with newest Cataclysm (requires Cataclysm 1.99+)
-
-2.4.32
-- Fix create fuel feeding
-- Allow golems to use fuels from dimensional backpack on them or their captain
-
-2.4.31
-- Damage cap modifier fix
-- Change create material stats, add new modifiers
-- Create material recipe using sequenced assembly only
-- Create generic material recipe switched from heated mixing to sequenced assembly
-- Allow deployer to put equipments and curios onto golems
-
-2.4.30
-- Fix Patchouli Book for cataclysm
-- Add patrol patchouli entries
-
-2.4.29
-- Add patrol mode
-- Fix humanoid golem player skin renderer not rendering outer layer
-- Mobs killed by golem with pickup upgrade will have drops spawned at the golem position
-- Add Leviathan, Ender Guardian, Netherite Monstrosity, and Ancient Remnant upgrade
-- Add Damage Cap modifier to Cataclysm materials
-- Ignis attack modifier can apply blazing brand up to 5 layers only
-- Fix selection conflict with backpack
-
-2.4.28
-- Add Cataclysm compat
-- Make cyclic damage detection default off
-- Fix player immune upgrade to be only immune to owner and applies
-
-2.4.27
-- Fix humanoid golems use player skin by default
-
-2.4.26
-- Add player skin support for golems
-- Add config option to not make hostile mobs automatically hostile to golems
-- Touhou Little Maid compat: command wand can edit their curio
-
-2.4.25
-- Fix enchantment damage bonus not working on Large Golem Weapons
-- Fix large golem weapon cannot be enchanted in enchanting table
-- Fix compatibility with newest L2Library attribute tab
-
-2.4.24
-- Fix the bug that golem with corrupted data cannot be placed
-- Prevent future golem data corruption
-
-2.4.23
-- Fix command wand attack config
-- Add upgrade slot config
-- Fix damage calculation
-- Greatly improved golem swimming speed with Swim upgrade
-- Allow golems to jump in water
-- When mounted, shift in water means sink down
-- Fix not able to attack player actively
-
-2.4.22
-- fix compatibility with REI
-- add captain and squad mode
-- add free wander mode
-- make talented upgrade cheaper
-
-2.4.21
-- fix riding flickering
-- target filter action show in message
-- fix datapack target filter removing
-- trim name on datapack target filter
-- target reset time changed from 5 sec to 3 sec
-- fix wand scrolling
-
-2.4.20
-- fix filter tab
-
-2.4.19
-- texture fix
-
-2.4.18
-- Add hostility compat
-- Add target cards and target filter tab
-- Add metalgolem weapons
-- Now metalgolem will also tick equipments
-- Curios support slot modifiers
-
-2.4.17
-- Omnipotent Wand
-- Curios support for backpack
-- Add secondary weapon slot and arrow slot
-- Add weapon switch delay of 10 ticks
-- Disable weapon switch when editing weapons
-
-2.4.16
-- Add metal golem armors
-- Fix rendering of decorative layers on golems with size upgrade
-- Make golem give up target after 5 seconds not approaching
-- Make player not picking up items when dead
-- Add CEI compat
-- Add Attribute tab
-- Add config cards:
-    - configure default golem mode when summoned
-    - configure summon location: old position or current location
-    - limit wand targets
-    - configure lock interaction
-    - pickup upgrade item filter
-
-2.4.15
-- Fix non-owner being able to change humanoid equipment
-- Add Create deployer automation for upgrades
-- Golem now will only access chest within <2 blocks, and only access them in standing mode
-
-2.4.14
-- Golems will attack enemies touching it first
-- Fix shield block sound
-- Now humanoid can open doors
-- Fix grindstone remove upgrade
-
-2.4.13
-- Fix advancement logspam
-- Add config for distances starting to go back (default 10 for following, 20 for wandering)
-- Add config for distances golem would be forced to teleport back (default 30)
-- Humanoid can now ride horse
-- Now humanoid golem riding dog golem will control dog golem
-- Add dog golem ridden speed factor to config
-- Golems ridden or riding other living entities as controller can also teleport to player
-- Golems summoned in creative will also consume stack
-
-2.4.12
-- Fix golem not following player under water with swim upgrade
-- Increase golem speed under water
-- Fix golem always  trying to float up even when player is deep under water
-- Now pickup upgrade will not destroy item when owner is present
-- Humanoid and dog golem are no longer knock back resistant
-- Add knockback resistance to materials
-- Fix custom Goals not added to golems when reloading world
-- Increase command wand target range
-- Improve command wand message when ordering entities to attack others
-
-2.4.11
-- Fix golem not teleport to player when having an attack target
-- Fix dog chasing target even when in sit position, when commanded by wand
-- Fix dog riding one another
-- Fix golems being able to be picked up by other players under some circumstances
-- Allow command wand to target far away entities
-
-2.4.10
-- Add BlazeGear compat
-- Fix golem weapon switching
-- Fix golem teleport when having swim upgrade
-
-2.4.9
-- add mount upgrade and size upgrade
-- add dispenser behavior for golems
-- make wand activation range configurable
+3.0.1
+- Fix pickup upgrade crash
+- add TLM compat
+- Fix target filter cards
+- Use NeoForge 163 for tooltip

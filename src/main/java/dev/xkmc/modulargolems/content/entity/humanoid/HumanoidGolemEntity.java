@@ -1,5 +1,6 @@
 package dev.xkmc.modulargolems.content.entity.humanoid;
 
+import dev.xkmc.l2library.init.FlagMarker;
 import dev.xkmc.l2serial.serialization.marker.SerialClass;
 import dev.xkmc.l2serial.serialization.marker.SerialField;
 import dev.xkmc.modulargolems.content.entity.common.SweepGolemEntity;
@@ -10,13 +11,17 @@ import dev.xkmc.modulargolems.content.entity.ranged.GolemCrossbowAttackGoal;
 import dev.xkmc.modulargolems.content.entity.ranged.GolemShooterHelper;
 import dev.xkmc.modulargolems.content.entity.ranged.GolemTridentAttackGoal;
 import dev.xkmc.modulargolems.content.item.golem.GolemHolder;
-import dev.xkmc.modulargolems.events.event.*;
+import dev.xkmc.modulargolems.events.event.GolemDamageShieldEvent;
+import dev.xkmc.modulargolems.events.event.GolemDisableShieldEvent;
+import dev.xkmc.modulargolems.events.event.GolemEquipEvent;
+import dev.xkmc.modulargolems.events.event.GolemSweepEvent;
 import dev.xkmc.modulargolems.init.advancement.GolemTriggers;
 import dev.xkmc.modulargolems.init.data.MGConfig;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
@@ -34,7 +39,6 @@ import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.CommonHooks;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.NeoForge;
@@ -114,7 +118,7 @@ public class HumanoidGolemEntity extends SweepGolemEntity<HumanoidGolemEntity, H
 	public void setItemSlot(EquipmentSlot pSlot, ItemStack pStack) {
 		super.setItemSlot(pSlot, pStack);
 		if (!this.level().isClientSide) {
-			this.reassessWeaponGoal();
+			reassessWeaponGoal = true;
 		}
 	}
 
@@ -176,32 +180,19 @@ public class HumanoidGolemEntity extends SweepGolemEntity<HumanoidGolemEntity, H
 			Projectile projectile = throwable.createProjectile(level());
 			GolemShooterHelper.shootAimHelper(pTarget, projectile);
 			this.playSound(SoundEvents.TRIDENT_THROW.value(), 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
-			projectile.getPersistentData().putInt("DespawnFactor", 20);
+			projectile.getPersistentData().putInt(FlagMarker.ARROW_DESPAWN, 20);
 			this.level().addFreshEntity(projectile);
 			stack.hurtAndBreak(1, this, EquipmentSlot.MAINHAND);
 		} else if (stack.getItem() instanceof CrossbowItem) {
 			performCrossbowAttack(this, 3);
 		} else if (stack.getItem() instanceof BowItem bow) {
-			ItemStack arrowStack = this.getProjectile(stack);
-			if (arrowStack.isEmpty()) return;
-			AbstractArrow arrowEntity = bow.customArrow(getArrow(arrowStack, dist, stack), arrowStack, stack);
-			boolean infinite = GolemShooterHelper.arrowIsInfinite(arrowStack, stack);
-			GolemBowAttackEvent event = new GolemBowAttackEvent(this, stack, hand, arrowEntity, infinite);
-			NeoForge.EVENT_BUS.post(event);
-			arrowEntity = event.getArrow();
-			if (event.isNoPickup()) {
-				arrowEntity.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
-			} else {
-				arrowEntity.pickup = AbstractArrow.Pickup.ALLOWED;
+			ItemStack ammo = this.getProjectile(stack);
+			if (ammo.isEmpty()) return;
+			var ammos = ProjectileWeaponItem.draw(stack, ammo, this);
+			if (level() instanceof ServerLevel sl) {
+				GolemShooterHelper.shoot(sl, this, stack, ammos, hand, bow, true, pTarget);
 			}
-			if (!event.isNoConsume()) {
-				arrowStack.shrink(1);
-			}
-			GolemShooterHelper.shootAimHelper(pTarget, arrowEntity, event.speed(), event.gravity());
 			this.playSound(SoundEvents.ARROW_SHOOT, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
-			arrowEntity.getPersistentData().putInt("DespawnFactor", 20);
-			this.level().addFreshEntity(arrowEntity);
-			stack.hurtAndBreak(1, this, EquipmentSlot.MAINHAND);
 		}
 	}
 
@@ -383,8 +374,14 @@ public class HumanoidGolemEntity extends SweepGolemEntity<HumanoidGolemEntity, H
 		shieldCooldown = Mth.clamp(shieldCooldown - 1, 0, 100);
 	}
 
+	private boolean reassessWeaponGoal = false;
+
 	@Override
 	public void aiStep() {
+		if (reassessWeaponGoal) {
+			reassessWeaponGoal();
+			reassessWeaponGoal = false;
+		}
 		super.aiStep();
 		attackStep();
 	}
@@ -440,7 +437,7 @@ public class HumanoidGolemEntity extends SweepGolemEntity<HumanoidGolemEntity, H
 		}
 		mainhand.setItem(off);
 		offhand.setItem(main);
-		reassessWeaponGoal();
+		reassessWeaponGoal = true;
 		inventoryTick = 10;
 	}
 

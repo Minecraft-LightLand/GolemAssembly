@@ -31,17 +31,17 @@ public class HumanoidGolemModel extends PlayerModel<HumanoidGolemEntity> impleme
 	}
 
 	@Override
-	public void renderToBufferInternal(HumaniodGolemPartType type, PoseStack stack, VertexConsumer consumer, int i, int j) {
+	public void renderToBufferInternal(HumaniodGolemPartType type, PoseStack stack, VertexConsumer consumer, int i, int j, int alpha) {
 		if (type == HumaniodGolemPartType.BODY) {
-			this.body.render(stack, consumer, i, j);
-			this.head.render(stack, consumer, i, j);
-			this.hat.render(stack, consumer, i, j);
+			this.body.render(stack, consumer, i, j, alpha);
+			this.head.render(stack, consumer, i, j, alpha);
+			this.hat.render(stack, consumer, i, j, alpha);
 		} else if (type == HumaniodGolemPartType.ARMS) {
-			this.leftArm.render(stack, consumer, i, j);
-			this.rightArm.render(stack, consumer, i, j);
+			this.leftArm.render(stack, consumer, i, j, alpha);
+			this.rightArm.render(stack, consumer, i, j, alpha);
 		} else if (type == HumaniodGolemPartType.LEGS) {
-			this.leftLeg.render(stack, consumer, i, j);
-			this.rightLeg.render(stack, consumer, i, j);
+			this.leftLeg.render(stack, consumer, i, j, alpha);
+			this.rightLeg.render(stack, consumer, i, j, alpha);
 		}
 	}
 

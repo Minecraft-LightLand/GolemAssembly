@@ -1,7 +1,6 @@
 package dev.xkmc.modulargolems.content.item.card;
 
 import dev.xkmc.l2core.util.Proxy;
-import dev.xkmc.l2core.util.TooltipHelper;
 import dev.xkmc.modulargolems.content.capability.GolemConfigEditor;
 import dev.xkmc.modulargolems.content.capability.GolemConfigEntry;
 import dev.xkmc.modulargolems.content.capability.GolemConfigStorage;
@@ -24,7 +23,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.neoforged.fml.loading.FMLEnvironment;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -121,12 +119,13 @@ public class ConfigCard extends Item implements GolemInteractItem {
 		if (id == null) {
 			list.add(MGLangData.CONFIG_INIT.get());
 		} else {
-			TooltipHelper.addClient(ctx, flag, helper -> {
-				var entry = GolemConfigStorage.get(helper.level())
+			var level = ctx.level();
+			if (level != null) {
+				var entry = GolemConfigStorage.get(level)
 						.getOrCreateStorage(id, color.getId(), MGLangData.LOADING.get());
-				entry.clientTick(helper.level(), false);
+				entry.clientTick(level, false);
 				list.add(entry.getDisplayName());
-			});
+			}
 			if (!mayClientEdit(id)) {
 				list.add(MGLangData.CONFIG_OTHER.get());
 			}

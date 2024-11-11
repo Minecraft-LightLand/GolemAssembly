@@ -1,9 +1,14 @@
+import net.darkhax.curseforgegradle.TaskPublishCurseForge
+
 plugins {
     id 'java-library'
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.0.153'
+    id 'net.neoforged.gradle.userdev' version '7.0.165'
+    id 'net.darkhax.curseforgegradle' version '[1.1.24,)'
+    id "at.stnwtr.gradle-secrets-plugin" version "1.0.1"
+    id "com.modrinth.minotaur" version "2.+"
 }
 
 version = mod_version
@@ -162,10 +167,69 @@ dependencies {
 
     implementation "dev.xkmc:l2backpack:${l2backpack_ver}"
     implementation "dev.xkmc:l2complements:${l2complements_ver}"
+    implementation "dev.xkmc:l2magic:${l2magic_ver}"
+    implementation "dev.xkmc:fast_projectile_api:${fast_projectile_api_ver}"
+    implementation "dev.xkmc:l2hostility:${l2hostility_ver}"
     implementation "vazkii.patchouli:Patchouli:${patchouli_ver}"
 
     implementation "dev.xkmc:better_creative_tabs:0.1.0"
 
     implementation "mezz.jei:jei-${jei_minecraft_version}:${jei_version}"
     implementation "top.theillusivec4.curios:curios-neoforge:${curios_version}"
+    implementation "curse.maven:the-twilight-forest-227639:5699076"
+    implementation "com.tlm:touhoulittlemaid:1.21-release-1.1.12-snapshot4"
+    implementation "dev.xkmc:l2archery:${l2archery_ver}"
+
+}
+
+tasks.register('publishCurseForge', TaskPublishCurseForge) {
+    apiToken = secrets.get("curseforge_token")
+    def mainFile = upload(project.curseforge_project, new File("./build/libs/${mod_id}-${mod_version}.jar"))
+    mainFile.changelog = new File('./changelog.txt')
+    mainFile.addEnvironment("Client", "Server")
+    mainFile.addGameVersion("1.21.1")
+    mainFile.addModLoader("NeoForge")
+    mainFile.addRequirement("l2library")
+    mainFile.addOptional(
+            "blaze-gear",
+            "botania",
+            "create",
+            "jei",
+            "l2-archery",
+            "l2-backpack",
+            "l2-complements",
+            "l2hostility",
+            "l2weaponry",
+            "lendercataclysm",
+            "patchouli",
+            "the-twilight-forest",
+            "touhou-little-maid")
+    mainFile.releaseType = "beta"
+    disableVersionDetection()
+}
+
+modrinth {
+    token = secrets.get("modrinth_token")
+    projectId = project.modrinth_project
+    versionName = "Modular Golems ${project.mod_version}"
+    versionNumber = project.mod_version
+    versionType = "beta"
+    uploadFile = new File("./build/libs/${mod_id}-${mod_version}.jar")
+    gameVersions = ["1.21.1"]
+    loaders = ["neoforge"]
+    changelog = new File('./changelog.txt').text.split("\n\n")[0]
+    dependencies {
+        required.project "l2library"
+        optional.project "botania"
+        optional.project "create"
+        optional.project "jei"
+        optional.project "l2archery"
+        optional.project "l2backpack"
+        optional.project "l2-complements"
+        optional.project "l2hostility"
+        optional.project "l2weaponry"
+        optional.project "l_enders-cataclysm"
+        optional.project "patchouli"
+        optional.project "touhou-little-maid"
+    }
 }

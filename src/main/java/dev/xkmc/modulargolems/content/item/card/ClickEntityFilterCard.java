@@ -9,6 +9,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.function.Predicate;
@@ -28,7 +29,7 @@ public abstract class ClickEntityFilterCard<T> extends TargetFilterCard {
 	protected abstract void setList(ItemStack stack, List<T> list);
 
 	protected InteractionResult addTargetEntity(Player player, ItemStack stack, LivingEntity target) {
-		var list = getList(stack);
+		var list = new ArrayList<>(getList(stack));
 		if (list.contains(getValue(target))) {
 			return InteractionResult.SUCCESS;
 		}
@@ -42,7 +43,7 @@ public abstract class ClickEntityFilterCard<T> extends TargetFilterCard {
 	}
 
 	protected InteractionResult removeTargetEntity(Player player, ItemStack stack, LivingEntity target) {
-		var list = getList(stack);
+		var list = new ArrayList<>(getList(stack));
 		if (!list.contains(getValue(target))) {
 			return InteractionResult.FAIL;
 		}
@@ -58,10 +59,10 @@ public abstract class ClickEntityFilterCard<T> extends TargetFilterCard {
 
 	@Override
 	protected InteractionResultHolder<ItemStack> removeLast(Player player, ItemStack stack) {
-		var list = getList(stack);
-		if (list.size() == 0) return InteractionResultHolder.fail(stack);
+		var list = new ArrayList<>(getList(stack));
+		if (list.isEmpty()) return InteractionResultHolder.fail(stack);
 		if (!player.level().isClientSide()) {
-			var val = list.remove(list.size() - 1);
+			var val = list.removeLast();
 			setList(stack, list);
 			player.sendSystemMessage(MGLangData.TARGET_MSG_REMOVED.get(getName(val)));
 		}

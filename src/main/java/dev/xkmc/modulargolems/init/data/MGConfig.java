@@ -70,6 +70,7 @@ public class MGConfig {
 		public final ModConfigSpec.IntValue humanoidGolemSlot;
 		public final ModConfigSpec.IntValue largeGolemSlot;
 		public final ModConfigSpec.BooleanValue doEnemyAggro;
+		public final ModConfigSpec.BooleanValue allowDimensionChange;
 
 		Common(Builder builder) {
 			markL2();
@@ -80,6 +81,8 @@ public class MGConfig {
 				doEnemyAggro = builder.text("Copy Iron Golem Aggro")
 						.comment("Make mobs aggro to iron golem automatically aggro to modular golems")
 						.define("doEnemyAggro", true);
+				allowDimensionChange = builder.text("Allow golems to enter portal")
+						.define("allowDimensionChange", false);
 				summonDistance = builder.text("Max distance to summon single golem")
 						.defineInRange("summonDistance", 64, 1, 1000);
 				retrieveDistance = builder.text("Max distance to retrieve single golem")

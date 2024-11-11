@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "l2hostility:item/upgrades/hostility_tank",
+    "layer1": "modulargolems:item/blue_arrow"
+  }
+}

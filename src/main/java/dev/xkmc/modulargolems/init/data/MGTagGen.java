@@ -1,5 +1,6 @@
 package dev.xkmc.modulargolems.init.data;
 
+import com.github.tartaricacid.touhoulittlemaid.TouhouLittleMaid;
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import dev.xkmc.modulargolems.init.ModularGolems;
@@ -16,6 +17,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.common.Tags;
 
 import java.util.ArrayList;
@@ -83,12 +85,10 @@ public class MGTagGen {
 		pvd.addTag(PLAYER_SKIN).add(Items.ZOMBIE_HEAD, Items.SKELETON_SKULL, Items.WITHER_SKELETON_SKULL);
 		var skin = pvd.addTag(CURIO_SKIN);
 		skin.addTag(PLAYER_SKIN).add(Items.PLAYER_HEAD, Items.PIGLIN_HEAD);
-		/* TODO TLM
-		if (ModList.get().isLoaded(TouhouLittleMaid.MOD_ID)) {
-			skin.addOptional(new ResourceLocation(TouhouLittleMaid.MOD_ID, "garage_kit"));
-		}
 
-		 */
+		if (ModList.get().isLoaded(TouhouLittleMaid.MOD_ID)) {
+			skin.addOptional(ResourceLocation.fromNamespaceAndPath(TouhouLittleMaid.MOD_ID, "garage_kit"));
+		}
 	}
 
 	public static void onEntityTagGen(RegistrateTagsProvider.IntrinsicImpl<EntityType<?>> pvd) {

@@ -3,7 +3,6 @@ package dev.xkmc.modulargolems.content.item.golem;
 import com.mojang.datafixers.util.Pair;
 import com.tterrag.registrate.util.CreativeModeTabModifier;
 import dev.xkmc.l2core.init.reg.simple.Val;
-import dev.xkmc.l2core.util.TooltipHelper;
 import dev.xkmc.modulargolems.content.capability.GolemConfigStorage;
 import dev.xkmc.modulargolems.content.config.GolemMaterial;
 import dev.xkmc.modulargolems.content.config.GolemMaterialConfig;
@@ -330,73 +329,73 @@ public class GolemHolder<T extends AbstractGolemEntity<T, P>, P extends IGolemPa
 
 	@Override
 	public void appendHoverText(ItemStack stack, TooltipContext ctx, List<Component> list, TooltipFlag flag) {
-		TooltipHelper.addClient(ctx, flag, helper -> {
-			if (helper.alt()) {
-				NBTAnalytic.analyze(stack, list);
-				return;
+		if (flag.hasAltDown()) {
+			NBTAnalytic.analyze(stack, list);
+			return;
+		}
+		var level = ctx.level();
+		if (!flag.hasShiftDown()) {
+			float max = getMaxHealth(stack);
+			if (max >= 0) {
+				float health = getHealth(stack);
+				float f = Mth.clamp(health / max, 0f, 1f);
+				int color = Mth.hsvToRgb(f / 3.0F, 1.0F, 1.0F);
+				MutableComponent hc = Component.literal("" + Math.round(health)).setStyle(Style.EMPTY.withColor(color));
+				list.add(MGLangData.HEALTH.get(hc, Math.round(max)).withStyle(health <= 0 ? ChatFormatting.RED : ChatFormatting.AQUA));
 			}
-			if (!helper.shift()) {
-				float max = getMaxHealth(stack);
-				if (max >= 0) {
-					float health = getHealth(stack);
-					float f = Mth.clamp(health / max, 0f, 1f);
-					int color = Mth.hsvToRgb(f / 3.0F, 1.0F, 1.0F);
-					MutableComponent hc = Component.literal("" + Math.round(health)).setStyle(Style.EMPTY.withColor(color));
-					list.add(MGLangData.HEALTH.get(hc, Math.round(max)).withStyle(health <= 0 ? ChatFormatting.RED : ChatFormatting.AQUA));
-				}
-				var config = getGolemConfig(stack);
-				if (ctx.registries() == null || config.isEmpty()) {
-					list.add(MGLangData.NO_CONFIG.get());
-				} else {
-					var id = config.get().id();
-					var color = config.get().color();
-					var entry = GolemConfigStorage.get(helper.level())
-							.getOrCreateStorage(id, color, MGLangData.LOADING.get());
-					entry.clientTick(helper.level(), false);
-					list.add(entry.getDisplayName());
-				}
-				var mats = getMaterial(stack);
-				var upgrades = getUpgrades(stack);
-				var parts = getEntityType().values();
-				if (mats.size() == parts.length) {
-					for (int i = 0; i < parts.length; i++) {
-						list.add(parts[i].getDesc(mats.get(i).getDesc()));
-					}
-				}
-				list.add(MGLangData.SLOT.get(getRemaining(mats, upgrades)).withStyle(ChatFormatting.AQUA));
-				var modifiers = GolemMaterial.collectModifiers(mats, upgrades);
-				if (modifiers.size() > 8) {
-					list.add(MGLangData.UPGRADE_COUNT.get(modifiers.size(), upgrades.upgrades().size()));
-				} else {
-					modifiers.forEach((k, v) -> list.add(k.getTooltip(v)));
-				}
-				GolemMaterial.collectAttributes(mats, upgrades).forEach((k, v) -> {
-					if (Math.abs(v.getSecond()) > 1e-3) {
-						list.add(v.getFirst().getTotalTooltip(v.getSecond()));
-					}
-				});
-				list.add(MGLangData.SHIFT.get());
+			var config = getGolemConfig(stack);
+
+			if (level == null || config.isEmpty()) {
+				list.add(MGLangData.NO_CONFIG.get());
 			} else {
-				var mats = getMaterial(stack);
-				var upgrades = getUpgrades(stack);
-				var map = GolemMaterial.collectModifiers(mats, upgrades);
-				int size = map.size();
-				int index = 0;
-				for (var entry : map.entrySet()) {
-					index++;
-					var k = entry.getKey();
-					var v = entry.getValue();
-					list.add(k.getTooltip(v));
-					if (size > 12) {
-						continue;
-					}
-					if (size > 4) {
-						if (helper.level().getGameTime() / 30 % size != index - 1) continue;
-					}
-					list.addAll(k.getDetail(v));
+				var id = config.get().id();
+				var color = config.get().color();
+				var entry = GolemConfigStorage.get(level)
+						.getOrCreateStorage(id, color, MGLangData.LOADING.get());
+				entry.clientTick(level, false);
+				list.add(entry.getDisplayName());
+			}
+			var mats = getMaterial(stack);
+			var upgrades = getUpgrades(stack);
+			var parts = getEntityType().values();
+			if (mats.size() == parts.length) {
+				for (int i = 0; i < parts.length; i++) {
+					list.add(parts[i].getDesc(mats.get(i).getDesc()));
 				}
 			}
-		});
+			list.add(MGLangData.SLOT.get(getRemaining(mats, upgrades)).withStyle(ChatFormatting.AQUA));
+			var modifiers = GolemMaterial.collectModifiers(mats, upgrades);
+			if (modifiers.size() > 8) {
+				list.add(MGLangData.UPGRADE_COUNT.get(modifiers.size(), upgrades.upgrades().size()));
+			} else {
+				modifiers.forEach((k, v) -> list.add(k.getTooltip(v)));
+			}
+			GolemMaterial.collectAttributes(mats, upgrades).forEach((k, v) -> {
+				if (Math.abs(v.getSecond()) > 1e-3) {
+					list.add(v.getFirst().getTotalTooltip(v.getSecond()));
+				}
+			});
+			list.add(MGLangData.SHIFT.get());
+		} else {
+			var mats = getMaterial(stack);
+			var upgrades = getUpgrades(stack);
+			var map = GolemMaterial.collectModifiers(mats, upgrades);
+			int size = map.size();
+			int index = 0;
+			for (var entry : map.entrySet()) {
+				index++;
+				var k = entry.getKey();
+				var v = entry.getValue();
+				list.add(k.getTooltip(v));
+				if (size > 12) {
+					continue;
+				}
+				if (size > 4 && level != null) {
+					if (level.getGameTime() / 30 % size != index - 1) continue;
+				}
+				list.addAll(k.getDetail(v));
+			}
+		}
 	}
 
 }

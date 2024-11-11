@@ -1,0 +1,59 @@
+{
+  "ingredients": {
+    "twilightforest:fiery": {
+      "tag": "c:ingots/fiery"
+    },
+    "twilightforest:ironwood": {
+      "tag": "c:ingots/ironwood"
+    },
+    "twilightforest:knightmetal": {
+      "tag": "c:ingots/knightmetal"
+    },
+    "twilightforest:steeleaf": {
+      "tag": "c:ingots/steeleaf"
+    }
+  },
+  "modifiers": {
+    "twilightforest:fiery": {
+      "modulargolems:fiery": 1,
+      "modulargolems:fire_immune": 1,
+      "modulargolems:tf_damage": 1,
+      "modulargolems:tf_healing": 1,
+      "modulargolems:thorn": 1
+    },
+    "twilightforest:ironwood": {
+      "modulargolems:tf_damage": 1,
+      "modulargolems:tf_healing": 1
+    },
+    "twilightforest:knightmetal": {
+      "modulargolems:tf_damage": 1,
+      "modulargolems:tf_healing": 1,
+      "modulargolems:thorn": 2
+    },
+    "twilightforest:steeleaf": {
+      "modulargolems:tf_damage": 1,
+      "modulargolems:tf_healing": 1
+    }
+  },
+  "stats": {
+    "twilightforest:fiery": {
+      "modulargolems:attack": 20.0,
+      "modulargolems:max_health": 200.0
+    },
+    "twilightforest:ironwood": {
+      "modulargolems:attack": 10.0,
+      "modulargolems:max_health": 200.0,
+      "modulargolems:regen": 2.0
+    },
+    "twilightforest:knightmetal": {
+      "modulargolems:attack": 20.0,
+      "modulargolems:knockback_resistance": 1.0,
+      "modulargolems:max_health": 300.0,
+      "modulargolems:weight": -0.4
+    },
+    "twilightforest:steeleaf": {
+      "modulargolems:attack": 24.0,
+      "modulargolems:max_health": 20.0
+    }
+  }
+}

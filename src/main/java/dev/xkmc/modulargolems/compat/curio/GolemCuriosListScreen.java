@@ -19,8 +19,10 @@ public class GolemCuriosListScreen extends BaseCuriosListScreen<GolemCuriosListM
 		super.init();
 		var compat = CurioCompatRegistry.get();
 		assert compat != null;
-		new TabManager<>(this, new EquipmentGroup((AbstractGolemEntity<?, ?>) menu.curios.entity))
-				.init(this::addRenderableWidget, compat.tab.get());
+		var e = menu.curios.entity;
+		if (e instanceof AbstractGolemEntity<?, ?> golem)
+			new TabManager<>(this, new EquipmentGroup(golem))
+					.init(this::addRenderableWidget, compat.tab.get());
 	}
 
 	@Override

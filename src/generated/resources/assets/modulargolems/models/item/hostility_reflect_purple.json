@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "l2hostility:item/upgrades/hostility_reflect",
+    "layer1": "modulargolems:item/purple_arrow"
+  }
+}

@@ -1,5 +1,7 @@
 package dev.xkmc.modulargolems.init.data;
 
+import com.github.tartaricacid.touhoulittlemaid.TouhouLittleMaid;
+import com.github.tartaricacid.touhoulittlemaid.init.InitEntities;
 import dev.xkmc.modulargolems.init.ModularGolems;
 import dev.xkmc.modulargolems.init.registrate.GolemTypes;
 import net.minecraft.core.HolderLookup;
@@ -33,19 +35,13 @@ public class SlotGen extends CuriosDataProvider {
 						GolemTypes.TYPE_DOG.get().type())
 				.addCondition(new ModLoadedCondition("l2artifacts"));
 
-		/* TODO TLM
-		map.accept(ModularGolems.MODID + "/curios/entities/maid_artifacts", new CurioEntityBuilder(
-				new ArrayList<>(List.of(InitEntities.MAID.getId())),
-				new ArrayList<>(List.of("artifact_head", "artifact_necklace", "artifact_bracelet", "artifact_body", "artifact_belt")),
-				SlotCondition.of(TouhouLittleMaid.MOD_ID, "l2artifacts")
-		));
+		createEntities("maid_curios").addSlots("head", "back", "ring", "charm", "hands")
+				.addEntities(InitEntities.MAID.get())
+				.addCondition(new ModLoadedCondition(TouhouLittleMaid.MOD_ID));
 
-		map.accept(ModularGolems.MODID + "/curios/entities/maid_curios", new CurioEntityBuilder(
-				new ArrayList<>(List.of(InitEntities.MAID.getId())),
-				new ArrayList<>(List.of("head", "back", "ring", "charm", "hands")),
-				SlotCondition.of(TouhouLittleMaid.MOD_ID)
-		));
-
-		 */
+		createEntities("maid_artifacts").addSlots("artifact_head", "artifact_necklace", "artifact_bracelet", "artifact_body", "artifact_belt")
+				.addEntities(InitEntities.MAID.get())
+				.addCondition(new ModLoadedCondition(TouhouLittleMaid.MOD_ID))
+				.addCondition(new ModLoadedCondition("l2artifacts"));
 	}
 }

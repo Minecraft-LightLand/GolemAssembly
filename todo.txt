@@ -1,0 +1,2 @@
+shield use predicate fix
+armor render toggle
