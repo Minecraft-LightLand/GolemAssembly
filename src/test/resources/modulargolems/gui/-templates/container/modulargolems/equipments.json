@@ -1,26 +1,39 @@
 {
-    "side": [
-        "altas_helmet",
-        "altas_chestplate",
-        "altas_leggings",
-        "altas_boots",
-        "altas_shield"
-    ],
-    "comp": {
-        "hand": {
-            "sprite": "slot",
-            "x": 79,
-            "y": 18,
-            "rx": 1,
-            "ry": 2
-        },
-        "armor": {
-            "sprite": "slot",
-            "x": 97,
-            "y": 0,
-            "rx": 1,
-            "ry": 4
-        }
-    },
-    "isContainer": true
+	"side": [
+		"slot",
+		"altas_helmet",
+		"altas_chestplate",
+		"altas_leggings",
+		"altas_boots",
+		"altas_shield",
+		"slotbg_arrow",
+		"slotbg_sword"
+	],
+	"comp": {
+		"hand": {
+			"sprite": "empty_slot",
+			"x": 79,
+			"y": 18,
+			"rx": 1,
+			"ry": 2
+		},
+		"armor": {
+			"sprite": "empty_slot",
+			"x": 97,
+			"y": 0,
+			"rx": 1,
+			"ry": 4
+		},
+		"backup": {
+			"sprite": "empty_slot",
+			"x": 133,
+			"y": 18
+		},
+		"arrow": {
+			"sprite": "empty_slot",
+			"x": 133,
+			"y": 36
+		}
+	},
+	"isContainer": true
 }
