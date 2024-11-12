@@ -10,19 +10,35 @@
 		"slotbg_sword"
 	],
 	"comp": {
-		"hand": {
+		"main": {
 			"sprite": "empty_slot",
 			"x": 79,
-			"y": 18,
-			"rx": 1,
-			"ry": 2
+			"y": 18
 		},
-		"armor": {
+		"off": {
+			"sprite": "empty_slot",
+			"x": 79,
+			"y": 36
+		},
+		"head": {
 			"sprite": "empty_slot",
 			"x": 97,
-			"y": 0,
-			"rx": 1,
-			"ry": 4
+			"y": 0
+		},
+		"chest": {
+			"sprite": "empty_slot",
+			"x": 97,
+			"y": 18
+		},
+		"legs": {
+			"sprite": "empty_slot",
+			"x": 97,
+			"y": 36
+		},
+		"feet": {
+			"sprite": "empty_slot",
+			"x": 97,
+			"y": 54
 		},
 		"backup": {
 			"sprite": "empty_slot",

@@ -100,7 +100,7 @@ public class GUIGenerator {
     GUIGenerator(String modid) {
         GUI = "./src/test/resources/" + modid + "/gui/";
         DST = "./src/main/resources/assets/" + modid + "/textures/gui/";
-        CDST = "./src/main/resources/data/" + modid + "/l2library_config/menu_layout/";
+        CDST = "./src/main/resources/data/" + modid + "/l2core/menu_layout/";
         CONT = GUI + "-templates/container/" + modid + "/";
     }
 
