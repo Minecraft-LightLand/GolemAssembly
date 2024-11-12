@@ -21,6 +21,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BannerItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.NeoForge;
 
 import javax.annotation.Nullable;
@@ -32,24 +33,31 @@ public class EquipmentsMenu extends BaseContainerMenu<EquipmentsMenu> {
 		return new EquipmentsMenu(type, wid, plInv, entity instanceof AbstractGolemEntity<?, ?> golem ? golem : null);
 	}
 
-	public static EquipmentSlot[] HUMANOID_SLOTS = {EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND, EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
 	public static EquipmentSlot[] LARGE_SLOTS = {EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND, EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
 	public static EquipmentSlot[] DOG_SLOTS = {EquipmentSlot.BODY};
 
 	public static final SpriteManager MANAGER = new SpriteManager(ModularGolems.MODID, "equipments");
 
 	public final AbstractGolemEntity<?, ?> golem;
-	private final EquipmentSlot[] equipmentSlots;
+	protected final EquipmentSlot[] equipmentSlots;
 
 	protected EquipmentsMenu(MenuType<?> type, int wid, Inventory plInv, @Nullable AbstractGolemEntity<?, ?> golem) {
 		super(type, wid, plInv, MANAGER, EquipmentsContainer::new, false);
 		this.golem = golem;
 		equipmentSlots = golem instanceof DogGolemEntity ? DOG_SLOTS : LARGE_SLOTS;
-		addSlot("hand", (i, e) -> isValid(equipmentSlots[i], e));
-		addSlot("armor", (i, e) -> isValid(equipmentSlots[i + 2], e));
-		if (golem instanceof HumanoidGolemEntity) {
-			addSlot("backup", e -> isValid(EquipmentSlot.MAINHAND, e) || isValid(EquipmentSlot.OFFHAND, e));
-			addSlot("arrow", ItemStack::isStackable);
+		if (golem instanceof DogGolemEntity) {
+			addSlot("chest", e -> isValid(EquipmentSlot.BODY, e));
+		} else {
+			addSlot("main", e -> isValid(EquipmentSlot.MAINHAND, e));
+			addSlot("off", e -> isValid(EquipmentSlot.OFFHAND, e));
+			addSlot("head", e -> isValid(EquipmentSlot.HEAD, e));
+			addSlot("chest", e -> isValid(EquipmentSlot.CHEST, e));
+			addSlot("legs", e -> isValid(EquipmentSlot.LEGS, e));
+			addSlot("feet", e -> isValid(EquipmentSlot.FEET, e));
+			if (golem instanceof HumanoidGolemEntity) {
+				addSlot("backup", e -> isValid(EquipmentSlot.MAINHAND, e) || isValid(EquipmentSlot.OFFHAND, e));
+				addSlot("arrow", ItemStack::isStackable);
+			}
 		}
 	}
 
@@ -77,7 +85,7 @@ public class EquipmentsMenu extends BaseContainerMenu<EquipmentsMenu> {
 				this.moveItemStackTo(stack, 0, 36, true);
 			} else {
 				EquipmentSlot es = getSlotForItem(stack);
-				for (int i = 0; i < 6; i++) {
+				for (int i = 0; i < equipmentSlots.length; i++) {
 					if (equipmentSlots[i] == es) {
 						this.moveItemStackTo(stack, 36 + i, 37 + i, false);
 					}
@@ -115,6 +123,11 @@ public class EquipmentsMenu extends BaseContainerMenu<EquipmentsMenu> {
 				if (golem.getItemBySlot(EquipmentSlot.HEAD).isEmpty())
 					return EquipmentSlot.HEAD;
 				else return EquipmentSlot.FEET;
+			}
+		}
+		if (golem instanceof DogGolemEntity) {
+			if (stack.getItem() == Items.WOLF_ARMOR) {//TODO tag
+				return EquipmentSlot.BODY;
 			}
 		}
 		return null;

@@ -3,6 +3,7 @@ package dev.xkmc.modulargolems.content.menu.equipment;
 import dev.xkmc.l2core.base.menu.base.BaseContainerScreen;
 import dev.xkmc.l2tabs.tabs.core.ITabScreen;
 import dev.xkmc.l2tabs.tabs.core.TabManager;
+import dev.xkmc.modulargolems.content.entity.dog.DogGolemEntity;
 import dev.xkmc.modulargolems.content.entity.humanoid.HumanoidGolemEntity;
 import dev.xkmc.modulargolems.content.menu.registry.EquipmentGroup;
 import dev.xkmc.modulargolems.content.menu.registry.GolemTabRegistry;
@@ -25,22 +26,33 @@ public class EquipmentsScreen extends BaseContainerScreen<EquipmentsMenu> implem
 	protected void renderBg(GuiGraphics g, float pTick, int mx, int my) {
 		var sr = getRenderer();
 		sr.start(g);
-
-		if (menu.getAsPredSlot("hand", 0, 1).getItem().isEmpty())
-			sr.draw(g, "hand", "altas_shield", 0, 18);
-		if (menu.getAsPredSlot("armor", 0, 0).getItem().isEmpty())
-			sr.draw(g, "armor", "altas_helmet", 0, 0);
-		if (menu.getAsPredSlot("armor", 0, 1).getItem().isEmpty())
-			sr.draw(g, "armor", "altas_chestplate", 0, 18);
-		if (menu.getAsPredSlot("armor", 0, 2).getItem().isEmpty())
-			sr.draw(g, "armor", "altas_leggings", 0, 18 * 2);
-		if (menu.getAsPredSlot("armor", 0, 3).getItem().isEmpty())
-			sr.draw(g, "armor", "altas_boots", 0, 18 * 3);
-
-		if (menu.golem instanceof HumanoidGolemEntity) {
-			if (menu.getAsPredSlot("arrow", 0, 0).getItem().isEmpty())
-				sr.draw(g, "arrow", "slotbg_arrow", -1, -1);
+		if (menu.golem instanceof DogGolemEntity) {
+			sr.draw(g, "chest", "slot", -1, -1);
+		} else {
+			sr.draw(g, "main", "slot", -1, -1);
+			sr.draw(g, "off", "slot", -1, -1);
+			sr.draw(g, "head", "slot", -1, -1);
+			sr.draw(g, "chest", "slot", -1, -1);
+			sr.draw(g, "legs", "slot", -1, -1);
+			sr.draw(g, "feet", "slot", -1, -1);
+			if (menu.getAsPredSlot("off", 0, 0).getItem().isEmpty())
+				sr.draw(g, "hand", "altas_shield", 0, 0);
+			if (menu.getAsPredSlot("head", 0, 0).getItem().isEmpty())
+				sr.draw(g, "armor", "altas_helmet", 0, 0);
+			if (menu.getAsPredSlot("chest", 0, 0).getItem().isEmpty())
+				sr.draw(g, "armor", "altas_chestplate", 0, 0);
+			if (menu.getAsPredSlot("legs", 0, 0).getItem().isEmpty())
+				sr.draw(g, "armor", "altas_leggings", 0, 0);
+			if (menu.getAsPredSlot("feet", 0, 0).getItem().isEmpty())
+				sr.draw(g, "armor", "altas_boots", 0, 0);
+			if (menu.golem instanceof HumanoidGolemEntity) {
+				sr.draw(g, "arrow", "slot", -1, -1);
+				sr.draw(g, "backup", "slot", -1, -1);
+				if (menu.getAsPredSlot("arrow", 0, 0).getItem().isEmpty())
+					sr.draw(g, "arrow", "slotbg_arrow", -1, -1);
+			}
 		}
+
 	}
 
 	@Override

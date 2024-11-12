@@ -26,6 +26,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.AnimalArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -249,8 +250,29 @@ public class DogGolemEntity extends AbstractGolemEntity<DogGolemEntity, DogGolem
 		if (!player.isShiftKeyDown() && itemstack.isEmpty())
 			return super.mobInteractImpl(player, hand);
 		else {
-			if (!this.level().isClientSide() && canModify(player))
-				this.setInSittingPose(!this.isInSittingPose());
+			if (!level().isClientSide()) {
+				ItemStack armor = getBodyArmorItem();
+				if (!armor.isEmpty() && armor.getItem() instanceof AnimalArmorItem ani) {
+					if (ani.getMaterial().value().repairIngredient().get().test(itemstack) && armor.isDamaged()) {
+						itemstack.shrink(1);
+						playSound(SoundEvents.WOLF_ARMOR_REPAIR);
+						int i = (int) (armor.getMaxDamage() * 0.125F);
+						armor.setDamageValue(Math.max(0, armor.getDamageValue() - i));
+						return InteractionResult.SUCCESS;
+					}
+				}
+				if (canModify(player)) {
+					if (itemstack.is(Items.WOLF_ARMOR)) {//TODO
+						if (getItemBySlot(EquipmentSlot.BODY).isEmpty()) {
+							if (!level().isClientSide()) {
+								setItemSlot(EquipmentSlot.BODY, itemstack.split(1));
+							}
+							return InteractionResult.CONSUME;
+						}
+					}
+				}
+				setInSittingPose(!isInSittingPose());
+			}
 			return InteractionResult.SUCCESS;
 		}
 	}
@@ -276,7 +298,8 @@ public class DogGolemEntity extends AbstractGolemEntity<DogGolemEntity, DogGolem
 			if (Crackiness.WOLF_ARMOR.byDamage(i, j) != Crackiness.WOLF_ARMOR.byDamage(this.getBodyArmorItem())) {
 				this.playSound(SoundEvents.WOLF_ARMOR_CRACK);
 				if (level() instanceof ServerLevel serverlevel) {
-					serverlevel.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, Items.ARMADILLO_SCUTE.getDefaultInstance()), this.getX(), this.getY() + 1.0, this.getZ(), 20, 0.2, 0.1, 0.2, 0.1);
+					serverlevel.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, Items.ARMADILLO_SCUTE.getDefaultInstance()),
+							getX(), getY() + 1.0, getZ(), 20, 0.2, 0.1, 0.2, 0.1);
 				}
 			}
 		}
@@ -289,16 +312,12 @@ public class DogGolemEntity extends AbstractGolemEntity<DogGolemEntity, DogGolem
 		return this.hasArmor();
 	}
 
-	public boolean canUseSlot(EquipmentSlot slot) {
-		return true;
-	}
-
 	protected void hurtArmor(DamageSource source, float amount) {
 		this.doHurtEquipment(source, amount, EquipmentSlot.BODY);
 	}
 
 	public boolean hasArmor() {
-		return this.getBodyArmorItem().is(Items.WOLF_ARMOR);//TODO
+		return getBodyArmorItem().is(Items.WOLF_ARMOR);//TODO
 	}
 
 }
