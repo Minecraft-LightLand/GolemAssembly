@@ -37,13 +37,12 @@ public class EquipmentsMenu extends BaseContainerMenu<EquipmentsMenu> {
 	public static EquipmentSlot[] DOG_SLOTS = {EquipmentSlot.BODY};
 
 	public static final SpriteManager MANAGER = new SpriteManager(ModularGolems.MODID, "equipments");
-	public static final SpriteManager EXTRA = new SpriteManager(ModularGolems.MODID, "equipments_extra");
 
 	public final AbstractGolemEntity<?, ?> golem;
 	private final EquipmentSlot[] equipmentSlots;
 
 	protected EquipmentsMenu(MenuType<?> type, int wid, Inventory plInv, @Nullable AbstractGolemEntity<?, ?> golem) {
-		super(type, wid, plInv, golem instanceof HumanoidGolemEntity ? EXTRA : MANAGER, EquipmentsContainer::new, false);
+		super(type, wid, plInv, MANAGER, EquipmentsContainer::new, false);
 		this.golem = golem;
 		equipmentSlots = golem instanceof DogGolemEntity ? DOG_SLOTS : LARGE_SLOTS;
 		addSlot("hand", (i, e) -> isValid(equipmentSlots[i], e));
