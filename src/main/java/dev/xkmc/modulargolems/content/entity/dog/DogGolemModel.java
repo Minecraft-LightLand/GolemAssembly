@@ -87,17 +87,17 @@ public class DogGolemModel extends AgeableListModel<DogGolemEntity> implements I
 		}
 	}
 
-	public void renderToBufferInternal(DogGolemPartType type, PoseStack stack, VertexConsumer consumer, int light, int overlay) {
+	public void renderToBufferInternal(DogGolemPartType type, PoseStack stack, VertexConsumer consumer, int light, int overlay, int alpha) {
 		if (type == DogGolemPartType.BODY) {
-			this.body.render(stack, consumer, light, overlay);
-			this.head.render(stack, consumer, light, overlay);
-			this.upperBody.render(stack, consumer, light, overlay);
-			this.tail.render(stack, consumer, light, overlay);
+			this.body.render(stack, consumer, light, overlay, alpha);
+			this.head.render(stack, consumer, light, overlay, alpha);
+			this.upperBody.render(stack, consumer, light, overlay, alpha);
+			this.tail.render(stack, consumer, light, overlay, alpha);
 		} else if (type == DogGolemPartType.LEGS) {
-			this.leftHindLeg.render(stack, consumer, light, overlay);
-			this.rightHindLeg.render(stack, consumer, light, overlay);
-			this.leftFrontLeg.render(stack, consumer, light, overlay);
-			this.rightFrontLeg.render(stack, consumer, light, overlay);
+			this.leftHindLeg.render(stack, consumer, light, overlay, alpha);
+			this.rightHindLeg.render(stack, consumer, light, overlay, alpha);
+			this.leftFrontLeg.render(stack, consumer, light, overlay, alpha);
+			this.rightFrontLeg.render(stack, consumer, light, overlay, alpha);
 		}
 	}
 

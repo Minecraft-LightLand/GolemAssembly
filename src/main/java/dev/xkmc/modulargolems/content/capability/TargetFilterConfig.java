@@ -4,6 +4,7 @@ import dev.xkmc.l2serial.serialization.marker.SerialClass;
 import dev.xkmc.l2serial.serialization.marker.SerialField;
 import dev.xkmc.modulargolems.content.item.card.NameFilterCard;
 import dev.xkmc.modulargolems.content.item.card.TargetFilterCard;
+import dev.xkmc.modulargolems.content.item.card.UuidFilterCard;
 import dev.xkmc.modulargolems.init.registrate.GolemItems;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -33,6 +34,13 @@ public class TargetFilterConfig {
 	}
 
 	public boolean aggressiveToward(LivingEntity le) {
+		for (var e : friendlyTo) {
+			if (e.getItem() instanceof UuidFilterCard card) {
+				if (card.mayTarget(e).test(le)) {
+					return false;
+				}
+			}
+		}
 		for (var e : hostileTo) {
 			if (e.getItem() instanceof TargetFilterCard card) {
 				if (card.mayTarget(e).test(le)) {
@@ -44,6 +52,13 @@ public class TargetFilterConfig {
 	}
 
 	public boolean friendlyToward(LivingEntity le) {
+		for (var e : hostileTo) {
+			if (e.getItem() instanceof UuidFilterCard card) {
+				if (card.mayTarget(e).test(le)) {
+					return false;
+				}
+			}
+		}
 		for (var e : friendlyTo) {
 			if (e.getItem() instanceof TargetFilterCard card) {
 				if (card.mayTarget(e).test(le)) {

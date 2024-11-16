@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "l2hostility"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "modulargolems:enchanted_gold"
+    },
+    "B": {
+      "item": "l2complements:totemic_gold_ingot"
+    },
+    "C": {
+      "item": "l2hostility:regenerate"
+    }
+  },
+  "pattern": [
+    "CBC",
+    "BAB",
+    "CBC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "modulargolems:hostility_regen"
+  }
+}

@@ -551,5 +551,6 @@
   "modifier.modulargolems.ancient_remnant_sandstorm": "遗魂沙暴",
   "modifier.modulargolems.ancient_remnant_sandstorm.desc": "攻击目标较远时，在目标位置召唤沙暴",
   "modifier.modulargolems.netherite_monstrosity_earthquake": "巨兽撼地",
-  "modifier.modulargolems.netherite_monstrosity_earthquake.desc": "傀儡会起跳砸地造成范围伤害"
+  "modifier.modulargolems.netherite_monstrosity_earthquake.desc": "傀儡会起跳砸地造成范围伤害",
+  "modulargolems.configuration.allowDimensionChange": "允许傀儡跨维度传送"
 }

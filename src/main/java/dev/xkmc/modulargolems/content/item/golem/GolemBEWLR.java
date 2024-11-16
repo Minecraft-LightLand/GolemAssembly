@@ -4,6 +4,7 @@ import com.google.common.base.Suppliers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import dev.xkmc.l2serial.util.Wrappers;
+import dev.xkmc.modulargolems.content.client.override.ModelOverrides;
 import dev.xkmc.modulargolems.content.config.GolemMaterial;
 import dev.xkmc.modulargolems.content.core.GolemType;
 import dev.xkmc.modulargolems.content.core.IGolemPart;
@@ -52,6 +53,7 @@ public class GolemBEWLR extends BlockEntityWithoutLevelRenderer {
 
 	public void onResourceManagerReload(ResourceManager manager) {
 		map.clear();
+		ModelOverrides.reload();
 		GolemType.GOLEM_TYPE_TO_MODEL.forEach((k, v) -> map.put(k, v.get().generateModel(entityModelSet)));
 	}
 
@@ -94,7 +96,7 @@ public class GolemBEWLR extends BlockEntityWithoutLevelRenderer {
 		M model = Wrappers.cast(map.get(type.getRegistryName()));
 		RenderType render = model.renderType(model.getTextureLocationInternal(id));
 		VertexConsumer vc = ItemRenderer.getFoilBufferDirect(handle.bufferSource(), render, false, handle.stack().hasFoil());
-		model.renderToBufferInternal(part, handle.poseStack(), vc, handle.light(), handle.overlay());
+		model.renderToBufferInternal(part, handle.poseStack(), vc, handle.light(), handle.overlay(), -1);
 	}
 
 	private <T extends AbstractGolemEntity<T, P>, P extends IGolemPart<P>> boolean renderEntity(BEWLRHandle handle, GolemHolder<T, P> item) {

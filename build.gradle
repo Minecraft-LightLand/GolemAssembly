@@ -5,7 +5,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.0.153'
+    id 'net.neoforged.gradle.userdev' version '7.0.165'
     id 'net.darkhax.curseforgegradle' version '[1.1.24,)'
     id "at.stnwtr.gradle-secrets-plugin" version "1.0.1"
     id "com.modrinth.minotaur" version "2.+"
@@ -169,6 +169,9 @@ dependencies {
 
     implementation "dev.xkmc:l2backpack:${l2backpack_ver}"
     implementation "dev.xkmc:l2complements:${l2complements_ver}"
+    implementation "dev.xkmc:l2magic:${l2magic_ver}"
+    implementation "dev.xkmc:fast_projectile_api:${fast_projectile_api_ver}"
+    implementation "dev.xkmc:l2hostility:${l2hostility_ver}"
 
     implementation "dev.xkmc:better_creative_tabs:0.1.0"
 
@@ -185,7 +188,7 @@ tasks.register('publishCurseForge', TaskPublishCurseForge) {
     def mainFile = upload(project.curseforge_project, new File("./build/libs/${mod_id}-${mod_version}.jar"))
     mainFile.changelog = new File('./changelog.txt')
     mainFile.addEnvironment("Client", "Server")
-    mainFile.addGameVersion("1.21")
+    mainFile.addGameVersion("1.21.1")
     mainFile.addModLoader("NeoForge")
     mainFile.addRequirement("l2library")
     mainFile.addOptional(
@@ -213,7 +216,7 @@ modrinth {
     versionNumber = project.mod_version
     versionType = "beta"
     uploadFile = new File("./build/libs/${mod_id}-${mod_version}.jar")
-    gameVersions = ["1.21"]
+    gameVersions = ["1.21.1"]
     loaders = ["neoforge"]
     changelog = new File('./changelog.txt').text.split("\n\n")[0]
     dependencies {

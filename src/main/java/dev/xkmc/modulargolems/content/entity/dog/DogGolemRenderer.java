@@ -58,6 +58,7 @@ public class DogGolemRenderer extends AbstractGolemRenderer<DogGolemEntity, DogG
 
 	public DogGolemRenderer(EntityRendererProvider.Context ctx) {
 		super(ctx, new DogGolemModel(ctx.bakeLayer(ModelLayers.WOLF)), 1F, DogGolemPartType::values);
+		addLayer(new DogArmorLayer(this, ctx.getModelSet()));
 	}
 
 	protected float getBob(DogGolemEntity dog, float pPartialTicks) {

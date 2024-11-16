@@ -46,25 +46,24 @@ public class ModifierEventListeners {
 
 	@SubscribeEvent
 	public static void onEntityJoinWorld(EntityJoinLevelEvent event) {
+		if (event.getLevel().isClientSide()) return;
+		if (!(event.getEntity() instanceof Mob mob)) return;
 		if (!MGConfig.COMMON.doEnemyAggro.get()) return;
-		if (event.getEntity() instanceof Mob mob && !event.getLevel().isClientSide()) {
-			if (mob instanceof Enemy && !(mob instanceof Creeper)) {
-				int priority = 0;
-				TargetGoal ans = null;
-				for (var goal : mob.targetSelector.getAvailableGoals()) {
-					if (goal.getGoal() instanceof NearestAttackableTargetGoal<?> target) {
-						if (target.targetType == IronGolem.class) {
-							priority = goal.getPriority();
-							ans = new NearestAttackableTargetGoal<>(mob, AbstractGolemEntity.class,
-									target.randomInterval, target.mustSee, target.mustReach, null);
-							break;
-						}
-					}
-				}
-				if (ans != null) {
-					mob.targetSelector.addGoal(priority, ans);
+		if (!(mob instanceof Enemy) || mob instanceof Creeper) return;
+		int priority = 0;
+		TargetGoal ans = null;
+		for (var goal : mob.targetSelector.getAvailableGoals()) {
+			if (goal.getGoal() instanceof NearestAttackableTargetGoal<?> target) {
+				if (target.targetType == IronGolem.class) {
+					priority = goal.getPriority();
+					ans = new NearestAttackableTargetGoal<>(mob, AbstractGolemEntity.class,
+							target.randomInterval, target.mustSee, target.mustReach, null);
+					break;
 				}
 			}
+		}
+		if (ans != null) {
+			mob.targetSelector.addGoal(priority, ans);
 		}
 	}
 

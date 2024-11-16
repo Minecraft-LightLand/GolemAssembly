@@ -1,0 +1,28 @@
+{
+  "values": [
+    {
+      "id": "modulargolems:hostility_potion",
+      "required": false
+    },
+    {
+      "id": "modulargolems:hostility_tank",
+      "required": false
+    },
+    {
+      "id": "modulargolems:hostility_speed",
+      "required": false
+    },
+    {
+      "id": "modulargolems:hostility_protection",
+      "required": false
+    },
+    {
+      "id": "modulargolems:hostility_regen",
+      "required": false
+    },
+    {
+      "id": "modulargolems:hostility_reflect",
+      "required": false
+    }
+  ]
+}
