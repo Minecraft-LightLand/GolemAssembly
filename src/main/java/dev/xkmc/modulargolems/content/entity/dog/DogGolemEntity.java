@@ -252,7 +252,7 @@ public class DogGolemEntity extends AbstractGolemEntity<DogGolemEntity, DogGolem
 		else {
 			if (!level().isClientSide()) {
 				ItemStack armor = getBodyArmorItem();
-				if (!armor.isEmpty() && armor.getItem() instanceof AnimalArmorItem ani) {
+				if (!armor.isEmpty() && armor.getItem() instanceof AnimalArmorItem ani) {//TODO
 					if (ani.getMaterial().value().repairIngredient().get().test(itemstack) && armor.isDamaged()) {
 						itemstack.shrink(1);
 						playSound(SoundEvents.WOLF_ARMOR_REPAIR);
