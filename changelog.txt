@@ -1,3 +1,7 @@
+3.0.4
+- path recorder rendering
+- TLM compat fix
+
 3.0.3
 - Allow dog golem to wear wolf armor
 - Fix potential crash in combat
