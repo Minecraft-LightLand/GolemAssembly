@@ -85,7 +85,6 @@ public class PathRecordCard extends Item {
 
 	@Override
 	public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean selected) {
-		if (!ModList.get().isLoaded("create")) return;
 		if (selected && entity instanceof Player player && level.isClientSide()) {
 			var pos = getList(stack);
 			if (pos != null && pos.level().equals(level.dimension().location())) {
