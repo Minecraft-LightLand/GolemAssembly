@@ -15,7 +15,7 @@ public interface GolemConfigEditor {
 
 	@OnlyIn(Dist.CLIENT)
 	static GolemConfigEditor readable(UUID id, int color) {
-		return new Readable(Proxy.getClientWorld(), id, color);
+		return new Readable(Proxy.getWorld(), id, color);
 	}
 
 	Level level();

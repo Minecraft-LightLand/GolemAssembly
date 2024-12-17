@@ -1,5 +1,6 @@
 package dev.xkmc.modulargolems.events;
 
+import dev.xkmc.modulargolems.content.client.outline.BlockOutliner;
 import dev.xkmc.modulargolems.content.entity.humanoid.skin.ClientProfileManager;
 import dev.xkmc.modulargolems.content.entity.humanoid.skin.SpecialRenderProfile;
 import dev.xkmc.modulargolems.events.event.HumanoidSkinEvent;
@@ -8,12 +9,20 @@ import dev.xkmc.modulargolems.init.data.MGTagGen;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = ModularGolems.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GolemClientEventListeners {
+
+	@SubscribeEvent
+	public static void renderStageEvent(RenderLevelStageEvent event) {
+		if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_BLOCK_ENTITIES) {
+			BlockOutliner.renderOutline(event.getPoseStack(), event.getCamera().getPosition());
+		}
+	}
 
 	@SubscribeEvent
 	public static void onHumanoidSkin(HumanoidSkinEvent event) {

@@ -1,6 +1,5 @@
 package dev.xkmc.modulargolems.content.item.wand;
 
-import com.simibubi.create.Create;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import dev.xkmc.l2library.util.raytrace.IGlowingTarget;
 import dev.xkmc.l2library.util.raytrace.RayTraceUtil;
@@ -26,7 +25,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.entity.EntityTypeTest;
-import net.minecraftforge.fml.ModList;
 import org.jetbrains.annotations.Nullable;
 
 public class CommandWandItem extends BaseWandItem implements GolemInteractItem, IGlowingTarget {
@@ -41,11 +39,9 @@ public class CommandWandItem extends BaseWandItem implements GolemInteractItem, 
 	public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean selected) {
 		if (level.isClientSide() && selected && entity instanceof Player player) {
 			RayTraceUtil.clientUpdateTarget(player, RANGE);
-			if (ModList.get().isLoaded(Create.ID)) {
-				if (RayTraceUtil.serverGetTarget(player) instanceof AbstractGolemEntity<?, ?> golem) {
-					if (golem.getMode() == GolemModes.ROUTE) {
-						BlockOutliner.drawOutlines(player, golem.getPatrolList());
-					}
+			if (RayTraceUtil.serverGetTarget(player) instanceof AbstractGolemEntity<?, ?> golem) {
+				if (golem.getMode() == GolemModes.ROUTE) {
+					BlockOutliner.drawOutlines(player, golem.getPatrolList());
 				}
 			}
 		}

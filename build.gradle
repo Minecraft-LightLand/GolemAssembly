@@ -221,19 +221,19 @@ dependencies {
     //runtimeOnly fg.deobf('curse.maven:appleskin-248787:4440123')
 
     implementation fg.deobf("curse.maven:create-enchantment-industry-688768:4764843")
-    implementation fg.deobf("curse.maven:create-328085:4762216")
+    implementation fg.deobf("curse.maven:create-328085:5838779")
     implementation fg.deobf("curse.maven:the-twilight-forest-227639:4635921")
-    implementation fg.deobf("curse.maven:touhou-little-maid-355044:5320184")
+    implementation fg.deobf("curse.maven:touhou-little-maid-355044:5896969")
 
     runtimeOnly fg.deobf("curse.maven:caelus-308989:4581481")
     runtimeOnly fg.deobf("curse.maven:elytra-slot-317716:4598379")
 
 
     implementation fg.deobf("curse.maven:jade-324717:4654448")
-    implementation fg.deobf("curse.maven:lionfish-api-1001614:5363774")
-    implementation fg.deobf("curse.maven:lendercataclysm-551586:5796430")
+    implementation fg.deobf("curse.maven:lionfish-api-1001614:5922047")
+    implementation fg.deobf("curse.maven:lendercataclysm-551586:5924796")
     implementation fg.deobf("curse.maven:citadel-331936:5633260")
-    implementation fg.deobf("curse.maven:alexs-caves-924854:5831476")
+    implementation fg.deobf("curse.maven:alexs-caves-924854:5848216")
 
     runtimeOnly fg.deobf("curse.maven:patchouli-306770:4966125")
     implementation fg.deobf("vazkii.botania:Botania:1.20.1-443-FORGE")

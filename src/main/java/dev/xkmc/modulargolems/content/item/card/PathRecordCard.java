@@ -1,6 +1,5 @@
 package dev.xkmc.modulargolems.content.item.card;
 
-import com.simibubi.create.Create;
 import dev.xkmc.l2library.util.nbt.ItemCompoundTag;
 import dev.xkmc.l2serial.serialization.codec.TagCodec;
 import dev.xkmc.modulargolems.content.client.outline.BlockOutliner;
@@ -21,7 +20,6 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.fml.ModList;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -96,7 +94,7 @@ public class PathRecordCard extends Item {
 
 	@Override
 	public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean selected) {
-		if (!ModList.get().isLoaded(Create.ID)) return;
+
 		if (selected && entity instanceof Player player && level.isClientSide()) {
 			BlockOutliner.drawOutlines(player, getList(stack));
 		}
