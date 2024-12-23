@@ -1,3 +1,11 @@
+3.0.5
+- Fix upgrades can be over-applied
+- Fix JEI when finding craft outputing clay golems
+
+3.0.4
+- path recorder rendering
+- TLM compat fix
+
 3.0.3
 - Allow dog golem to wear wolf armor
 - Fix potential crash in combat
@@ -5,24 +13,14 @@
 3.0.2
 - L2Hostility integration: upgrades
 - Add highlight texture to sculk and fiery golems
-
-3.0.1+5
 - target reset
 - render overhaul
-
-3.0.1+4
 - dimension change config
 - fix crash when other mods try to steal golem weapon
 - Make UUID filter higher priority than other filters
-
-3.0.1+3
 - Fix tab crash in sinytra environment
-
-3.0.1+2
 - Fix infinity on golems
 - Fix hot bar golem holder rendering
-
-3.0.1+1
 - Add Twilight compat
 
 3.0.1

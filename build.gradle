@@ -205,7 +205,7 @@ tasks.register('publishCurseForge', TaskPublishCurseForge) {
             "patchouli",
             "the-twilight-forest",
             "touhou-little-maid")
-    mainFile.releaseType = "beta"
+    mainFile.releaseType = "release"
     disableVersionDetection()
 }
 
@@ -214,7 +214,7 @@ modrinth {
     projectId = project.modrinth_project
     versionName = "Modular Golems ${project.mod_version}"
     versionNumber = project.mod_version
-    versionType = "beta"
+    versionType = "release"
     uploadFile = new File("./build/libs/${mod_id}-${mod_version}.jar")
     gameVersions = ["1.21.1"]
     loaders = ["neoforge"]
