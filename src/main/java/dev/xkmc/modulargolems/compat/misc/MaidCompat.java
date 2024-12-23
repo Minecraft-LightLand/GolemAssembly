@@ -24,8 +24,7 @@ public class MaidCompat {
 	@SubscribeEvent
 	public static void onMaidConvert(ConvertMaidEvent event) {
 		if (!(event.getEntity() instanceof HumanoidGolemEntity golem)) return;
-		if (ClientSkinDispatch.get(golem) instanceof MaidSkin skin)
-			event.setMaid(new MaidWrapper(golem, skin.id));
+		event.setMaid(new MaidWrapper(golem));
 	}
 
 	@SubscribeEvent
@@ -54,16 +53,18 @@ public class MaidCompat {
 		}
 	}
 
-	private record MaidWrapper(Mob mob, String id) implements IMaid {
+	private record MaidWrapper(HumanoidGolemEntity golem) implements IMaid {
 
 		@Override
 		public String getModelId() {
-			return id;
+			if (ClientSkinDispatch.get(golem) instanceof MaidSkin skin)
+				return skin.id();
+			return "";
 		}
 
 		@Override
 		public Mob asEntity() {
-			return mob;
+			return golem;
 		}
 
 	}

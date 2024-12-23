@@ -1,3 +1,11 @@
+3.0.4
+- path recorder rendering
+- TLM compat fix
+
+3.0.3
+- Allow dog golem to wear wolf armor
+- Fix potential crash in combat
+
 3.0.2
 - L2Hostility integration: upgrades
 - Add highlight texture to sculk and fiery golems

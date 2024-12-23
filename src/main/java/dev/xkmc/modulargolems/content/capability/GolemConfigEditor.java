@@ -1,9 +1,9 @@
 package dev.xkmc.modulargolems.content.capability;
 
+import dev.xkmc.l2core.util.Proxy;
 import dev.xkmc.modulargolems.content.entity.mode.GolemMode;
 import dev.xkmc.modulargolems.content.entity.mode.GolemModes;
 import dev.xkmc.modulargolems.init.data.MGLangData;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 
@@ -12,7 +12,7 @@ import java.util.UUID;
 public interface GolemConfigEditor {
 
 	static GolemConfigEditor readable(UUID id, int color) {
-		return new Readable(Minecraft.getInstance().level, id, color);
+		return new Readable(Proxy.getLevel(), id, color);
 	}
 
 	Level level();
