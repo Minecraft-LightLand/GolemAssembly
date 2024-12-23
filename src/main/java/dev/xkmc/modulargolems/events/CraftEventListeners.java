@@ -12,6 +12,7 @@ import dev.xkmc.modulargolems.init.ModularGolems;
 import dev.xkmc.modulargolems.init.advancement.GolemTriggers;
 import dev.xkmc.modulargolems.init.registrate.GolemItems;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -129,9 +130,9 @@ public class CraftEventListeners {
 		if (!upgrade.fitsOn(holder.getEntityType())) return ItemStack.EMPTY;
 		var mats = GolemHolder.getMaterial(stack);
 		var upgrades = GolemHolder.getUpgrades(stack);
-		var copy = new ArrayList<>(upgrades.upgradeItems());
+		var copy = new ArrayList<Item>(upgrades.upgradeItems());
 		copy.add(upgrade);
-		int remaining = holder.getRemaining(mats, upgrades);
+		int remaining = holder.getRemaining(mats, new GolemUpgrade(upgrades.extraSlot(), copy));
 		if (remaining < 0) return ItemStack.EMPTY; // check if it overflows when adding the new upgrade
 		var map = GolemMaterial.collectModifiers(GolemHolder.getMaterial(stack), upgrades);
 		for (var e : upgrade.get()) {

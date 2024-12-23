@@ -30,8 +30,13 @@ public record GolemAssemblyExtension(
 		var out = focuses.getItemStackFocuses(RecipeIngredientRole.OUTPUT).findAny();
 		if (out.isPresent()) {
 			ItemStack outStack = out.get().getTypedValue().getIngredient();
-			setRecipeSpecial(holder, builder, craftingGridHelper, outStack);
-		} else setRecipeAll(holder, builder, craftingGridHelper, focuses);
+			if (outStack.getItem() instanceof GolemHolder<?, ?> h &&
+					GolemHolder.getMaterial(outStack).size() == h.getEntityType().values().length) {
+				setRecipeSpecial(holder, builder, craftingGridHelper, outStack);
+				return;
+			}
+		}
+		setRecipeAll(holder, builder, craftingGridHelper, focuses);
 	}
 
 	private void setRecipeAll(RecipeHolder<GolemAssembleRecipe> holder, IRecipeLayoutBuilder builder, ICraftingGridHelper craftingGridHelper, IFocusGroup focuses) {
