@@ -309,7 +309,7 @@ public class GolemHolder<T extends AbstractGolemEntity<T, P>, P extends IGolemPa
 		} else if (type.get() == GolemTypes.TYPE_DOG.get()) {
 			base = MGConfig.COMMON.dogGolemSlot.get();
 		}
-		base -= upgrades.upgrades().size();
+		base = base + upgrades.extraSlot() - upgrades.upgrades().size();
 		var modifiers = GolemMaterial.collectModifiers(mats, upgrades);
 		var list = upgrades.upgradeItems();
 		for (var ent : modifiers.entrySet()) {

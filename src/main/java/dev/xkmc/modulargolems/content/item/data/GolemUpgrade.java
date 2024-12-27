@@ -26,6 +26,12 @@ public record GolemUpgrade(int extraSlot, ArrayList<Item> upgrades) {
 		GolemItems.UPGRADE.set(stack, new GolemUpgrade(data.extraSlot, new ArrayList<>()));
 	}
 
+	public static void addSlot(ItemStack stack, int slot) {
+		var data = GolemItems.UPGRADE.get(stack);
+		if (data == null) data = new GolemUpgrade(0, new ArrayList<>());
+		GolemItems.UPGRADE.set(stack, new GolemUpgrade(data.extraSlot + slot, data.upgrades));
+	}
+
 
 	public List<UpgradeItem> upgradeItems() {
 		List<UpgradeItem> list = new ArrayList<>();

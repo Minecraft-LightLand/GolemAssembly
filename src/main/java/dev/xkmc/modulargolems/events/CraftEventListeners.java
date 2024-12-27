@@ -7,6 +7,7 @@ import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.item.data.GolemUpgrade;
 import dev.xkmc.modulargolems.content.item.golem.GolemHolder;
 import dev.xkmc.modulargolems.content.item.golem.GolemPart;
+import dev.xkmc.modulargolems.content.item.upgrade.AddSlotItem;
 import dev.xkmc.modulargolems.content.item.upgrade.UpgradeItem;
 import dev.xkmc.modulargolems.init.ModularGolems;
 import dev.xkmc.modulargolems.init.advancement.GolemTriggers;
@@ -40,7 +41,9 @@ public class CraftEventListeners {
 			}
 		}
 		if (stack.getItem() instanceof GolemHolder<?, ?> holder) {
-			if (block.getItem() instanceof UpgradeItem upgrade) {
+			if (block.getItem() instanceof AddSlotItem item) {
+				addSlot(event, holder, item.slot);
+			} else if (block.getItem() instanceof UpgradeItem upgrade) {
 				appendUpgrade(event, holder, upgrade);
 			} else {
 				fixGolem(event, holder, stack);
@@ -112,6 +115,17 @@ public class CraftEventListeners {
 		ItemStack result = stack.copy();
 		GolemHolder.setHealth(result, Math.min(max, health + max / 4 * maxFix));
 		event.setOutput(result);
+	}
+
+
+	private static <T extends AbstractGolemEntity<T, P>, P extends IGolemPart<P>>
+	void addSlot(AnvilUpdateEvent event, GolemHolder<T, P> holder, int slot) {
+		ItemStack stack = event.getLeft();
+		ItemStack result = stack.copy();
+		GolemUpgrade.addSlot(result, slot);
+		event.setOutput(result);
+		event.setCost(1);
+		event.setMaterialCost(1);
 	}
 
 	private static <T extends AbstractGolemEntity<T, P>, P extends IGolemPart<P>>

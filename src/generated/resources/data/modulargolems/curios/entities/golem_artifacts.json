@@ -6,8 +6,8 @@
     }
   ],
   "entities": [
-    "modulargolems:dog_golem",
     "modulargolems:metal_golem",
+    "modulargolems:dog_golem",
     "modulargolems:humanoid_golem"
   ],
   "slots": [
