@@ -23,7 +23,7 @@ import java.util.UUID;
 
 
 public class SquadWandItem extends BaseWandItem implements GolemInteractItem, IGlowingTarget {
-
+	private static final String KEY_OWNER = "config_captain";
 	private static final int RANGE = 64;
 
 	public SquadWandItem(Properties properties, @Nullable ItemEntry<? extends BaseWandItem> base) {
@@ -77,9 +77,25 @@ public class SquadWandItem extends BaseWandItem implements GolemInteractItem, IG
 				} else {
 					editor.setCaptainId(golemId);
 				}
+				if (user.isShiftKeyDown()) {
+					if (capId != null && capId.equals(golemId)){
+						golem.blockPosition();
+					}else return false;
+				}
 			} else return false;
-
 		}
 		return false;
 	}
+	@Nullable
+	public static UUID getUUID(ItemStack stack) {
+		if (stack.getTag() != null && stack.getTag().contains(KEY_OWNER)) {
+			return stack.getTag().getUUID(KEY_OWNER);
+		}
+		return null;
+	}
 }
+/* ._.
+————|————
+    |
+   / \
+  /   \ */

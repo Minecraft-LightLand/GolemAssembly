@@ -1,22 +1,21 @@
 package dev.xkmc.modulargolems.content.entity.metalgolem;
-
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import dev.xkmc.modulargolems.content.client.armor.GolemEquipmentModels;
-import dev.xkmc.modulargolems.content.client.pose.MetalGolemPose;
-import dev.xkmc.modulargolems.content.client.pose.WeaponPose;
 import dev.xkmc.modulargolems.content.entity.common.IGolemModel;
 import dev.xkmc.modulargolems.content.entity.common.IHeadedModel;
+import dev.xkmc.modulargolems.content.item.equipments.MetalGolemWeaponItem;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
+import dev.xkmc.modulargolems.content.client.pose.CustomModelAnimation;
 @OnlyIn(Dist.CLIENT)
 public class MetalGolemModel extends HierarchicalModel<MetalGolemEntity> implements IGolemModel<MetalGolemEntity, MetalGolemPartType, MetalGolemModel>, IHeadedModel {
 
@@ -61,31 +60,53 @@ public class MetalGolemModel extends HierarchicalModel<MetalGolemEntity> impleme
 		leftForeArm.copyFrom(other.leftForeArm);
 		rightForeArm.copyFrom(other.rightForeArm);
 	}
-
-	public void setupAnim(MetalGolemEntity entity, float f1, float f2, float f3, float f4, float f5) {
-		this.head.yRot = f4 * ((float) Math.PI / 180F);
-		this.head.xRot = f5 * ((float) Math.PI / 180F);
-		this.rightLeg.xRot = -1.5F * Mth.triangleWave(f1, 13.0F) * f2;
-		this.leftLeg.xRot = 1.5F * Mth.triangleWave(f1, 13.0F) * f2;
+	public void setupAnim(MetalGolemEntity pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
+		this.root().getAllParts().forEach(ModelPart::resetPose);
+		int atkTick = pEntity.getAttackAnimationTick();
+        Item its =pEntity.getMainHandItem().getItem();
+		this.animateWalk(pNetHeadYaw, pHeadPitch, pLimbSwing, pLimbSwingAmount);
+			if(its instanceof MetalGolemWeaponItem wi){
+				switch (wi.getGolemWeaponType(wi)) {
+					case SWORD, AXE -> {
+						if (atkTick > 0) {
+							this.animate(pEntity.axeAttackAnimationState, CustomModelAnimation.attackInAxe, pAgeInTicks);
+						}else if(pEntity.isAggressive()) {
+							this.animate(pEntity.axeWarningAnimationState, CustomModelAnimation.warningInAxe, pAgeInTicks);
+						}
+					}
+					case SPEAR -> {
+						if (atkTick > 0) {
+							this.animate(pEntity.spearAttackAnimationState, CustomModelAnimation.attackInSpear, pAgeInTicks);
+						} else if (pEntity.isAggressive()) {
+							this.animate(pEntity.spearWarningAnimationState, CustomModelAnimation.warningInSpear, pAgeInTicks);
+						}
+					}
+				}
+			}
+	}
+	private void animateWalk(float pNetHeadYaw, float pHeadPitch,float pLimbSwing,float pLimbSwingAmount) {
+		this.head.yRot = pNetHeadYaw * ((float) Math.PI / 180F);
+		this.head.xRot = pHeadPitch * ((float) Math.PI / 180F);
+		this.rightLeg.xRot = -1.5F * Mth.triangleWave(pLimbSwing, 13.0F) * pLimbSwingAmount;
+		this.leftLeg.xRot = 1.5F * Mth.triangleWave(pLimbSwing, 13.0F) * pLimbSwingAmount;
 		this.rightLeg.yRot = 0.0F;
 		this.leftLeg.yRot = 0.0F;
+		this.rightArm.xRot = (-0.2F + 1.5F * Mth.triangleWave(pLimbSwing, 13.0F)) * pLimbSwingAmount;
+		this.leftArm.xRot = (-0.2F - 1.5F * Mth.triangleWave(pLimbSwing, 13.0F)) * pLimbSwingAmount;
+		this.rightForeArm.xRot = 0;
+		this.leftForeArm.xRot = 0;
+		this.resetArmPoses();
 	}
-
-	public void prepareMobModel(MetalGolemEntity entity, float bob, float speed, float pTick) {
-		MetalGolemPose pose = MetalGolemPose.DEFAULT;
-		if (!entity.getMainHandItem().isEmpty()) {
-			pose = WeaponPose.WEAPON;
-		}
-		int atkTick = entity.getAttackAnimationTick();
-		if (atkTick > 0) {
-			pose.attackModel(entity, this, atkTick - pTick);
-		} else if (entity.isAggressive()) {
-			pose.aggressive(entity, this, bob, speed, pTick);
-		} else {
-			pose.walking(entity, this, bob, speed, pTick);
-		}
+	private void resetArmPoses() {
+		this.leftArm.yRot = 0.0F;
+		this.leftArm.z = 0.0F;
+		this.leftArm.x = 0.0F;
+		this.leftArm.y = -7.0F;
+		this.rightArm.yRot = 0.0F;
+		this.rightArm.z = 0.0F;
+		this.rightArm.x = -0.0F;
+		this.rightArm.y = -7.0F;
 	}
-
 	public void renderToBufferInternal(MetalGolemPartType type, PoseStack stack, VertexConsumer consumer, int i, int j, float f1, float f2, float f3, float f4) {
 		if (type == MetalGolemPartType.BODY) {
 			this.body.render(stack, consumer, i, j, f1, f2, f3, f4);

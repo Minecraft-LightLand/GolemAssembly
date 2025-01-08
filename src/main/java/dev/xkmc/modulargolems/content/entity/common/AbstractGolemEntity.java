@@ -507,7 +507,7 @@ public class AbstractGolemEntity<T extends AbstractGolemEntity<T, P>, P extends 
 
 	private static final EntityDataAccessor<Integer> DATA_MODE = GOLEM_DATA.define(SyncedData.INT, 0, "follow_mode");
 	private static final EntityDataAccessor<BlockPos> GUARD_POS = GOLEM_DATA.define(SyncedData.BLOCK_POS, BlockPos.ZERO, "guard_pos");
-
+	private static final EntityDataAccessor<BlockPos> SQUAD_POS = GOLEM_DATA.define(SyncedData.BLOCK_POS, BlockPos.ZERO, "cap_pos");
 	public GolemMode getMode() {
 		return GolemModes.get(this.entityData.get(DATA_MODE));
 	}
@@ -520,7 +520,9 @@ public class AbstractGolemEntity<T extends AbstractGolemEntity<T, P>, P extends 
 		this.entityData.set(DATA_MODE, mode);
 		this.entityData.set(GUARD_POS, pos);
 	}
-
+    public void setCapDistance(BlockPos pos){
+		this.entityData.set(SQUAD_POS,pos);
+	}
 	public boolean initMode(@Nullable Player player) {
 		var config = getConfigEntry(null);
 		int mode = config == null ? 0 : config.defaultMode;

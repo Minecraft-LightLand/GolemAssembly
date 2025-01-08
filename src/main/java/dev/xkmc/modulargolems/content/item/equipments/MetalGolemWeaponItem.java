@@ -1,5 +1,6 @@
 package dev.xkmc.modulargolems.content.item.equipments;
 
+import dev.xkmc.modulargolems.init.material.GolemWeaponType;
 import dev.xkmc.modulargolems.init.registrate.GolemTypes;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -10,8 +11,8 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraftforge.common.ForgeMod;
 
 public class MetalGolemWeaponItem extends GolemEquipmentItem {
-
-	public MetalGolemWeaponItem(Properties properties, int attackDamage, double percentAttack, float range, float sweep) {
+	protected final GolemWeaponType gwt;
+	public MetalGolemWeaponItem(Properties properties, int attackDamage, double percentAttack, float range, float sweep, GolemWeaponType gwt) {
 		super(properties, EquipmentSlot.MAINHAND, GolemTypes.ENTITY_GOLEM::get, builder -> {
 			var uuid = UUID.get(EquipmentSlot.MAINHAND);
 			if (attackDamage > 0) {
@@ -27,13 +28,12 @@ public class MetalGolemWeaponItem extends GolemEquipmentItem {
 				builder.put(GolemTypes.GOLEM_SWEEP.get(), new AttributeModifier(uuid, "spear_sweep", sweep, AttributeModifier.Operation.ADDITION));
 			}
 		});
+		this.gwt = gwt;
 	}
-
 	@Override
 	public boolean isEnchantable(ItemStack stack) {
 		return true;
 	}
-
 	@Override
 	public int getEnchantmentValue() {
 		return 15;
@@ -46,5 +46,7 @@ public class MetalGolemWeaponItem extends GolemEquipmentItem {
 		}
 		return super.canApplyAtEnchantingTable(stack, enchantment);
 	}
-
+	public GolemWeaponType getGolemWeaponType(MetalGolemWeaponItem i) {
+      return i.gwt;
+	}
 }
