@@ -1,3 +1,7 @@
+3.0.6
+- Add +1 slot and +100 slot upgrade item (Creative only)
+- Add support for More Wolf Armors
+
 3.0.5
 - Fix upgrades can be over-applied
 - Fix JEI when finding craft outputing clay golems

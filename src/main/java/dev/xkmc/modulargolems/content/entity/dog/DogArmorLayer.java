@@ -2,6 +2,8 @@ package dev.xkmc.modulargolems.content.entity.dog;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import dev.xkmc.more_wolf_armors.content.WolfArmorItem;
+import dev.xkmc.more_wolf_armors.init.MoreWolfArmors;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -14,8 +16,10 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.util.FastColor;
 import net.minecraft.world.entity.Crackiness;
 import net.minecraft.world.item.AnimalArmorItem;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.DyedItemColor;
+import net.neoforged.fml.ModList;
 
 import java.util.Map;
 
@@ -40,7 +44,6 @@ public class DogArmorLayer extends RenderLayer<DogGolemEntity, DogGolemModel> {
 					this.model.renderToBuffer(poseStack, vertexconsumer, packedLight, OverlayTexture.NO_OVERLAY);
 					this.maybeRenderColoredLayer(poseStack, buffer, packedLight, itemstack, animalarmoritem);
 					this.maybeRenderCracks(poseStack, buffer, packedLight, itemstack);
-					return;
 				}
 			}
 		}
@@ -48,7 +51,23 @@ public class DogArmorLayer extends RenderLayer<DogGolemEntity, DogGolemModel> {
 	}
 
 	private void maybeRenderColoredLayer(PoseStack poseStack, MultiBufferSource buffer, int packedLight, ItemStack armorStack, AnimalArmorItem armorItem) {
+		if (ModList.get().isLoaded(MoreWolfArmors.MODID)) {
+			if (armorStack.getItem() instanceof WolfArmorItem) {
+				int i = DyedItemColor.getOrDefault(armorStack, DyeColor.RED.getTextureDiffuseColor());
+				ResourceLocation tex = armorItem.getOverlayTexture();
+				if (tex == null) return;
+				model.renderToBuffer(
+						poseStack,
+						buffer.getBuffer(RenderType.entityCutoutNoCull(tex)),
+						packedLight,
+						OverlayTexture.NO_OVERLAY,
+						FastColor.ARGB32.opaque(i)
+				);
+				return;
+			}
+		}
 		if (armorStack.is(ItemTags.DYEABLE)) {
+
 			int i = DyedItemColor.getOrDefault(armorStack, 0);
 			if (FastColor.ARGB32.alpha(i) == 0) {
 				return;

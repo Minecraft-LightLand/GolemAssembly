@@ -13,6 +13,7 @@ import dev.xkmc.modulargolems.content.item.equipments.MetalGolemWeaponItem;
 import dev.xkmc.modulargolems.content.item.golem.GolemHolder;
 import dev.xkmc.modulargolems.events.event.GolemEquipEvent;
 import dev.xkmc.modulargolems.init.ModularGolems;
+import dev.xkmc.modulargolems.init.data.MGTagGen;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -21,7 +22,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.BannerItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.NeoForge;
 
 import javax.annotation.Nullable;
@@ -126,7 +126,7 @@ public class EquipmentsMenu extends BaseContainerMenu<EquipmentsMenu> {
 			}
 		}
 		if (golem instanceof DogGolemEntity) {
-			if (stack.getItem() == Items.WOLF_ARMOR) {//TODO tag
+			if (stack.is(MGTagGen.C_WOLF_ARMORS)) {
 				return EquipmentSlot.BODY;
 			}
 		}

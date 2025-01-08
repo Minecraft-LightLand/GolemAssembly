@@ -4,8 +4,11 @@ import dev.xkmc.l2serial.serialization.marker.SerialClass;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.goals.GolemMeleeGoal;
 import dev.xkmc.modulargolems.init.data.MGConfig;
+import dev.xkmc.modulargolems.init.data.MGTagGen;
 import dev.xkmc.modulargolems.init.registrate.GolemModifiers;
 import dev.xkmc.modulargolems.init.registrate.GolemTypes;
+import dev.xkmc.more_wolf_armors.content.WolfArmorItem;
+import dev.xkmc.more_wolf_armors.init.MoreWolfArmors;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -33,6 +36,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.common.CommonHooks;
 import org.jetbrains.annotations.Nullable;
 
@@ -252,7 +256,7 @@ public class DogGolemEntity extends AbstractGolemEntity<DogGolemEntity, DogGolem
 		else {
 			if (!level().isClientSide()) {
 				ItemStack armor = getBodyArmorItem();
-				if (!armor.isEmpty() && armor.getItem() instanceof AnimalArmorItem ani) {//TODO
+				if (!armor.isEmpty() && armor.getItem() instanceof AnimalArmorItem ani) {
 					if (ani.getMaterial().value().repairIngredient().get().test(itemstack) && armor.isDamaged()) {
 						itemstack.shrink(1);
 						playSound(SoundEvents.WOLF_ARMOR_REPAIR);
@@ -262,7 +266,7 @@ public class DogGolemEntity extends AbstractGolemEntity<DogGolemEntity, DogGolem
 					}
 				}
 				if (canModify(player)) {
-					if (itemstack.is(Items.WOLF_ARMOR)) {//TODO
+					if (itemstack.is(MGTagGen.C_WOLF_ARMORS)) {
 						if (getItemBySlot(EquipmentSlot.BODY).isEmpty()) {
 							if (!level().isClientSide()) {
 								setItemSlot(EquipmentSlot.BODY, itemstack.split(1));
@@ -298,7 +302,13 @@ public class DogGolemEntity extends AbstractGolemEntity<DogGolemEntity, DogGolem
 			if (Crackiness.WOLF_ARMOR.byDamage(i, j) != Crackiness.WOLF_ARMOR.byDamage(this.getBodyArmorItem())) {
 				this.playSound(SoundEvents.WOLF_ARMOR_CRACK);
 				if (level() instanceof ServerLevel serverlevel) {
-					serverlevel.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, Items.ARMADILLO_SCUTE.getDefaultInstance()),
+					ItemStack item = Items.ARMADILLO_SCUTE.getDefaultInstance();
+					if (ModList.get().isLoaded(MoreWolfArmors.MODID)) {
+						if (stack.getItem() instanceof WolfArmorItem armor) {
+							item = armor.getBreakParticleItem(stack);
+						}
+					}
+					serverlevel.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, item),
 							getX(), getY() + 1.0, getZ(), 20, 0.2, 0.1, 0.2, 0.1);
 				}
 			}
@@ -317,7 +327,7 @@ public class DogGolemEntity extends AbstractGolemEntity<DogGolemEntity, DogGolem
 	}
 
 	public boolean hasArmor() {
-		return getBodyArmorItem().is(Items.WOLF_ARMOR);//TODO
+		return getBodyArmorItem().is(MGTagGen.C_WOLF_ARMORS);
 	}
 
 }
