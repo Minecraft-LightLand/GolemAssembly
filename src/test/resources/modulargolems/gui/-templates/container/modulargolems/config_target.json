@@ -1,0 +1,29 @@
+{
+  "side": [
+  ],
+  "comp": {
+	"dummy": {
+	  "sprite": "slot",
+	  "x": 16,
+	  "y": 0,
+	  "rx": 0,
+	  "ry": 0
+	},
+	"hostile": {
+	  "sprite": "slot",
+	  "x": 16,
+	  "y": 13,
+	  "rx": 9,
+	  "ry": 2
+	},
+	"friendly": {
+	  "sprite": "slot",
+	  "x": 16,
+	  "y": 62,
+	  "rx": 9,
+	  "ry": 2
+	}
+  },
+  "height": 220,
+  "isContainer": true
+}

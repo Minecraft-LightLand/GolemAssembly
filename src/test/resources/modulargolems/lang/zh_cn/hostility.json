@@ -1,0 +1,13 @@
+{
+  "modifier.modulargolems": {
+	"hostility_core": "恶意核心",
+	"hostility_core.desc": "其他恶意升级不消耗升级槽",
+	"hostility_potion": "恶意升级：药水",
+	"hostility_potion.desc": "每个第一级的药水升级不消耗升级槽",
+	"hostility_protection": "恶意升级：保护",
+	"hostility_reflect": "恶意升级：反射",
+	"hostility_regen": "恶意升级：再生",
+	"hostility_speed": "恶意升级：神速",
+	"hostility_tank": "恶意升级：重装"
+  }
+}

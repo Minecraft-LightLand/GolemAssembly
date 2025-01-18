@@ -1,0 +1,31 @@
+{
+  "golem_material.l2complements": {
+	"eternium": "永恒",
+	"poseidite": "海神",
+	"shulkerate": "潜影",
+	"totemic_gold": "生命"
+  },
+  "item.modulargolems": {
+	"force_field": "凋零护甲升级",
+	"freezing": "寒流升级",
+	"soul_flame": "魂火升级",
+	"teleport": "瞬移升级"
+  },
+  "modifier.modulargolems": {
+	"conduit": "潮涌之力",
+	"conduit.desc": "当傀儡在水中时：受到的伤害减少至%s%%、每%s秒远程对水中/雨中目标造成%s点信标伤害、提升下列数值：",
+	"freezing": "药水升级：寒流",
+	"freezing.desc": "攻击和被攻击时对目标施加寒流效果。傀儡免疫冰冻伤害。",
+	"soul_flame": "药水升级：魂火",
+	"soul_flame.desc": "攻击和被攻击时对目标施加魂火效果。傀儡免疫魂火伤害。",
+	"teleport": "瞬移",
+	"teleport.desc": "被攻击时随机传送以躲避非魔法伤害。攻击目标时通过传送来更快接近目标。传送存在%s秒冷却",
+	"cleanse": "药水升级：净化",
+	"curse": "药水升级：诅咒",
+	"incarcerate": "药水升级：禁锢",
+	"poseidite": "海神",
+	"poseidite.desc": "对怕水生物和水生生物造成+%s%%伤害",
+	"totemic_gold": "生命",
+	"totemic_gold.desc": "对亡灵生物造成+%s%%伤害"
+  }
+}

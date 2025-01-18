@@ -1,0 +1,23 @@
+{
+  "golem_material.botania": {
+    "manasteel": "魔钢",
+    "terrasteel": "泰拉钢",
+    "elementium": "源质钢"
+  },
+  "modifier.modulargolems": {
+    "mana_mending": "魔力修复",
+    "mana_mending.desc": "消耗魔力修复自身血量，每秒最多恢复%s点HP，效率为%s魔力/HP",
+    "mana_boosting": "魔力增幅",
+    "mana_boosting.desc": "消耗魔力增幅自身攻击%s%%，消耗为%s魔力",
+    "mana_production": "魔力制造",
+    "mana_production.desc": "泰拉钢的力量让傀儡能够被动地每秒制造%s魔力",
+    "mana_burst": "魔力脉冲",
+    "mana_burst.desc": "向远处的目标发射魔力脉冲，造成%s%%攻击伤害，消耗为%s魔力",
+    "pixie_attack": "精灵袭击",
+    "pixie_attack.desc": "攻击时有%s%%几率召唤一个精灵袭击目标，并且精灵伤害+%s",
+    "pixie_counterattack": "精灵反击",
+    "pixie_counterattack.desc": "被攻击时有%s%%几率召唤一个精灵反击目标"
+  },
+  "modulargolems.msg.botania_mana": "魔力: %s/%s",
+  "modulargolems.msg.botania_no_ring": "未装备魔力之戒"
+}

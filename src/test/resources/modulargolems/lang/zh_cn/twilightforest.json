@@ -1,0 +1,29 @@
+{
+  "golem_material.twilightforest": {
+	"fiery": "炽铁",
+	"ironwood": "铁木",
+	"knightmetal": "骑士",
+	"steeleaf": "钢叶"
+  },
+  "modifier.modulargolems": {
+	"fiery": "炽热",
+	"fiery.desc": "对不免疫火焰伤害的生物造成 %s%% 火焰伤害",
+	"thorn": "荆棘",
+	"thorn.desc": "反射 %s%% 伤害",
+	"tf_damage": "暮色伤害加成",
+	"tf_damage.desc": "在暮色森林里造成%s%%伤害",
+	"tf_healing": "暮色再生加成",
+	"tf_healing.desc": "在暮色森林里回复%s%%原本回复量",
+	"carminite": "砷铅铁升级",
+	"carminite.desc": "受伤后%s秒内隐身并免疫伤害",
+	"naga": "娜迦升级"
+  },
+  "item.modulargolems": {
+	"carminite": "砷铅铁升级",
+	"fiery": "炽铁升级",
+	"ironwood": "铁木升级",
+	"knightmetal": "骑士升级",
+	"naga": "娜迦升级",
+	"steeleaf": "钢叶升级"
+  }
+}

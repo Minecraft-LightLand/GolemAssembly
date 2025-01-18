@@ -1,0 +1,144 @@
+{
+  "item.modulargolems": {
+	"metal_golem_template": "傀儡胚料",
+	"metal_golem_holder": "大型金属傀儡",
+	"humanoid_golem_holder": "人形金属傀儡",
+	"dog_golem_holder": "犬形金属傀儡",
+	"diamond": "钻石升级",
+	"fire_immune": "防火升级",
+	"thunder_immune": "导电升级",
+	"netherite": "下界合金升级",
+	"quartz": "石英升级",
+	"recycle": "回收升级",
+	"enchanted_gold": "附魔金苹果升级",
+	"gold": "金苹果升级",
+	"empty_upgrade": "空白升级模版",
+	"float": "漂浮升级",
+	"retrieval_wand": "回收手杖",
+	"command_wand": "命令手杖",
+	"summon_wand": "召唤手杖",
+	"rider_wand": "骑乘手杖",
+	"sponge": "海绵升级",
+	"swim": "游泳升级",
+	"player": "友伤免疫升级",
+	"bell": "钟升级",
+	"ender_sight": "透视升级",
+	"attack_high": "伤害升级V",
+	"speed": "速度升级",
+	"speed_high": "速度升级V",
+	"cleanse": "药水升级：净化",
+	"curse": "药水升级：诅咒",
+	"emerald": "绿宝石升级",
+	"incarcerate": "药水升级：禁锢",
+	"slow": "药水升级：缓慢",
+	"weak": "药水升级：虚弱",
+	"wither": "药水升级：凋零",
+	"pickup": "拾取升级",
+	"pickup_mending": "拾取附属：经验修补",
+	"pickup_no_destroy": "拾取附属：取消销毁",
+	"talented": "辅助升级：多才多艺",
+	"cauldron": "辅助升级：炼药锅",
+	"mount_upgrade": "坐骑升级",
+	"size_upgrade": "体形升级",
+	"omnipotent_wand_command": "万能手杖：命令",
+	"omnipotent_wand_retrieval": "万能手杖：回收",
+	"omnipotent_wand_rider": "万能手杖：骑乘",
+	"omnipotent_wand_summon": "万能手杖：召唤",
+	"omnipotent_wand_squad": "万能手杖：编队",
+	"squad_wand": "编队手杖",
+	"hostility_core": "恶意核心",
+	"hostility_potion": "恶意升级：药水",
+	"hostility_protection": "恶意升级：保护",
+	"hostility_reflect": "恶意升级：反射",
+	"hostility_regen": "恶意升级：再生",
+	"hostility_speed": "恶意升级：神速",
+	"hostility_tank": "恶意升级：重装",
+	"target_filter_name": "生物过滤器: 数据包格式",
+	"target_filter_type": "生物过滤器: 实体类型",
+	"target_filter_uuid": "生物过滤器: 实体ID",
+	"target_filter_default": "生物过滤器: 默认攻击目标",
+	"patrol_path_recorder": "巡逻手册"
+  },
+  "-cartesian": {
+	"golem": {
+	  "path": "item.modulargolems",
+	  "reverse": true,
+	  "list": [
+		{
+		  "": "",
+		  "incomplete": "（半成品）"
+		},
+		{
+		  "metal_golem_arm": "大型金属傀儡-手臂",
+		  "metal_golem_body": "大型金属傀儡-身体",
+		  "metal_golem_legs": "大型金属傀儡-双腿",
+		  "humanoid_golem_arms": "人形金属傀儡-双臂",
+		  "humanoid_golem_body": "人形金属傀儡-躯干",
+		  "humanoid_golem_legs": "人形金属傀儡-双腿",
+		  "dog_golem_body": "犬形金属傀儡-躯干",
+		  "dog_golem_legs": "犬形金属傀儡-四肢"
+		}
+	  ]
+	},
+	"config": {
+	  "path": "item.modulargolems",
+	  "reverse": true,
+	  "list": [
+		{
+		  "black": "黑色",
+		  "blue": "蓝色",
+		  "brown": "棕色",
+		  "cyan": "青色",
+		  "gray": "灰色",
+		  "green": "绿色",
+		  "light_blue": "淡蓝色",
+		  "light_gray": "淡灰色",
+		  "lime": "黄绿色",
+		  "magenta": "品红色",
+		  "orange": "橙色",
+		  "pink": "粉红色",
+		  "purple": "紫色",
+		  "red": "红色",
+		  "white": "白色",
+		  "yellow": "黄色"
+		},
+		{
+		  "config_card": "配置卡片"
+		}
+	  ]
+	},
+	"armor": {
+	  "path": "item.modulargolems",
+	  "list": [
+		{
+		  "barbaric_vanguard": "蛮荒",
+		  "roman_guard": "罗马",
+		  "wind_spirit": "风行"
+		},
+		{
+		  "chestplate": "护甲",
+		  "helmet": "头盔",
+		  "shinguard": "护腿"
+		}
+	  ]
+	},
+	"weapon": {
+	  "path": "item.modulargolems",
+	  "list": [
+		{
+		  "iron": "铁",
+		  "diamond": "钻石",
+		  "netherite": "下界合金"
+		},
+		{
+		  "golem": "傀儡"
+		},
+		{
+		  "spear": "长枪",
+		  "axe": "战斧",
+		  "sword": "大剑"
+		}
+	  ]
+	}
+  }
+}

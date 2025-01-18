@@ -1,0 +1,181 @@
+{
+  "toggle_slot": {
+	"ids": [
+	  "_0",
+	  "_1",
+	  "_2"
+	],
+	"w": 18,
+	"h": 18,
+	"dx": 1,
+	"dy": 1
+  },
+
+  "slotbg": {
+	"ids": [
+	  "_arrow",
+	  "_sword"
+	],
+	"w": 18,
+	"h": 18,
+	"dx": 1,
+	"dy": 1
+  },
+  "altas": {
+	"ids": [
+	  "_boost_main",
+	  "_boost_sub",
+	  "_stat_container",
+	  "_head",
+	  "_necklace",
+	  "_body",
+	  "_bracelet",
+	  "_belt",
+	  "_disabled",
+	  "_shield",
+	  "_helmet",
+	  "_chestplate",
+	  "_leggings",
+	  "_boots",
+	  "_golem"
+	],
+	"w": 16,
+	"h": 16
+  },
+  "button": {
+	"ids": [
+	  "_1",
+	  "_1p",
+	  "_2",
+	  "_2p"
+	],
+	"w": 8,
+	"h": 8
+  },
+  "sort": {
+	"ids": [
+	  "_1",
+	  "_1p"
+	],
+	"w": 9,
+	"h": 11
+  },
+  "delete": {
+	"ids": [
+	  "_on",
+	  "_off"
+	],
+	"w": 18,
+	"h": 18
+  },
+  "upgrade": {
+	"ids": [
+	  "_on",
+	  "_off"
+	],
+	"w": 18,
+	"h": 18
+  },
+  "slider/_top": {
+	"w": 14,
+	"h": 1,
+	"dx": 1,
+	"dy": 1
+  },
+  "slider/_bottom": {
+	"w": 14,
+	"h": 1,
+	"dx": 1,
+	"dy": -1
+  },
+  "slider/_middle": {
+	"w": 14,
+	"h": 1,
+	"dx": 1,
+	"dy": 0
+  },
+  "slider": {
+	"ids": [
+	  "_light",
+	  "_dark"
+	],
+	"w": 12,
+	"h": 15
+  },
+  "exchange": {
+	"ids": [
+	  "_in",
+	  "_out"
+	],
+	"w": 31,
+	"h": 14
+  },
+  "slot": {
+	"w": 18,
+	"h": 18,
+	"dx": 1,
+	"dy": 1
+  },
+  "empty_slot": {
+	"w": 18,
+	"h": 18,
+	"dx": 1,
+	"dy": 1
+  },
+  "result_slot": {
+	"w": 26,
+	"h": 26,
+	"dx": 5,
+	"dy": 5
+  },
+  "arrow": {
+	"ids": [
+	  "_0",
+	  "_1",
+	  "_2",
+	  "_3"
+	],
+	"w": 22,
+	"h": 16
+  },
+  "fire": {
+	"ids": [
+	  "_0",
+	  "_1"
+	],
+	"w": 14,
+	"h": 14
+  },
+  "top": {
+	"w": 176,
+	"h": 16
+  },
+  "bottom": {
+	"w": 176,
+	"h": 96
+  },
+  "bottom_screen": {
+	"w": 176,
+	"h": 7
+  },
+  "middle": {
+	"w": 176,
+	"h": 1
+  },
+  "match": {
+	"ids": [
+	  "_on",
+	  "_off"
+	],
+	"w": 18,
+	"h": 18
+  },
+  "filter": {
+	"ids": [
+	  "_on",
+	  "_off"
+	],
+	"w": 18,
+	"h": 18
+  }
+}

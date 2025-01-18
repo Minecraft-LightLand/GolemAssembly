@@ -1,0 +1,15 @@
+{
+  "side": [
+  ],
+  "comp": {
+	"grid": {
+	  "sprite": "slot",
+	  "x": 16,
+	  "y": 0,
+	  "rx": 1,
+	  "ry": 1
+	}
+  },
+  "height": 220,
+  "isContainer": true
+}

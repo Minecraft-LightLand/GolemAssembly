@@ -1,0 +1,89 @@
+{
+  "entity.modulargolems.metal_golem": "大型金属傀儡",
+  "entity.modulargolems.humanoid_golem": "人形金属傀儡",
+  "entity.modulargolems.dog_golem": "犬形金属傀儡",
+  "golem_type.modulargolems.metal_golem": "大型金属傀儡",
+  "golem_type.modulargolems.humanoid_golem": "人形金属傀儡",
+  "golem_type.modulargolems.dog_golem": "犬形金属傀儡",
+  "golem_material": {
+	"modulargolems": {
+	  "copper": "铜",
+	  "gold": "金",
+	  "iron": "铁",
+	  "netherite": "下界合金",
+	  "sculk": "幽匿"
+	}
+  },
+  "golem_part": {
+	"metal_golem": {
+	  "body": "身体: %s",
+	  "left": "左手: %s",
+	  "leg": "双腿: %s",
+	  "right": "右手: %s"
+	},
+	"humanoid_golem": {
+	  "arms": "双臂: %s",
+	  "body": "躯干: %s",
+	  "legs": "双腿: %s"
+	},
+	"dog_golem": {
+	  "body": "躯干: %s",
+	  "legs": "四肢: %s"
+	}
+  },
+  "modifier.modulargolems": {
+	"fire_immune": "火焰免疫",
+	"fire_immune.desc": "免疫火焰伤害，漂浮于岩浆上。",
+	"thunder_immune": "闪电免疫",
+	"thunder_immune.desc": "免疫闪电伤害，吸引闪电。被雷劈时获得10秒防火，并回复%s血量。",
+	"magic_immune": "魔法免疫",
+	"magic_immune.desc": "免疫魔法伤害",
+	"recycle": "傀儡回收",
+	"recycle.desc": "傀儡死亡时掉落0血量的可修复物品形态。如果玩家存在，物品直接加入玩家背包",
+	"armor_up": "防御提升",
+	"toughness_up": "韧性提升",
+	"damage_up": "伤害提升",
+	"regeneration_up": "回复升级",
+	"magic_resistant": "魔法抗性",
+	"magic_resistant.desc": "受到的魔法伤害x%s%%",
+	"float": "漂浮升级",
+	"float.desc": "让傀儡浮在水面",
+	"explosion_resistant": "爆炸抗性",
+	"explosion_resistant.desc": "受到的爆炸伤害x%s%%，波及到傀儡的爆炸不破坏方块",
+	"damage_cap": "伤害限制",
+	"damage_cap.desc": "一次受到的伤害不会超过最高血量的%s%%",
+	"immunity": "不灭",
+	"immunity.desc": "免疫虚空伤害以外的所有伤害。怪物不会攻击这个傀儡。",
+	"projectile_reject": "弹射物反射",
+	"projectile_reject.desc": "反射弹射物，不受弹射物伤害",
+	"swim": "游泳",
+	"swim.desc": "让傀儡能游泳",
+	"player_immune": "友伤免疫",
+	"player_immune.desc": "免疫玩家及其从属造成的伤害",
+	"sonic_boom": "音爆",
+	"sonic_boom.desc": "傀儡能使用音爆攻击。若傀儡能范围攻击，则音爆造成范围伤害。",
+	"bell": "钟声",
+	"bell.desc": "傀儡切换攻击目标时，敲钟并吸引范围内的敌人，同时施加发光效果。",
+	"ender_sight": "透视",
+	"ender_sight.desc": "傀儡能看穿墙壁和天花板",
+	"speed_up": "移动速度提升",
+	"emerald": "掠夺者杀手",
+	"emerald.desc": "对掠夺者造成+%s%%伤害",
+	"slow": "药水升级：缓慢",
+	"weak": "药水升级：虚弱",
+	"wither": "药水升级：凋零",
+	"pickup": "拾取升级",
+	"pickup.desc": "傀儡会捡起附近的物品和经验并交给你。详细机制请查阅帕秋莉说明书。如果傀儡找不到地方放物品/经验，傀儡会把物品/经验销毁",
+	"pickup_mending": "拾取附属：经验修补",
+	"pickup_mending.desc": "傀儡拾取经验时，会试图使用经验修补自身。",
+	"pickup_no_destroy": "拾取附属：取消销毁",
+	"pickup_no_destroy.desc": "傀儡找不到地方放物品时不会销毁物品，也不会拾取物品。注意：在大量掉落物的区域使用这个升级可能会造成卡顿",
+	"talented": "多才多艺",
+	"talented.desc": "前4种蓝色升级的第一个升级不消耗升级槽",
+	"cauldron": "炼药锅",
+	"cauldron.desc": "重复的药水升级不消耗升级槽",
+	"ridding_speed_up": "坐骑升级",
+	"ridding_speed_up.desc": "傀儡不会攻击也不会成为攻击对象",
+	"size_up": "体型升级"
+  }
+}

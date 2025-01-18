@@ -1,0 +1,14 @@
+{
+    "side": [
+        "altas_golem"
+    ],
+    "comp": {
+        "hand": {
+            "sprite": "slot",
+            "x": 16,
+            "y": 0
+        }
+    },
+    "height": 220,
+    "isContainer": true
+}

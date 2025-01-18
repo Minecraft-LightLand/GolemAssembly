@@ -1,0 +1,29 @@
+{
+  "golem_material.create": {
+	"zinc": "锌",
+	"andesite_alloy": "安山合金",
+	"brass": "黄铜",
+	"railway": "火车"
+  },
+  "modifier.modulargolems": {
+	"coating": "镀层升级",
+	"coating.desc": "受到的伤害减少%s",
+	"push": "击退提升",
+	"mechanical_engine": "蒸汽动力",
+	"mechanical_engine.desc": "消耗燃料强化傀儡",
+	"mechanical_force": "工业长路",
+	"mechanical_force.desc": "消耗燃料时+%s%%攻击伤害",
+	"mechanical_mobility": "汽鸣铁道",
+	"mechanical_mobility.desc": "消耗燃料时+%s%%速度"
+  },
+  "item.modulargolems": {
+	"coating": "镀层升级",
+	"push": "机械手升级"
+  },
+  "effect.modulargolems": {
+	"mechanical_force": "工业长路",
+	"mechanical_force.description": "提升傀儡攻击伤害",
+	"mechanical_mobility": "汽鸣铁道",
+	"mechanical_mobility.description": "提升傀儡移动速度"
+  }
+}
