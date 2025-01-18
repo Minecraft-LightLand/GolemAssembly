@@ -35,6 +35,7 @@ public class MGTagGen {
 	public static final TagKey<Item> CONFIG_CARD = createItemTag("config_card");
 	public static final TagKey<Item> SPECIAL_CRAFT = createItemTag("special_crafting_material");
 	public static final TagKey<Item> GOLEM_INTERACT = createItemTag("golem_interact");
+	public static final TagKey<Item> MODIFYING_ITEM = createItemTag("modifying_item");
 	public static final TagKey<Item> CURIO_SKIN = ItemTags.create(ResourceLocation.fromNamespaceAndPath("curios", "golem_skin"));
 	public static final TagKey<Item> CURIO_PATH = ItemTags.create(ResourceLocation.fromNamespaceAndPath("curios", "golem_route"));
 	public static final TagKey<Item> PLAYER_SKIN = createItemTag("player_skin");
@@ -59,6 +60,8 @@ public class MGTagGen {
 	}
 
 	public static void onItemTagGen(RegistrateItemTagsProvider pvd) {
+		pvd.addTag(MODIFYING_ITEM).add(Items.LEAD, Items.NAME_TAG)
+				.addOptional(ResourceLocation.fromNamespaceAndPath("nestle", "nestle_lead"));
 		pvd.addTag(C_WOLF_ARMORS).add(Items.WOLF_ARMOR);
 		pvd.addTag(SCULK_MATS).add(Items.ECHO_SHARD);
 		pvd.addTag(SPECIAL_CRAFT);

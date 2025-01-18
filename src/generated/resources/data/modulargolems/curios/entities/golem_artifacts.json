@@ -6,9 +6,9 @@
     }
   ],
   "entities": [
-    "modulargolems:metal_golem",
     "modulargolems:dog_golem",
-    "modulargolems:humanoid_golem"
+    "modulargolems:humanoid_golem",
+    "modulargolems:metal_golem"
   ],
   "slots": [
     "artifact_head",

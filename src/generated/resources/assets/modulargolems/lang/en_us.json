@@ -446,6 +446,7 @@
   "modulargolems.tab.target": "Target Filter Config",
   "modulargolems.tab.toggle": "General Config",
   "modulargolems.title": "Modular Golems",
+  "modulargolems.tooltip.add_slot": "Add %s upgrade slot. Applied on anvil.",
   "modulargolems.tooltip.follow": "Follow",
   "modulargolems.tooltip.following": "Golem will follow you",
   "modulargolems.tooltip.golem_equipment": "Only effective on %s",

@@ -60,8 +60,11 @@ public class GolemAttackListener implements AttackListener {
 			for (var entry : golem.getModifiers().entrySet()) {
 				entry.getKey().postHurtTarget(golem, data, entry.getValue());
 			}
+			var owner = golem.getOwner();
+			if (owner != null) {
+				data.getTarget().setLastHurtByPlayer(owner);
+			}
 		}
 	}
-
 
 }
