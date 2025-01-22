@@ -26,7 +26,7 @@ public class ForceFieldLayer<T extends AbstractGolemEntity<T, ?>, M extends Enti
 
 	@Override
 	public void render(PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight, T e, float pLimbSwing, float pLimbSwingAmount, float pPartialTicks, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
-		if (e.getUpgrades().upgrades().contains(LCCompatRegistry.FORCE_FIELD.get()))
+		if (e.getUpgrades().contains(LCCompatRegistry.FORCE_FIELD.get()))
 			super.render(pMatrixStack, pBuffer, pPackedLight, e, pLimbSwing, pLimbSwingAmount, pPartialTicks, pAgeInTicks, pNetHeadYaw, pHeadPitch);
 	}
 

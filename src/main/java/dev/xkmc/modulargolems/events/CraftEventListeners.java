@@ -13,7 +13,6 @@ import dev.xkmc.modulargolems.init.ModularGolems;
 import dev.xkmc.modulargolems.init.advancement.GolemTriggers;
 import dev.xkmc.modulargolems.init.registrate.GolemItems;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -67,7 +66,7 @@ public class CraftEventListeners {
 				var mats = GolemHolder.getMaterial(result);
 				var upgrades = GolemHolder.getUpgrades(result);
 				int remaining = holder.getRemaining(mats, upgrades);
-				int total = upgrades.upgrades().size();
+				int total = upgrades.size();
 				GolemTriggers.UPGRADE_APPLY.get().trigger((ServerPlayer) event.getEntity(), block, remaining, total);
 			} else {
 				var mats = GolemHolder.getMaterial(stack);
@@ -86,7 +85,7 @@ public class CraftEventListeners {
 	public static void onGrindStone(GrindstoneEvent.OnPlaceItem event) {
 		if (event.getTopItem().getItem() instanceof GolemHolder) {
 			ItemStack copy = event.getTopItem().copy();
-			if (!GolemHolder.getUpgrades(copy).upgrades().isEmpty()) {
+			if (GolemHolder.getUpgrades(copy).size() > 0) {
 				GolemUpgrade.removeAll(copy);
 				event.setOutput(copy);
 				event.setXp(0);
@@ -101,12 +100,7 @@ public class CraftEventListeners {
 		float max = GolemHolder.getMaxHealth(stack);
 		float health = GolemHolder.getHealth(stack);
 		if (health >= max) return;
-		var mats = GolemHolder.getMaterial(stack);
-		var type = holder.getEntityType();
-		P part = type.getBodyPart();
-		if (mats.size() <= part.ordinal()) return;
-		var mat = mats.get(part.ordinal());
-		var ing = GolemMaterialConfig.get().ingredients.get(mat.id());
+		var ing = GolemHolder.getHealingMaterial(stack);
 		ItemStack repairStack = event.getRight();
 		if (ing == null || !ing.test(repairStack)) return;
 		int maxFix = Math.min(repairStack.getCount(), (int) Math.ceil((max - health) / max * 4));
@@ -135,7 +129,7 @@ public class CraftEventListeners {
 		ItemStack result = appendUpgrade(stack, holder, upgrade);
 		if (result.isEmpty()) return;
 		event.setOutput(result);
-		event.setCost(Math.min(39, 4 * (1 + upgrades.upgrades().size())));
+		event.setCost(Math.min(39, 4 * (1 + upgrades.size())));
 		event.setMaterialCost(1);
 	}
 
@@ -144,7 +138,7 @@ public class CraftEventListeners {
 		if (!upgrade.fitsOn(holder.getEntityType())) return ItemStack.EMPTY;
 		var mats = GolemHolder.getMaterial(stack);
 		var upgrades = GolemHolder.getUpgrades(stack);
-		var copy = new ArrayList<Item>(upgrades.upgradeItems());
+		var copy = new ArrayList<>(upgrades.upgrades());
 		copy.add(upgrade);
 		int remaining = holder.getRemaining(mats, new GolemUpgrade(upgrades.extraSlot(), copy));
 		if (remaining < 0) return ItemStack.EMPTY; // check if it overflows when adding the new upgrade

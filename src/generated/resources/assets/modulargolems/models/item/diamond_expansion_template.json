@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "modulargolems:item/add_slot"
+    "layer0": "modulargolems:item/diamond_expansion_template"
   }
 }

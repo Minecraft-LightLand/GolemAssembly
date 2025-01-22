@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "modulargolems:item/netherite_expansion_template"
+  }
+}

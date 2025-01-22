@@ -85,9 +85,8 @@ public record GolemMaterial(HashMap<GolemStatType, Double> stats, HashMap<GolemM
 		for (GolemMaterial stats : list) {
 			stats.modifiers.forEach((k, v) -> values.compute(k, (a, old) -> Math.min(a.maxLevel, (old == null ? 0 : old) + v)));
 		}
-		for (var e : upgrades.upgrades()) {
-			if (!(e instanceof UpgradeItem up)) continue;
-			for (var m : up.get()) {
+		for (var e : upgrades.upgradeItems()) {
+			for (var m : e.get()) {
 				values.compute(m.mod(), (a, old) -> Math.min(a.maxLevel, (old == null ? 0 : old) + m.level()));
 			}
 		}

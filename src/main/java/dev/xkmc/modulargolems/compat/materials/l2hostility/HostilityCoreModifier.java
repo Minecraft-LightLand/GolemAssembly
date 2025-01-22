@@ -1,7 +1,7 @@
 package dev.xkmc.modulargolems.compat.materials.l2hostility;
 
 import dev.xkmc.modulargolems.content.core.StatFilterType;
-import dev.xkmc.modulargolems.content.item.upgrade.UpgradeItem;
+import dev.xkmc.modulargolems.content.item.upgrade.IUpgradeItem;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 
 import java.util.List;
@@ -13,10 +13,10 @@ public class HostilityCoreModifier extends GolemModifier {
 	}
 
 	@Override
-	public int addSlot(List<UpgradeItem> upgrades, int lv) {
+	public int addSlot(List<IUpgradeItem> upgrades, int lv) {
 		int ans = 0;
 		for (var e : upgrades) {
-			if (e.getDefaultInstance().is(LHCompatRegistry.HOSTILITY_UPGRADE)) {
+			if (e.asItem().getDefaultInstance().is(LHCompatRegistry.HOSTILITY_UPGRADE)) {
 				ans++;
 			}
 		}

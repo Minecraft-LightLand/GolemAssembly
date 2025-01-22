@@ -5,6 +5,7 @@ import dev.xkmc.l2complements.init.L2Complements;
 import dev.xkmc.l2core.init.reg.simple.SR;
 import dev.xkmc.l2core.init.reg.simple.Val;
 import dev.xkmc.l2core.serial.recipe.AbstractShapedRecipe;
+import dev.xkmc.l2core.serial.recipe.AbstractSmithingRecipe;
 import dev.xkmc.modulargolems.content.menu.config.ToggleGolemConfigMenu;
 import dev.xkmc.modulargolems.content.menu.config.ToggleGolemConfigScreen;
 import dev.xkmc.modulargolems.content.menu.equipment.EquipmentsMenu;
@@ -16,6 +17,7 @@ import dev.xkmc.modulargolems.content.menu.path.PathConfigScreen;
 import dev.xkmc.modulargolems.content.menu.target.TargetConfigMenu;
 import dev.xkmc.modulargolems.content.menu.target.TargetConfigScreen;
 import dev.xkmc.modulargolems.content.recipe.GolemAssembleRecipe;
+import dev.xkmc.modulargolems.content.recipe.GolemSmithAddSlotRecipe;
 import dev.xkmc.modulargolems.init.ModularGolems;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -28,6 +30,8 @@ public class GolemMiscs {
 
 	public static final Val<AbstractShapedRecipe.Serializer<GolemAssembleRecipe>> ASSEMBLE =
 			RS.reg("golem_assemble", () -> new AbstractShapedRecipe.Serializer<>(GolemAssembleRecipe::new));
+	public static final Val<AbstractSmithingRecipe.Serializer<GolemSmithAddSlotRecipe>> SMITH_ADD_SLOT =
+			RS.reg("golem_add_slot", () -> new AbstractSmithingRecipe.Serializer<>(GolemSmithAddSlotRecipe::new));
 
 	public static final MenuEntry<EquipmentsMenu> EQUIPMENTS =
 			REGISTRATE.menu("equipments", EquipmentsMenu::fromNetwork, () -> EquipmentsScreen::new)

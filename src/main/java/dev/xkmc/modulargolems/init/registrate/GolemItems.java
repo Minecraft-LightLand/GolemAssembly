@@ -30,6 +30,7 @@ import dev.xkmc.modulargolems.content.item.golem.GolemBEWLR;
 import dev.xkmc.modulargolems.content.item.golem.GolemHolder;
 import dev.xkmc.modulargolems.content.item.golem.GolemPart;
 import dev.xkmc.modulargolems.content.item.upgrade.AddSlotItem;
+import dev.xkmc.modulargolems.content.item.upgrade.AddSlotTemplate;
 import dev.xkmc.modulargolems.content.item.upgrade.SimpleUpgradeItem;
 import dev.xkmc.modulargolems.content.item.wand.*;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
@@ -97,6 +98,8 @@ public class GolemItems {
 	public static final ItemEntry<UuidFilterCard> CARD_UUID;
 	public static final ItemEntry<DefaultFilterCard> CARD_DEF;
 	public static final ItemEntry<AddSlotItem> ADD_SLOT, INF_SLOT;
+	public static final ItemEntry<AddSlotTemplate> ADD_DIAMOND, ADD_NETHERITE;
+
 
 	private static final DCReg DC = DCReg.of(ModularGolems.REG);
 	public static final DCVal<ResourceLocation> DC_PART_MAT = DC.loc("part_material");
@@ -256,8 +259,8 @@ public class GolemItems {
 		// upgrades
 		{
 			EMPTY_UPGRADE = REGISTRATE.item("empty_upgrade", Item::new).defaultModel().defaultLang().register();
-			ADD_SLOT = REGISTRATE.item("add_slot", p -> new AddSlotItem(p, 1)).defaultModel().lang("Add Slot Upgrade").register();
-			INF_SLOT = REGISTRATE.item("creative_add_slot", p -> new AddSlotItem(p, 100)).defaultModel().lang("Creative Add Slot Upgrade").register();
+			ADD_DIAMOND = REGISTRATE.item("diamond_expansion_template", p -> new AddSlotTemplate(p, GolemModifiers.DIAMOND_ADD)).defaultModel().defaultLang().register();
+			ADD_NETHERITE = REGISTRATE.item("netherite_expansion_template", p -> new AddSlotTemplate(p, GolemModifiers.NETHERITE_ADD)).defaultModel().defaultLang().register();
 			FIRE_IMMUNE = regUpgrade("fire_immune", () -> GolemModifiers.FIRE_IMMUNE).lang("Fire Immune Upgrade").register();
 			THUNDER_IMMUNE = regUpgrade("thunder_immune", () -> GolemModifiers.THUNDER_IMMUNE).lang("Thunder Immune Upgrade").register();
 			RECYCLE = regUpgrade("recycle", () -> GolemModifiers.RECYCLE).lang("Recycle Ugpgrade").register();
@@ -385,6 +388,10 @@ public class GolemItems {
 		}
 
 		CompatManager.lateRegister();
+
+		ADD_SLOT = REGISTRATE.item("add_1_slot", p -> new AddSlotItem(p, 1)).defaultModel().lang("Add 1 Upgrade Slot").register();
+		INF_SLOT = REGISTRATE.item("add_100_slot", p -> new AddSlotItem(p, 100)).defaultModel().lang("Add 100 Upgrade Slots").register();
+
 
 	}
 

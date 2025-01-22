@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_netherite_expansion_template": {
+      "conditions": {
+        "items": [
+          {
+            "items": "modulargolems:netherite_expansion_template"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "modulargolems:netherite_expansion_template_humanoid_golem_holder"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_netherite_expansion_template"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "modulargolems:netherite_expansion_template_humanoid_golem_holder"
+    ]
+  }
+}

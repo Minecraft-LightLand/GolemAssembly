@@ -1,6 +1,7 @@
 package dev.xkmc.modulargolems.content.modifier.special;
 
 import dev.xkmc.modulargolems.content.core.StatFilterType;
+import dev.xkmc.modulargolems.content.item.upgrade.IUpgradeItem;
 import dev.xkmc.modulargolems.content.item.upgrade.UpgradeItem;
 import dev.xkmc.modulargolems.content.modifier.base.GolemModifier;
 import dev.xkmc.modulargolems.init.data.MGTagGen;
@@ -16,11 +17,11 @@ public class PotionMetaModifier extends GolemModifier {
 	}
 
 	@Override
-	public int addSlot(List<UpgradeItem> upgrades, int lv) {
+	public int addSlot(List<IUpgradeItem> upgrades, int lv) {
 		int ans = 0;
-		Set<UpgradeItem> set = new HashSet<>();
-		for (UpgradeItem item : upgrades) {
-			if (item.getDefaultInstance().is(MGTagGen.POTION_UPGRADES)) {
+		Set<IUpgradeItem> set = new HashSet<>();
+		for (IUpgradeItem item : upgrades) {
+			if (item.asItem().getDefaultInstance().is(MGTagGen.POTION_UPGRADES)) {
 				if (set.contains(item)) {
 					ans++;
 				} else {

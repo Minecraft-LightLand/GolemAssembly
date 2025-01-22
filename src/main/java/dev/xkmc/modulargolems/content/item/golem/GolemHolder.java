@@ -43,6 +43,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -59,6 +60,17 @@ public class GolemHolder<T extends AbstractGolemEntity<T, P>, P extends IGolemPa
 	public static ArrayList<GolemMaterial> getMaterial(ItemStack stack) {
 		var ans = GolemItems.HOLDER_MAT.get(stack);
 		return ans == null ? new ArrayList<>() : ans.toList();
+	}
+
+	@Nullable
+	public static Ingredient getHealingMaterial(ItemStack stack) {
+		if (!(stack.getItem() instanceof GolemHolder<?, ?> holder)) return null;
+		var mats = GolemHolder.getMaterial(stack);
+		var type = holder.getEntityType();
+		var part = type.getBodyPart();
+		if (mats.size() <= part.ordinal()) return null;
+		var mat = mats.get(part.ordinal());
+		return GolemMaterialConfig.get().ingredients.get(mat.id());
 	}
 
 	public static GolemUpgrade getUpgrades(ItemStack stack) {
@@ -309,7 +321,7 @@ public class GolemHolder<T extends AbstractGolemEntity<T, P>, P extends IGolemPa
 		} else if (type.get() == GolemTypes.TYPE_DOG.get()) {
 			base = MGConfig.COMMON.dogGolemSlot.get();
 		}
-		base = base + upgrades.extraSlot() - upgrades.upgrades().size();
+		base = base + upgrades.extraSlot() - upgrades.size();
 		var modifiers = GolemMaterial.collectModifiers(mats, upgrades);
 		var list = upgrades.upgradeItems();
 		for (var ent : modifiers.entrySet()) {
@@ -366,7 +378,7 @@ public class GolemHolder<T extends AbstractGolemEntity<T, P>, P extends IGolemPa
 			list.add(MGLangData.SLOT.get(getRemaining(mats, upgrades)).withStyle(ChatFormatting.AQUA));
 			var modifiers = GolemMaterial.collectModifiers(mats, upgrades);
 			if (modifiers.size() > 8) {
-				list.add(MGLangData.UPGRADE_COUNT.get(modifiers.size(), upgrades.upgrades().size()));
+				list.add(MGLangData.UPGRADE_COUNT.get(modifiers.size(), upgrades.size()));
 			} else {
 				modifiers.forEach((k, v) -> list.add(k.getTooltip(v)));
 			}

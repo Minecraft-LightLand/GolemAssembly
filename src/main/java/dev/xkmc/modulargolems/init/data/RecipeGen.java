@@ -2,11 +2,16 @@ package dev.xkmc.modulargolems.init.data;
 
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.DataIngredient;
+import com.tterrag.registrate.util.entry.ItemEntry;
 import dev.xkmc.l2core.serial.ingredients.EnchantmentIngredient;
 import dev.xkmc.l2core.serial.recipe.DataRecipeWrapper;
 import dev.xkmc.modulargolems.compat.materials.common.CompatManager;
+import dev.xkmc.modulargolems.content.core.IGolemPart;
+import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.item.card.NameFilterCard;
+import dev.xkmc.modulargolems.content.item.golem.GolemHolder;
 import dev.xkmc.modulargolems.content.recipe.GolemAssembleBuilder;
+import dev.xkmc.modulargolems.content.recipe.GolemSmithBuilder;
 import dev.xkmc.modulargolems.init.ModularGolems;
 import dev.xkmc.modulargolems.init.material.GolemWeaponType;
 import dev.xkmc.modulargolems.init.material.VanillaGolemWeaponMaterial;
@@ -34,6 +39,7 @@ public class RecipeGen {
 
 		// golem base
 		{
+
 			unlock(pvd, ShapedRecipeBuilder.shaped(RecipeCategory.MISC, GolemItems.GOLEM_TEMPLATE.get())::unlockedBy,
 					Items.CLAY).pattern("CBC").pattern("BAB").pattern("CBC")
 					.define('A', Items.COPPER_INGOT).define('B', Items.STICK)
@@ -120,6 +126,29 @@ public class RecipeGen {
 					.define('A', GolemItems.DOG_BODY.get())
 					.define('B', GolemItems.DOG_LEGS.get())
 					.save(pvd);
+
+			expand(pvd, GolemItems.HOLDER_GOLEM, GolemItems.ADD_DIAMOND);
+			expand(pvd, GolemItems.HOLDER_GOLEM, GolemItems.ADD_NETHERITE);
+			expand(pvd, GolemItems.HOLDER_HUMANOID, GolemItems.ADD_DIAMOND);
+			expand(pvd, GolemItems.HOLDER_HUMANOID, GolemItems.ADD_NETHERITE);
+			expand(pvd, GolemItems.HOLDER_DOG, GolemItems.ADD_DIAMOND);
+			expand(pvd, GolemItems.HOLDER_DOG, GolemItems.ADD_NETHERITE);
+
+			unlock(pvd, ShapedRecipeBuilder.shaped(RecipeCategory.MISC, GolemItems.ADD_DIAMOND, 1)::unlockedBy, Items.DIAMOND)
+					.pattern("AAA").pattern("CBC").pattern("ACA")
+					.define('A', GolemItems.EMPTY_UPGRADE)
+					.define('B', Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE)
+					.define('C', Items.DIAMOND)
+					.save(pvd);
+
+			unlock(pvd, ShapedRecipeBuilder.shaped(RecipeCategory.MISC, GolemItems.ADD_NETHERITE, 1)::unlockedBy, Items.NETHERITE_INGOT)
+					.pattern("ADA").pattern("CBC").pattern("ACA")
+					.define('A', GolemItems.EMPTY_UPGRADE)
+					.define('B', Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE)
+					.define('C', Items.NETHERITE_INGOT)
+					.define('D', Items.NETHER_STAR)
+					.save(pvd);
+
 		}
 
 		// card
@@ -437,6 +466,12 @@ public class RecipeGen {
 		Ingredient ing = Ingredient.of(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE);
 		unlock(pvd, SmithingTransformRecipeBuilder.smithing(ing, Ingredient.of(in), Ingredient.of(mat),
 				RecipeCategory.COMBAT, out)::unlocks, mat).save(pvd, getID(out));
+	}
+
+	public static <T extends AbstractGolemEntity<T, P>, P extends IGolemPart<P>> void
+	expand(RegistrateRecipeProvider pvd, ItemEntry<GolemHolder<T, P>> holder, ItemEntry<?> template) {
+		unlock(pvd, new GolemSmithBuilder(holder.get(), template)::unlocks, template.get())
+				.save(pvd, template.getId().withSuffix("_" + holder.getId().getPath()));
 	}
 
 	@SuppressWarnings("ConstantConditions")

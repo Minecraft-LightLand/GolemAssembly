@@ -4,6 +4,7 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import dev.xkmc.l2core.init.reg.registrate.NamedEntry;
 import dev.xkmc.l2core.init.reg.simple.Val;
+import dev.xkmc.modulargolems.compat.materials.common.AddSlotModifier;
 import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.GolemFlags;
 import dev.xkmc.modulargolems.content.modifier.base.*;
@@ -48,6 +49,7 @@ public class GolemModifiers {
 	public static final Val<AttributeGolemModifier> ARMOR, TOUGH, DAMAGE, REGEN, SPEED, SIZE_UPGRADE;
 	public static final Val<PotionAttackModifier> SLOW, WEAK, WITHER;
 	public static final Val<RideUpgrade> MOUNT_UPGRADE;
+	public static final Val<AddSlotModifier> DIAMOND_ADD, NETHERITE_ADD;
 
 	static {
 		FIRE_IMMUNE = reg("fire_immune", FireImmuneModifier::new,
@@ -76,6 +78,9 @@ public class GolemModifiers {
 		REGEN = reg("regeneration_up", () -> new AttributeGolemModifier(GolemModifier.MAX_LEVEL,
 				new AttributeGolemModifier.AttrEntry(GolemTypes.STAT_REGEN, () -> 1)
 		));
+
+		DIAMOND_ADD = reg("add_slot_diamond", () -> new AddSlotModifier(1), "Diamond Expansion", "Add 1 upgrade slot. Only once per golem.");
+		NETHERITE_ADD = reg("add_slot_netherite", () -> new AddSlotModifier(1), "Netherite Expansion", "Add 1 upgrade slot. Only once per golem.");
 
 		THORN = reg("thorn", ThornModifier::new,
 				"Reflect %s%% damage");

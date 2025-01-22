@@ -1,12 +1,14 @@
-3.0.6
+# 3.0.6
 - Add +1 slot and +100 slot upgrade item (Creative only)
+- Add diamond and netherite upgrade template (each once per golem)
 - Add support for More Wolf Armors
 - Ban lead and name tag on golems for non-owner
 - Attribute golem kills to player when calculating entity loot
 
-3.0.5
+# 3.0.5
 - Fix upgrades can be over-applied
 - Fix JEI when finding craft outputing clay golems
+
 
 3.0.4
 - path recorder rendering

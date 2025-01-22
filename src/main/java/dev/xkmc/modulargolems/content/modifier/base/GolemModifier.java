@@ -9,7 +9,7 @@ import dev.xkmc.modulargolems.content.core.StatFilterType;
 import dev.xkmc.modulargolems.content.entity.common.AbstractGolemEntity;
 import dev.xkmc.modulargolems.content.entity.common.GolemFlags;
 import dev.xkmc.modulargolems.content.item.golem.GolemPart;
-import dev.xkmc.modulargolems.content.item.upgrade.UpgradeItem;
+import dev.xkmc.modulargolems.content.item.upgrade.IUpgradeItem;
 import dev.xkmc.modulargolems.init.registrate.GolemTypes;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -111,7 +111,7 @@ public class GolemModifier extends NamedEntry<GolemModifier> {
 	/**
 	 * provide more slots
 	 */
-	public int addSlot(List<UpgradeItem> upgrades, int lv) {
+	public int addSlot(List<IUpgradeItem> upgrades, int lv) {
 		return 0;
 	}
 
